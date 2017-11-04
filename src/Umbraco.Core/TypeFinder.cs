@@ -211,7 +211,7 @@ namespace Umbraco.Core
         internal static readonly string[] KnownAssemblyExclusionFilter = new[]
                 {
                     "mscorlib,",
-					"System.",
+                    "System.",
                     "Antlr3.",
                     "Autofac.",
                     "Autofac,",
@@ -420,6 +420,7 @@ namespace Umbraco.Core
             candidateAssemblies.Remove(attributeType.Assembly);
             var types = new List<Type>();
 
+            var alreadyChecked = new HashSet<Assembly>();
             var stack = new Stack<Assembly>();
             stack.Push(attributeType.Assembly);
 
@@ -433,12 +434,12 @@ namespace Umbraco.Core
                     // get all assembly types that can be assigned to baseType
                     try
                     {
-                        assemblyTypes = GetTypesWithFormattedException(assembly)
-                            .ToArray(); // in try block
+                        assemblyTypes = GetTypesWithFormattedException(assembly).ToArray(); // in try block
                     }
                     catch (TypeLoadException ex)
                     {
-                        LogHelper.Error(typeof(TypeFinder), string.Format("Could not query types on {0} assembly, this is most likely due to this assembly not being compatible with the current Umbraco version", assembly), ex);
+                        LogHelper.Error(typeof(TypeFinder),
+                            $"Could not query types on {assembly} assembly, this is most likely due to this assembly not being compatible with the current Umbraco version", ex);
                         continue;
                     }
 
@@ -451,13 +452,19 @@ namespace Umbraco.Core
                         && x.GetCustomAttributes(attributeType, false).Any())); // marked with the attribute
                 }
 
+                // Add assembly to the list of those we have processed
+                alreadyChecked.Add(assembly);
+
                 if (assembly != attributeType.Assembly && assemblyTypes.Where(attributeType.IsAssignableFrom).Any() == false)
                     continue;
 
                 foreach (var referencing in TypeHelper.GetReferencingAssemblies(assembly, candidateAssemblies))
                 {
-                    candidateAssemblies.Remove(referencing);
-                    stack.Push(referencing);
+                    if (alreadyChecked.Contains(referencing) == false)
+                    {
+                        candidateAssemblies.Remove(referencing);
+                        stack.Push(referencing);
+                    }
                 }
             }
 
