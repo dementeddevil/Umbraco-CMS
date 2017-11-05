@@ -60,7 +60,7 @@
     </siteMap>
     <httpRuntime xdt:Transform="InsertIfMissing" />
     <httpRuntime maxRequestLength="51200" fcnMode="Single" xdt:Transform="SetAttributes(fcnMode,maxRequestLength)" />
-    <httpRuntime targetFramework="4.5" xdt:Locator="Condition(count(@targetFramework) != 1)" xdt:Transform="SetAttributes(targetFramework)" />
+    <httpRuntime targetFramework="4.7.1" xdt:Locator="Condition(count(@targetFramework) != 1)" xdt:Transform="SetAttributes(targetFramework)" />
 
     <membership defaultProvider="DefaultMembershipProvider" xdt:Locator="Match(defaultProvider)" xdt:Transform="Remove" />
     <roleManager defaultProvider="DefaultRoleProvider" xdt:Locator="Match(defaultProvider)" xdt:Transform="Remove"/>
