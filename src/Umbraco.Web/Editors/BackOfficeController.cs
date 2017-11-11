@@ -21,7 +21,6 @@ using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Manifest;
 using Umbraco.Core.Models.Identity;
-using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Security;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
@@ -340,8 +339,8 @@ namespace Umbraco.Web.Editors
             Func<ActionResult> defaultResponse,
             Func<ActionResult> externalSignInResponse)
         {
-            if (defaultResponse == null) throw new ArgumentNullException("defaultResponse");
-            if (externalSignInResponse == null) throw new ArgumentNullException("externalSignInResponse");
+            if (defaultResponse == null) throw new ArgumentNullException(nameof(defaultResponse));
+            if (externalSignInResponse == null) throw new ArgumentNullException(nameof(externalSignInResponse));
 
             ViewBag.UmbracoPath = GlobalSettings.UmbracoMvcArea;
 
@@ -370,8 +369,8 @@ namespace Umbraco.Web.Editors
 
         private async Task<ActionResult> ExternalSignInAsync(ExternalLoginInfo loginInfo, Func<ActionResult> response)
         {
-            if (loginInfo == null) throw new ArgumentNullException("loginInfo");
-            if (response == null) throw new ArgumentNullException("response");
+            if (loginInfo == null) throw new ArgumentNullException(nameof(loginInfo));
+            if (response == null) throw new ArgumentNullException(nameof(response));
 
             // Sign in the user with this external login provider if the user already has a login
             var user = await UserManager.FindAsync(loginInfo.Login);

@@ -66,7 +66,7 @@ namespace Umbraco.Web.Routing
             return domains.Select(domain =>
                 {
                     if (!DomainValidation.IsMatch(domain))
-                        throw new ArgumentOutOfRangeException("domains", string.Format("Invalid domain: \"{0}\"", domain));
+                        throw new ArgumentOutOfRangeException(nameof(domains), string.Format("Invalid domain: \"{0}\"", domain));
                     return domain;
                 });
         }
@@ -148,7 +148,7 @@ namespace Umbraco.Web.Routing
             using (ConfigWriteLock)
             {
                 foreach (var key in keys.Where(key => !_sites.ContainsKey(key)))
-                    throw new ArgumentException(string.Format("Not an existing site key: {0}", key), "keys");
+                    throw new ArgumentException(string.Format("Not an existing site key: {0}", key), nameof(keys));
  
                 _bindings = _bindings ?? new Dictionary<string, List<string>>();
  
@@ -297,9 +297,9 @@ namespace Umbraco.Web.Routing
         private static DomainAndUri MapDomain(DomainAndUri[] domainAndUris, Dictionary<string, string[]> qualifiedSites, string currentAuthority)
         {
             if (domainAndUris == null)
-                throw new ArgumentNullException("domainAndUris");
+                throw new ArgumentNullException(nameof(domainAndUris));
             if (!domainAndUris.Any())
-                throw new ArgumentException("Cannot be empty.", "domainAndUris");
+                throw new ArgumentException("Cannot be empty.", nameof(domainAndUris));
 
             // we do our best, but can't do the impossible
             if (qualifiedSites == null)

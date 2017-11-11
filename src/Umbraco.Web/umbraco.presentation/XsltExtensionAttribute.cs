@@ -1,6 +1,4 @@
 using System;
-using System.Security.Permissions;
-using System.Web;
 
 namespace umbraco
 {

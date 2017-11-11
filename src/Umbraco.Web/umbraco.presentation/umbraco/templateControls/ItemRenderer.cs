@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -9,20 +8,13 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.UI;
 using System.Xml;
-using StackExchange.Profiling;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Macros;
-using Umbraco.Core.Profiling;
-using Umbraco.Web;
-using Umbraco.Web.PublishedCache;
 using Umbraco.Web.PublishedCache.XmlPublishedCache;
-using Umbraco.Web.Routing;
 using Umbraco.Web.Templates;
 using umbraco.cms.businesslogic;
-using umbraco.cms.businesslogic.property;
 using umbraco.cms.businesslogic.web;
-using Umbraco.Core.IO;
 
 namespace umbraco.presentation.templateControls
 {

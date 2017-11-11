@@ -119,7 +119,7 @@ namespace Umbraco.Web
         //
         public static string ResolveUrl(string relativeUrl)
         {
-            if (relativeUrl == null) throw new ArgumentNullException("relativeUrl");
+            if (relativeUrl == null) throw new ArgumentNullException(nameof(relativeUrl));
 
             if (relativeUrl.Length == 0 || relativeUrl[0] == '/' || relativeUrl[0] == '\\')
                 return relativeUrl;
@@ -234,9 +234,9 @@ namespace Umbraco.Web
     	/// </remarks>
     	internal static Uri ToFullUrl(string absolutePath, HttpContextBase httpContext)
 		{
-    		if (httpContext == null) throw new ArgumentNullException("httpContext");
+    		if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
     		if (String.IsNullOrEmpty(absolutePath))
-				throw new ArgumentNullException("absolutePath");
+				throw new ArgumentNullException(nameof(absolutePath));
 			
 			if (!absolutePath.StartsWith("/"))
 				throw new FormatException("The absolutePath specified does not start with a '/'");

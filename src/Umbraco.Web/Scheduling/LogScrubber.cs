@@ -1,8 +1,4 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Caching;
 using umbraco.BusinessLogic;
 using Umbraco.Core;
 using Umbraco.Core.Configuration.UmbracoSettings;

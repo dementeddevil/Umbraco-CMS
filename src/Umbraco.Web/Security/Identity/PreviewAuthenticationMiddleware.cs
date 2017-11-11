@@ -1,26 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Security.Claims;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Microsoft.Owin.Extensions;
-using Microsoft.Owin.Logging;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Owin;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
-using Umbraco.Core.IO;
-using Umbraco.Core.Logging;
-using Umbraco.Core.Models.Identity;
 using Umbraco.Core.Security;
-using Constants = Umbraco.Core.Constants;
 
 namespace Umbraco.Web.Security.Identity
 {

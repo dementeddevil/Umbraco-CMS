@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Services;
@@ -22,7 +21,7 @@ namespace Umbraco.Web.WebServices
 
         protected UmbracoHttpHandler(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             UmbracoContext = umbracoContext;
             Umbraco = new UmbracoHelper(umbracoContext);
         }

@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using Umbraco.Core;
 using Umbraco.Core.Media;
 using Umbraco.Web.Mvc;
-using Umbraco.Web.Routing;
 using Umbraco.Web.Trees;
 using Umbraco.Web.WebApi;
-using umbraco;
 using umbraco.interfaces;
 using Umbraco.Web.Search;
 

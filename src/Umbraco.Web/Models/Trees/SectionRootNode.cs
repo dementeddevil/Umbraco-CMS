@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Runtime.Serialization;
-using Umbraco.Core;
 
 namespace Umbraco.Web.Models.Trees
 {

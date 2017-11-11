@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -46,10 +45,10 @@ namespace Umbraco.Web.Security
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MembershipHelper(ApplicationContext applicationContext, HttpContextBase httpContext, MembershipProvider membershipProvider, RoleProvider roleProvider)
         {
-            if (applicationContext == null) throw new ArgumentNullException("applicationContext");
-            if (httpContext == null) throw new ArgumentNullException("httpContext");
-            if (membershipProvider == null) throw new ArgumentNullException("membershipProvider");
-            if (roleProvider == null) throw new ArgumentNullException("roleProvider");
+            if (applicationContext == null) throw new ArgumentNullException(nameof(applicationContext));
+            if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
+            if (membershipProvider == null) throw new ArgumentNullException(nameof(membershipProvider));
+            if (roleProvider == null) throw new ArgumentNullException(nameof(roleProvider));
             _applicationContext = applicationContext;
             _httpContext = httpContext;
             _membershipProvider = membershipProvider;
@@ -63,9 +62,9 @@ namespace Umbraco.Web.Security
 
         public MembershipHelper(UmbracoContext umbracoContext, MembershipProvider membershipProvider, RoleProvider roleProvider)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
-            if (membershipProvider == null) throw new ArgumentNullException("membershipProvider");
-            if (roleProvider == null) throw new ArgumentNullException("roleProvider");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+            if (membershipProvider == null) throw new ArgumentNullException(nameof(membershipProvider));
+            if (roleProvider == null) throw new ArgumentNullException(nameof(roleProvider));
             _httpContext = umbracoContext.HttpContext;
             _applicationContext = umbracoContext.Application;
             _membershipProvider = membershipProvider;

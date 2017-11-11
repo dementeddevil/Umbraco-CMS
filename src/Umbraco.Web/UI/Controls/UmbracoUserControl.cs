@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.UI;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
@@ -22,7 +20,7 @@ namespace Umbraco.Web.UI.Controls
         /// <param name="umbracoContext"></param>
         protected UmbracoUserControl(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             UmbracoContext = umbracoContext;
             InstanceId = Guid.NewGuid();
             Umbraco = new UmbracoHelper(umbracoContext);

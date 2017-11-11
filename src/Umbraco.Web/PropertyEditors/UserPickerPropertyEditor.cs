@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Web.Mvc;
 using Umbraco.Core;
 using Umbraco.Core.PropertyEditors;
 

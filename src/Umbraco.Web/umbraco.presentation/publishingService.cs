@@ -1,14 +1,9 @@
 using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Net;
-using System.Web;
-using System.Xml;
 using Umbraco.Core.Configuration;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
-using umbraco.BusinessLogic;
-using umbraco.cms.businesslogic.web;
 using Umbraco.Core.Publishing;
 
 namespace umbraco.presentation

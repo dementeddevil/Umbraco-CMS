@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Threading;
 using System.Web;
 using Microsoft.AspNet.Identity;
@@ -15,7 +12,6 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
-using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models.Identity;
 using Umbraco.Core.Security;
@@ -80,8 +76,8 @@ namespace Umbraco.Web.Security.Identity
             ApplicationContext appContext,
             MembershipProviderBase userMembershipProvider)
         {
-            if (appContext == null) throw new ArgumentNullException("appContext");
-            if (userMembershipProvider == null) throw new ArgumentNullException("userMembershipProvider");
+            if (appContext == null) throw new ArgumentNullException(nameof(appContext));
+            if (userMembershipProvider == null) throw new ArgumentNullException(nameof(userMembershipProvider));
 
             //Configure Umbraco user manager to be created per request
             app.CreatePerOwinContext<BackOfficeUserManager>(
@@ -111,9 +107,9 @@ namespace Umbraco.Web.Security.Identity
             MembershipProviderBase userMembershipProvider,
             BackOfficeUserStore customUserStore)
         {
-            if (appContext == null) throw new ArgumentNullException("appContext");
-            if (userMembershipProvider == null) throw new ArgumentNullException("userMembershipProvider");
-            if (customUserStore == null) throw new ArgumentNullException("customUserStore");
+            if (appContext == null) throw new ArgumentNullException(nameof(appContext));
+            if (userMembershipProvider == null) throw new ArgumentNullException(nameof(userMembershipProvider));
+            if (customUserStore == null) throw new ArgumentNullException(nameof(customUserStore));
 
             //Configure Umbraco user manager to be created per request
             app.CreatePerOwinContext<BackOfficeUserManager>(
@@ -141,8 +137,8 @@ namespace Umbraco.Web.Security.Identity
             where TManager : BackOfficeUserManager<TUser>
             where TUser : BackOfficeIdentityUser
         {
-            if (appContext == null) throw new ArgumentNullException("appContext");
-            if (userManager == null) throw new ArgumentNullException("userManager");
+            if (appContext == null) throw new ArgumentNullException(nameof(appContext));
+            if (userManager == null) throw new ArgumentNullException(nameof(userManager));
 
             //Configure Umbraco user manager to be created per request
             app.CreatePerOwinContext<TManager>(userManager);
@@ -210,9 +206,9 @@ namespace Umbraco.Web.Security.Identity
         /// <returns></returns>
         public static IAppBuilder UseUmbracoBackOfficeCookieAuthentication(this IAppBuilder app, ApplicationContext appContext, CookieAuthenticationOptions cookieOptions, PipelineStage stage)
         {
-            if (app == null) throw new ArgumentNullException("app");
-            if (appContext == null) throw new ArgumentNullException("appContext");
-            if (cookieOptions == null) throw new ArgumentNullException("cookieOptions");
+            if (app == null) throw new ArgumentNullException(nameof(app));
+            if (appContext == null) throw new ArgumentNullException(nameof(appContext));
+            if (cookieOptions == null) throw new ArgumentNullException(nameof(cookieOptions));
             if (cookieOptions.Provider == null) throw new ArgumentNullException("cookieOptions.Provider");
             if ((cookieOptions.Provider is BackOfficeCookieAuthenticationProvider) == false) throw new ArgumentException("The cookieOptions.Provider must be of type " + typeof(BackOfficeCookieAuthenticationProvider));
             
@@ -269,7 +265,7 @@ namespace Umbraco.Web.Security.Identity
         {
             if (app == null)
             {
-                throw new ArgumentNullException("app");
+                throw new ArgumentNullException(nameof(app));
             }
 
             //First the normal cookie middleware
@@ -312,8 +308,8 @@ namespace Umbraco.Web.Security.Identity
         /// <returns></returns>
         public static IAppBuilder UseUmbracoBackOfficeExternalCookieAuthentication(this IAppBuilder app, ApplicationContext appContext, PipelineStage stage)
         {
-            if (app == null) throw new ArgumentNullException("app");
-            if (appContext == null) throw new ArgumentNullException("appContext");
+            if (app == null) throw new ArgumentNullException(nameof(app));
+            if (appContext == null) throw new ArgumentNullException(nameof(appContext));
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

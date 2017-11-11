@@ -8,8 +8,6 @@ using System.IO;
 
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
-using Umbraco.Core.Configuration.BaseRest;
-using Umbraco.Core.IO;
 using umbraco.cms.businesslogic.member;
 
 namespace Umbraco.Web.BaseRest
@@ -31,10 +29,10 @@ namespace Umbraco.Web.BaseRest
 	    static string GetAttribute(XmlNode node, string name)
 		{
             if (node == null)
-                throw new ArgumentNullException("node");
+                throw new ArgumentNullException(nameof(node));
 	        var attributes = node.Attributes;
             if (attributes == null)
-                throw new ArgumentException(@"Node has no Attributes collection.", "node"); 
+                throw new ArgumentException(@"Node has no Attributes collection.", nameof(node)); 
 			var attribute = attributes[name];
 			return attribute == null ? null : attribute.Value;
 		}

@@ -1,9 +1,7 @@
 using System;
 using System.Web.Mvc;
-using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Core;
-using Umbraco.Web.Security;
 using System.Collections.Specialized;
 
 namespace Umbraco.Web.Mvc

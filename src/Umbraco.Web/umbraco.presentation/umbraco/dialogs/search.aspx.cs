@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Umbraco.Core;
 using UmbracoExamine;
 using System.Xml;
 using Examine;
 using Examine.LuceneEngine.SearchCriteria;
 using System.Linq;
-using Umbraco.Core;
 
 
 namespace umbraco.presentation.dialogs

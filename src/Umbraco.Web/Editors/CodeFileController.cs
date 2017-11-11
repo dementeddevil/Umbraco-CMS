@@ -36,8 +36,8 @@ namespace Umbraco.Web.Editors
         [ValidationFilter]
         public HttpResponseMessage PostCreate(string type, CodeFileDisplay display)
         {
-            if (display == null) throw new ArgumentNullException("display");
-            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", "type");
+            if (display == null) throw new ArgumentNullException(nameof(display));
+            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(type));
 
             switch (type)
             {
@@ -73,9 +73,9 @@ namespace Umbraco.Web.Editors
         [HttpPost]
         public CodeFileDisplay PostCreateContainer(string type, string parentId, string name)
         {
-            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", "type");
-            if (string.IsNullOrWhiteSpace(parentId)) throw new ArgumentException("Value cannot be null or whitespace.", "parentId");
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Value cannot be null or whitespace.", "name");
+            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(type));
+            if (string.IsNullOrWhiteSpace(parentId)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(parentId));
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(name));
 
             // if the parentId is root (-1) then we just need an empty string as we are
             // creating the path below and we don't wan't -1 in the path
@@ -125,8 +125,8 @@ namespace Umbraco.Web.Editors
         /// <returns>The file and its contents from the virtualPath</returns>
         public CodeFileDisplay GetByPath(string type, string virtualPath)
         {
-            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", "type");
-            if (string.IsNullOrWhiteSpace(virtualPath)) throw new ArgumentException("Value cannot be null or whitespace.", "virtualPath");
+            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(type));
+            if (string.IsNullOrWhiteSpace(virtualPath)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(virtualPath));
 
             virtualPath = System.Web.HttpUtility.UrlDecode(virtualPath);
 
@@ -179,7 +179,7 @@ namespace Umbraco.Web.Editors
         /// <returns>Returns a list of <see cref="SnippetDisplay"/> if a correct type is sent</returns>
         public IEnumerable<SnippetDisplay> GetSnippets(string type)
         {
-            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", "type");
+            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(type));
 
             IEnumerable<string> snippets;
             switch (type)
@@ -211,8 +211,8 @@ namespace Umbraco.Web.Editors
         /// <returns></returns>
         public CodeFileDisplay GetScaffold(string type, string id, string snippetName = null)
         {
-            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", "type");
-            if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("Value cannot be null or whitespace.", "id");
+            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(type));
+            if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(id));
 
             CodeFileDisplay codeFileDisplay;
 
@@ -263,8 +263,8 @@ namespace Umbraco.Web.Editors
         [HttpPost]
         public HttpResponseMessage Delete(string type, string virtualPath)
         {
-            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", "type");
-            if (string.IsNullOrWhiteSpace(virtualPath)) throw new ArgumentException("Value cannot be null or whitespace.", "virtualPath");
+            if (string.IsNullOrWhiteSpace(type)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(type));
+            if (string.IsNullOrWhiteSpace(virtualPath)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(virtualPath));
             
             virtualPath = System.Web.HttpUtility.UrlDecode(virtualPath);
 
@@ -321,7 +321,7 @@ namespace Umbraco.Web.Editors
         /// <returns>The updated CodeFileDisplay model</returns>
         public CodeFileDisplay PostSave(CodeFileDisplay display)
         {
-            if (display == null) throw new ArgumentNullException("display");
+            if (display == null) throw new ArgumentNullException(nameof(display));
 
             if (ModelState.IsValid == false)
             {

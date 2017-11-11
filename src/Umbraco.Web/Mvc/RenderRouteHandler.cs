@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Compilation;
 using System.Web.Mvc;
@@ -8,11 +7,8 @@ using System.Web.Routing;
 using System.Web.SessionState;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
-using Umbraco.Core.Configuration;
-using Umbraco.Core.Models;
 using Umbraco.Web.Models;
 using Umbraco.Web.Routing;
-using umbraco.cms.businesslogic.template;
 using System.Collections.Generic;
 
 namespace Umbraco.Web.Mvc
@@ -29,7 +25,7 @@ namespace Umbraco.Web.Mvc
 
         public RenderRouteHandler(IControllerFactory controllerFactory)
         {
-            if (controllerFactory == null) throw new ArgumentNullException("controllerFactory");
+            if (controllerFactory == null) throw new ArgumentNullException(nameof(controllerFactory));
             _controllerFactory = controllerFactory;
         }
 
@@ -40,8 +36,8 @@ namespace Umbraco.Web.Mvc
         /// <param name="umbracoContext"></param>
         internal RenderRouteHandler(IControllerFactory controllerFactory, UmbracoContext umbracoContext)
         {
-            if (controllerFactory == null) throw new ArgumentNullException("controllerFactory");
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (controllerFactory == null) throw new ArgumentNullException(nameof(controllerFactory));
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _controllerFactory = controllerFactory;
             _umbracoContext = umbracoContext;
         }
@@ -104,8 +100,8 @@ namespace Umbraco.Web.Mvc
 
         private void UpdateRouteDataForRequest(RenderModel renderModel, RequestContext requestContext)
         {
-            if (renderModel == null) throw new ArgumentNullException("renderModel");
-            if (requestContext == null) throw new ArgumentNullException("requestContext");
+            if (renderModel == null) throw new ArgumentNullException(nameof(renderModel));
+            if (requestContext == null) throw new ArgumentNullException(nameof(requestContext));
 
             requestContext.RouteData.DataTokens[Core.Constants.Web.UmbracoDataToken] = renderModel;
             // the rest should not change -- it's only the published content that has changed
@@ -119,7 +115,7 @@ namespace Umbraco.Web.Mvc
         /// <returns></returns>
         internal static PostedDataProxyInfo GetFormInfo(RequestContext requestContext)
         {
-            if (requestContext == null) throw new ArgumentNullException("requestContext");
+            if (requestContext == null) throw new ArgumentNullException(nameof(requestContext));
 
             //if it is a POST/GET then a value must be in the request
             if (requestContext.HttpContext.Request.QueryString["ufprt"].IsNullOrWhiteSpace()
@@ -203,8 +199,8 @@ namespace Umbraco.Web.Mvc
         /// <param name="postedInfo"></param>
         internal static IHttpHandler HandlePostedValues(RequestContext requestContext, PostedDataProxyInfo postedInfo)
         {
-            if (requestContext == null) throw new ArgumentNullException("requestContext");
-            if (postedInfo == null) throw new ArgumentNullException("postedInfo");
+            if (requestContext == null) throw new ArgumentNullException(nameof(requestContext));
+            if (postedInfo == null) throw new ArgumentNullException(nameof(postedInfo));
 
             //set the standard route values/tokens
             requestContext.RouteData.Values["controller"] = postedInfo.ControllerName;
@@ -278,8 +274,8 @@ namespace Umbraco.Web.Mvc
         /// <returns></returns>
         internal virtual RouteDefinition GetUmbracoRouteDefinition(RequestContext requestContext, PublishedContentRequest publishedContentRequest)
         {
-            if (requestContext == null) throw new ArgumentNullException("requestContext");
-            if (publishedContentRequest == null) throw new ArgumentNullException("publishedContentRequest");
+            if (requestContext == null) throw new ArgumentNullException(nameof(requestContext));
+            if (publishedContentRequest == null) throw new ArgumentNullException(nameof(publishedContentRequest));
 
             var defaultControllerType = DefaultRenderMvcControllerResolver.Current.GetDefaultControllerType();
             var defaultControllerName = ControllerExtensions.GetControllerName(defaultControllerType);
@@ -344,7 +340,7 @@ namespace Umbraco.Web.Mvc
 
         internal IHttpHandler GetHandlerOnMissingTemplate(PublishedContentRequest pcr)
         {
-            if (pcr == null) throw new ArgumentNullException("pcr");
+            if (pcr == null) throw new ArgumentNullException(nameof(pcr));
 
             // missing template, so we're in a 404 here
             // so the content, if any, is a custom 404 page of some sort
@@ -376,8 +372,8 @@ namespace Umbraco.Web.Mvc
         /// <param name="publishedContentRequest"></param>
         internal IHttpHandler GetHandlerForRoute(RequestContext requestContext, PublishedContentRequest publishedContentRequest)
         {
-            if (requestContext == null) throw new ArgumentNullException("requestContext");
-            if (publishedContentRequest == null) throw new ArgumentNullException("publishedContentRequest");
+            if (requestContext == null) throw new ArgumentNullException(nameof(requestContext));
+            if (publishedContentRequest == null) throw new ArgumentNullException(nameof(publishedContentRequest));
 
             var routeDef = GetUmbracoRouteDefinition(requestContext, publishedContentRequest);
 

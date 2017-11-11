@@ -1,5 +1,3 @@
-using System;
-
 namespace Umbraco.Web.Mvc
 {
 	/// <summary>

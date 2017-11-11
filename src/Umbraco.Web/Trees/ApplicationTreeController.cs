@@ -83,7 +83,7 @@ namespace Umbraco.Web.Trees
         /// <returns></returns>
         private async Task<TreeNode> GetRootForMultipleAppTree(ApplicationTree configTree, FormDataCollection queryStrings)
         {
-            if (configTree == null) throw new ArgumentNullException("configTree");
+            if (configTree == null) throw new ArgumentNullException(nameof(configTree));
             var byControllerAttempt = await configTree.TryGetRootNodeFromControllerTree(queryStrings, ControllerContext);
             if (byControllerAttempt.Success)
             {
@@ -110,7 +110,7 @@ namespace Umbraco.Web.Trees
         private async Task<SectionRootNode> GetRootForSingleAppTree(ApplicationTree configTree, string id, FormDataCollection queryStrings, string application)
         {
             var rootId = Constants.System.Root.ToString(CultureInfo.InvariantCulture);
-            if (configTree == null) throw new ArgumentNullException("configTree");
+            if (configTree == null) throw new ArgumentNullException(nameof(configTree));
             var byControllerAttempt = configTree.TryLoadFromControllerTree(id, queryStrings, ControllerContext);
             if (byControllerAttempt.Success)
             {

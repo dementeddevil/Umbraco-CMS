@@ -9,7 +9,6 @@ namespace dashboardUtilities
     using System.Net.Mime;
     using umbraco;
     using umbraco.BasePages;
-    using umbraco.BusinessLogic;
     using Umbraco.Core.IO;
 
     public partial class FeedProxy : UmbracoEnsuredPage

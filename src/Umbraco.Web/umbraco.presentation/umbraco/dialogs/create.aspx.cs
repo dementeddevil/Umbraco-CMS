@@ -1,25 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Xml;
 using Umbraco.Core.IO;
-using Umbraco.Core.Logging;
 using Umbraco.Web;
 using umbraco.cms.businesslogic;
-using umbraco.cms.presentation;
-using umbraco.presentation;
 using umbraco.BusinessLogic.Actions;
 using umbraco.BasePages;
-using umbraco.cms.businesslogic.web;
 using Umbraco.Core;
 
 namespace umbraco.dialogs

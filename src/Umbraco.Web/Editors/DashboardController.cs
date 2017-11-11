@@ -3,8 +3,6 @@ using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Web.Models.ContentEditing;
 using Umbraco.Web.Mvc;
-using System.Linq;
-using Umbraco.Core.IO;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;

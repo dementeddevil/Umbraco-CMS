@@ -1,7 +1,5 @@
 using System;
-using System.Diagnostics;
 using System.Net;
-using System.Web;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 

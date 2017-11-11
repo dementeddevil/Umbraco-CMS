@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Xml;
 using Umbraco.Core;
 using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.Services;
-using Umbraco.Web.Trees;
 using umbraco.BusinessLogic;
 using umbraco.BusinessLogic.Actions;
 using umbraco.cms.businesslogic.media;

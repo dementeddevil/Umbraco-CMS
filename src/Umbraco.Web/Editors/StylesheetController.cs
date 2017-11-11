@@ -1,21 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http;
-using System.Web.Services.Description;
-using Newtonsoft.Json.Linq;
-using umbraco.cms.businesslogic.web;
 using Umbraco.Core;
-using Umbraco.Core.IO;
 using Umbraco.Web.Models.ContentEditing;
 using Umbraco.Web.Mvc;
-using Umbraco.Web.WebApi.Filters;
 
 namespace Umbraco.Web.Editors
 {

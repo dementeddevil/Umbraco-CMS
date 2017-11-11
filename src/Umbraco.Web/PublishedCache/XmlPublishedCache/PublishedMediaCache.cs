@@ -21,9 +21,6 @@ using Umbraco.Core.Xml;
 using Umbraco.Web.Models;
 using UmbracoExamine;
 using umbraco;
-using Umbraco.Core.Cache;
-using Umbraco.Core.Sync;
-using Umbraco.Web.Cache;
 
 namespace Umbraco.Web.PublishedCache.XmlPublishedCache
 {
@@ -37,7 +34,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
     {
         public PublishedMediaCache(ApplicationContext applicationContext)
         {
-            if (applicationContext == null) throw new ArgumentNullException("applicationContext");
+            if (applicationContext == null) throw new ArgumentNullException(nameof(applicationContext));
             _applicationContext = applicationContext;
         }
 
@@ -49,9 +46,9 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
         /// <param name="indexProvider"></param>
         internal PublishedMediaCache(ApplicationContext applicationContext, BaseSearchProvider searchProvider, BaseIndexProvider indexProvider)
         {
-            if (applicationContext == null) throw new ArgumentNullException("applicationContext");
-            if (searchProvider == null) throw new ArgumentNullException("searchProvider");
-            if (indexProvider == null) throw new ArgumentNullException("indexProvider");
+            if (applicationContext == null) throw new ArgumentNullException(nameof(applicationContext));
+            if (searchProvider == null) throw new ArgumentNullException(nameof(searchProvider));
+            if (indexProvider == null) throw new ArgumentNullException(nameof(indexProvider));
 
             _applicationContext = applicationContext;
             _searchProvider = searchProvider;
@@ -329,7 +326,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
 
         internal CacheValues ConvertFromXPathNavigator(XPathNavigator xpath, bool forceNav = false)
         {
-            if (xpath == null) throw new ArgumentNullException("xpath");
+            if (xpath == null) throw new ArgumentNullException(nameof(xpath));
 
             var values = new Dictionary<string, string> { { "nodeName", xpath.GetAttribute("nodeName", "") } };
             if (!UmbracoConfig.For.UmbracoSettings().Content.UseLegacyXmlSchema)
@@ -619,9 +616,9 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
                 XPathNavigator nav,
                 bool fromExamine)
             {
-                if (valueDictionary == null) throw new ArgumentNullException("valueDictionary");
-                if (getParent == null) throw new ArgumentNullException("getParent");
-                if (getProperty == null) throw new ArgumentNullException("getProperty");
+                if (valueDictionary == null) throw new ArgumentNullException(nameof(valueDictionary));
+                if (getParent == null) throw new ArgumentNullException(nameof(getParent));
+                if (getProperty == null) throw new ArgumentNullException(nameof(getProperty));
 
                 _getParent = new Lazy<IPublishedContent>(() => getParent(ParentId));
                 _getChildren = new Lazy<IEnumerable<IPublishedContent>>(() => getChildren(Id, nav));

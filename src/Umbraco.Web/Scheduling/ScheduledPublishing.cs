@@ -1,12 +1,9 @@
 using System;
 using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using umbraco;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Configuration.UmbracoSettings;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Publishing;

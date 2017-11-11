@@ -1,8 +1,6 @@
 using System;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Web;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;

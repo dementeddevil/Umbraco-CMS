@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using AutoMapper;
 using Umbraco.Core;
@@ -8,7 +7,6 @@ using Umbraco.Core.Models;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Core.Services;
 using Umbraco.Web.Models.ContentEditing;
-using umbraco;
 
 namespace Umbraco.Web.Models.Mapping
 {
@@ -22,7 +20,7 @@ namespace Umbraco.Web.Models.Mapping
 
         public TabsAndPropertiesResolver(ILocalizedTextService localizedTextService)
         {
-            if (localizedTextService == null) throw new ArgumentNullException("localizedTextService");
+            if (localizedTextService == null) throw new ArgumentNullException(nameof(localizedTextService));
             _localizedTextService = localizedTextService;
             IgnoreProperties = new List<string>();
         }
@@ -30,7 +28,7 @@ namespace Umbraco.Web.Models.Mapping
         public TabsAndPropertiesResolver(ILocalizedTextService localizedTextService, IEnumerable<string> ignoreProperties)
             : this(localizedTextService)
         {
-            if (ignoreProperties == null) throw new ArgumentNullException("ignoreProperties");
+            if (ignoreProperties == null) throw new ArgumentNullException(nameof(ignoreProperties));
             IgnoreProperties = ignoreProperties;
         }
 

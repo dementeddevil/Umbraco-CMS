@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Linq;
-using Examine;
 using Examine.LuceneEngine.Providers;
-using Examine.Providers;
 using Lucene.Net.Index;
-using Lucene.Net.Search;
 using Lucene.Net.Store;
 using Umbraco.Core.Logging;
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Examine;
 using Examine.Providers;
 using Umbraco.Core;

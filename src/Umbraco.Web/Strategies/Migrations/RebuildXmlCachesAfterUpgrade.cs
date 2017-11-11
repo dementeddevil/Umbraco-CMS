@@ -4,7 +4,6 @@ using Umbraco.Core;
 using Umbraco.Core.Events;
 using Umbraco.Core.Persistence.Migrations;
 using Umbraco.Core.Services;
-using GlobalSettings = Umbraco.Core.Configuration.GlobalSettings;
 
 namespace Umbraco.Web.Strategies.Migrations
 {

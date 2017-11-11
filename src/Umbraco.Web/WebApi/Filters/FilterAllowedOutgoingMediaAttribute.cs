@@ -7,7 +7,6 @@ using System.Web.Http.Filters;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.Membership;
-using Umbraco.Web.Models.ContentEditing;
 
 namespace Umbraco.Web.WebApi.Filters
 {

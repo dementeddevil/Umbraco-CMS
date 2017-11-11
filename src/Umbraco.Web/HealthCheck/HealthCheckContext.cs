@@ -15,8 +15,8 @@ namespace Umbraco.Web.HealthCheck
 
         public HealthCheckContext(HttpContextBase httpContext, UmbracoContext umbracoContext)
         {
-            if (httpContext == null) throw new ArgumentNullException("httpContext");
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _httpContext = httpContext;
             _umbracoContext = umbracoContext;
             ApplicationContext = _umbracoContext.Application;

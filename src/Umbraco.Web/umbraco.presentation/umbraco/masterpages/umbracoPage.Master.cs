@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 //This is only in case an upgrade goes wrong and the the /masterpages/ files are not copied over
 //which would result in an error. so we have kept the old namespaces intact with references to new ones
-using StackExchange.Profiling;
-using Umbraco.Core.Profiling;
 using Umbraco.Web;
 using mp = umbraco.presentation.masterpages;
 namespace umbraco.presentation.umbraco.masterpages

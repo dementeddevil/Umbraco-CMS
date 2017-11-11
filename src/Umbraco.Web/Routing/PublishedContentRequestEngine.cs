@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Globalization;
 using System.IO;
-using System.Web.Security;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Configuration.UmbracoSettings;
 using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
-using Umbraco.Core.Security;
-
 using umbraco;
-using umbraco.cms.businesslogic.web;
-using umbraco.cms.businesslogic.language;
-using umbraco.cms.businesslogic.member;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using Umbraco.Web.Security;
@@ -40,7 +31,7 @@ namespace Umbraco.Web.Routing
             PublishedContentRequest pcr)
 		{
 	        if (pcr == null) throw new ArgumentException("pcr is null.");
-	        if (webRoutingSection == null) throw new ArgumentNullException("webRoutingSection");
+	        if (webRoutingSection == null) throw new ArgumentNullException(nameof(webRoutingSection));
 	       
 	        _pcr = pcr;
 	        _webRoutingSection = webRoutingSection;

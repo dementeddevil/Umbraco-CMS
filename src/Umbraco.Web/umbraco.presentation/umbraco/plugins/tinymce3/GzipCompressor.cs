@@ -6,11 +6,9 @@
  */
 
 using System;
-using System.Web;
 using System.Collections;
 using System.IO;
 using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text;
 using Umbraco.Core;
 

@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
-using System.Xml.Xsl;
 using Umbraco.Core;
 using Umbraco.Core.IO;
 using umbraco.BasePages;
 using umbraco.uicontrols;
-using System.Net;
 using umbraco.cms.presentation.Trees;
 using umbraco.cms.helpers;
 

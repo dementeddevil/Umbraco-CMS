@@ -1,10 +1,8 @@
 using System;
-using System.ComponentModel;
 using System.Web.Services;
 using System.Web.Script.Services;
 using Umbraco.Web.WebServices;
 using umbraco.BusinessLogic;
-using umbraco.presentation.webservices;
 
 namespace umbraco.webservices
 {

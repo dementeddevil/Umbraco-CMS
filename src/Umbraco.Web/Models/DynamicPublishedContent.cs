@@ -44,7 +44,7 @@ namespace Umbraco.Web.Models
 
 		public DynamicPublishedContent(IPublishedContent content)
 		{
-			if (content == null) throw new ArgumentNullException("content");
+			if (content == null) throw new ArgumentNullException(nameof(content));
 			PublishedContent = content;
 		}
 
@@ -240,7 +240,7 @@ namespace Umbraco.Web.Models
 		/// </remarks>
 		public override bool TryGetMember(GetMemberBinder binder, out object result)
 		{
-			if (binder == null) throw new ArgumentNullException("binder");
+			if (binder == null) throw new ArgumentNullException(nameof(binder));
 
 			var name = binder.Name;
 
@@ -317,8 +317,8 @@ namespace Umbraco.Web.Models
 
 		private PropertyResult GetPropertyInternal(string alias, IPublishedContent content, bool checkUserProperty = true)
 		{
-			if (alias.IsNullOrWhiteSpace()) throw new ArgumentNullException("alias");
-			if (content == null) throw new ArgumentNullException("content");
+			if (alias.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(alias));
+			if (content == null) throw new ArgumentNullException(nameof(content));
 
 			//if we're looking for a user defined property
 			if (checkUserProperty)

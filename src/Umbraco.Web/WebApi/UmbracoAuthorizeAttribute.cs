@@ -37,7 +37,7 @@ namespace Umbraco.Web.WebApi
         /// <param name="umbracoContext"></param>
         public UmbracoAuthorizeAttribute(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _umbracoContext = umbracoContext;
             _applicationContext = _umbracoContext.Application;
         }

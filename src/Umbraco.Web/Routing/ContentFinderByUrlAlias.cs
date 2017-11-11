@@ -46,7 +46,7 @@ namespace Umbraco.Web.Routing
 
         private static IPublishedContent FindContentByAlias(ContextualPublishedContentCache cache, int rootNodeId, string alias)
         {
-            if (alias == null) throw new ArgumentNullException("alias");
+            if (alias == null) throw new ArgumentNullException(nameof(alias));
 
             // the alias may be "foo/bar" or "/foo/bar"
             // there may be spaces as in "/foo/bar,  /foo/nil"

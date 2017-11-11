@@ -59,8 +59,8 @@ namespace Umbraco.Web.Routing
         /// <param name="routingConfig"></param>
         public PublishedContentRequest(Uri uri, RoutingContext routingContext, IWebRoutingSection routingConfig, Func<string, IEnumerable<string>> getRolesForLogin)
         {
-            if (uri == null) throw new ArgumentNullException("uri");
-            if (routingContext == null) throw new ArgumentNullException("routingContext");
+            if (uri == null) throw new ArgumentNullException(nameof(uri));
+            if (routingContext == null) throw new ArgumentNullException(nameof(routingContext));
 
             Uri = uri;
             RoutingContext = routingContext;
@@ -203,7 +203,7 @@ namespace Umbraco.Web.Routing
         /// preserve or reset the template, if any.</remarks>
         public void SetInternalRedirectPublishedContent(IPublishedContent content)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             EnsureWriteable();
 
             // unless a template has been set already by the finder,
@@ -565,7 +565,7 @@ namespace Umbraco.Web.Routing
             EnsureWriteable();
 
             if (status < 300 || status > 308)
-                throw new ArgumentOutOfRangeException("status", "Valid redirection status codes 300-308.");
+                throw new ArgumentOutOfRangeException(nameof(status), "Valid redirection status codes 300-308.");
 
             RedirectUrl = url;
             IsRedirectPermanent = (status == 301 || status == 308);

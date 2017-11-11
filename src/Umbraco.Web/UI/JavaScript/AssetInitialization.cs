@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Web;
 using ClientDependency.Core;
 using ClientDependency.Core.Config;
@@ -22,7 +21,7 @@ namespace Umbraco.Web.UI.JavaScript
         /// <returns></returns>
         protected JArray ScanPropertyEditors(ClientDependencyType cdfType, HttpContextBase httpContext)
         {
-            if (httpContext == null) throw new ArgumentNullException("httpContext");
+            if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
             var cdfAttributes =
                 PropertyEditorResolver.Current.PropertyEditors
                                       .SelectMany(x => x.GetType().GetCustomAttributes<PropertyEditorAssetAttribute>(false))
@@ -58,7 +57,7 @@ namespace Umbraco.Web.UI.JavaScript
         /// </returns>
         protected JArray OptimizeAssetCollection(JArray fileRefs, ClientDependencyType cdfType, HttpContextBase httpContext)
         {
-            if (httpContext == null) throw new ArgumentNullException("httpContext");
+            if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
 
             var depenencies = fileRefs.Select(x =>
             {

@@ -6,7 +6,6 @@ using AutoMapper;
 using umbraco.interfaces;
 using Umbraco.Core;
 using Umbraco.Core.CodeAnnotations;
-using Umbraco.Core.Models;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Services;
 using Umbraco.Web.Models.ContentEditing;
@@ -22,7 +21,7 @@ namespace Umbraco.Web.Models.Mapping
 
         public UserGroupDefaultPermissionsResolver(ILocalizedTextService textService)
         {
-            if (textService == null) throw new ArgumentNullException("textService");
+            if (textService == null) throw new ArgumentNullException(nameof(textService));
             _textService = textService;
         }
 

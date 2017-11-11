@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.Services;
-using umbraco;
 using umbraco.BusinessLogic.Actions;
 using Umbraco.Core.Models;
 
@@ -18,7 +12,6 @@ namespace Umbraco.Web.Strategies
     /// </summary>
     public sealed class NotificationsHandler : ApplicationEventHandler
     {
-
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
             base.ApplicationStarted(umbracoApplication, applicationContext);
@@ -28,22 +21,27 @@ namespace Umbraco.Web.Strategies
                     args.Entity, ActionToPublish.Instance, applicationContext);
 
             //Send notifications for the published action
-            ContentService.Published += (sender, args) =>
-                                        args.PublishedEntities.ForEach(
-                                            content =>
-                                            applicationContext.Services.NotificationService.SendNotification(
-                                                content, ActionPublish.Instance, applicationContext));
+            ContentService.Published +=
+                (sender, args) =>
+                {
+                    foreach (var content in args.PublishedEntities)
+                    {
+                        applicationContext.Services.NotificationService.SendNotification(
+                            content, ActionPublish.Instance, applicationContext);
+                    }
+                };
 
             //Send notifications for the update and created actions
-            ContentService.Saved += (sender, args) =>
+            ContentService.Saved +=
+                (sender, args) =>
                 {
                     var newEntities = new List<IContent>();
-                    var updatedEntities =  new List<IContent>();
+                    var updatedEntities = new List<IContent>();
 
                     //need to determine if this is updating or if it is new
                     foreach (var entity in args.SavedEntities)
                     {
-                        var dirty = (IRememberBeingDirty) entity;
+                        var dirty = (IRememberBeingDirty)entity;
                         if (dirty.WasPropertyDirty("Id"))
                         {
                             //it's new
@@ -55,25 +53,34 @@ namespace Umbraco.Web.Strategies
                             updatedEntities.Add(entity);
                         }
                     }
-                    applicationContext.Services.NotificationService.SendNotification(newEntities, ActionNew.Instance, applicationContext);
-                    applicationContext.Services.NotificationService.SendNotification(updatedEntities, ActionUpdate.Instance, applicationContext);
+
+                    applicationContext.Services.NotificationService.SendNotification(
+                        newEntities, ActionNew.Instance, applicationContext);
+                    applicationContext.Services.NotificationService.SendNotification(
+                        updatedEntities, ActionUpdate.Instance, applicationContext);
                 };
 
             //Send notifications for the delete action
-            ContentService.Deleted += (sender, args) =>
-                                      args.DeletedEntities.ForEach(
-                                          content =>
-                                          applicationContext.Services.NotificationService.SendNotification(
-                                              content, ActionDelete.Instance, applicationContext));
-           
+            ContentService.Deleted +=
+                (sender, args) =>
+                {
+                    foreach (var content in args.DeletedEntities)
+                    {
+                        applicationContext.Services.NotificationService.SendNotification(
+                            content, ActionDelete.Instance, applicationContext);
+                    }
+                };
+
             //Send notifications for the unpublish action
-            ContentService.UnPublished += (sender, args) =>
-                                          args.PublishedEntities.ForEach(
-                                              content =>
-                                              applicationContext.Services.NotificationService.SendNotification(
-                                                  content, ActionUnPublish.Instance, applicationContext));
-
+            ContentService.UnPublished +=
+                (sender, args) =>
+                {
+                    foreach (var content in args.PublishedEntities)
+                    {
+                        applicationContext.Services.NotificationService.SendNotification(
+                            content, ActionUnPublish.Instance, applicationContext);
+                    }
+                };
         }
-
     }
 }

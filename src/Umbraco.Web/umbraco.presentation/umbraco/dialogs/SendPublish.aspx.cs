@@ -1,17 +1,7 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.SessionState;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using Umbraco.Web;
 using umbraco.BusinessLogic;
 using umbraco.BusinessLogic.Actions;
-using umbraco.cms.businesslogic.web;
 
 namespace umbraco.dialogs
 {

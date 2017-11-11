@@ -1,11 +1,8 @@
 using System;
-using System.Globalization;
-using System.Linq;
 using System.Web.Mvc;
 using Umbraco.Core.Models;
 using Umbraco.Web.Routing;
 using Umbraco.Core;
-using Language = umbraco.cms.businesslogic.language.Language;
 
 namespace Umbraco.Web.Mvc
 {
@@ -36,7 +33,7 @@ namespace Umbraco.Web.Mvc
         /// <param name="culture"></param>
         public EnsurePublishedContentRequestAttribute(UmbracoContext umbracoContext, int contentId, string culture = null)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _umbracoContext = umbracoContext;
             _contentId = contentId;
             _culture = culture;
@@ -68,7 +65,7 @@ namespace Umbraco.Web.Mvc
         /// <param name="culture"></param>
         public EnsurePublishedContentRequestAttribute(UmbracoContext umbracoContext, string dataTokenName, string culture = null)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _umbracoContext = umbracoContext;
             _dataTokenName = dataTokenName;
             _culture = culture;

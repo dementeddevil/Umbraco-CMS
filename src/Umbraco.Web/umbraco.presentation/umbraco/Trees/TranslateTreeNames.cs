@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using umbraco.cms.businesslogic.language;
+﻿using umbraco.cms.businesslogic.language;
 
 namespace Umbraco.Web.umbraco.presentation.umbraco.Trees
 {

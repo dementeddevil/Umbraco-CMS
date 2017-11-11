@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -16,9 +15,7 @@ using Newtonsoft.Json;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Configuration;
-using Umbraco.Core.Configuration.UmbracoSettings;
 using Umbraco.Core.Logging;
-using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using Umbraco.Web;
 using Umbraco.Web.Cache;
@@ -26,12 +23,10 @@ using Umbraco.Web.Templates;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic;
 using umbraco.cms.businesslogic.web;
-using umbraco.cms.helpers;
 using umbraco.scripting;
 using umbraco.DataLayer;
 using Umbraco.Core.IO;
 using Language = umbraco.cms.businesslogic.language.Language;
-using Media = umbraco.cms.businesslogic.media.Media;
 using Member = umbraco.cms.businesslogic.member.Member;
 using PropertyType = umbraco.cms.businesslogic.propertytype.PropertyType;
 using Relation = umbraco.cms.businesslogic.relation.Relation;
@@ -1972,7 +1967,7 @@ namespace umbraco
         {
             // require a field name
             if (String.IsNullOrEmpty(fieldName))
-                throw new ArgumentNullException("fieldName");
+                throw new ArgumentNullException(nameof(fieldName));
 
             // encode the display value, if present, as an inline XSLT expression
             // escaping is disabled, since the user can choose to set

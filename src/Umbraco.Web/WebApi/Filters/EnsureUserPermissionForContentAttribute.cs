@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Umbraco.Core;
-using Umbraco.Core.Models;
-using Umbraco.Core.Models.Membership;
-using Umbraco.Core.Services;
 using Umbraco.Web.Editors;
-using Umbraco.Web.Models.ContentEditing;
 using umbraco.BusinessLogic.Actions;
 
 namespace Umbraco.Web.WebApi.Filters
@@ -42,7 +34,7 @@ namespace Umbraco.Web.WebApi.Filters
 
         public EnsureUserPermissionForContentAttribute(string paramName)
         {
-            if (string.IsNullOrWhiteSpace(paramName)) throw new ArgumentException("Value cannot be null or whitespace.", "paramName");
+            if (string.IsNullOrWhiteSpace(paramName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(paramName));
 
             _paramName = paramName;
             _permissionToCheck = ActionBrowse.Instance.Letter;

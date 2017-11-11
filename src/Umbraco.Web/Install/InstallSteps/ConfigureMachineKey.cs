@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Linq;
 using System.Web.Configuration;
 using System.Xml.Linq;
@@ -20,7 +19,7 @@ namespace Umbraco.Web.Install.InstallSteps
 
         public ConfigureMachineKey(ApplicationContext appContext)
         {
-            if (appContext == null) throw new ArgumentNullException("appContext");
+            if (appContext == null) throw new ArgumentNullException(nameof(appContext));
             _appContext = appContext;
         }
 

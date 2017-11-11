@@ -22,7 +22,7 @@ namespace Umbraco.Web.WebApi
         {
             if (innerValidator == null)
             {
-                throw new ArgumentNullException("innerValidator");
+                throw new ArgumentNullException(nameof(innerValidator));
             }
 
             _innerValidator = innerValidator;

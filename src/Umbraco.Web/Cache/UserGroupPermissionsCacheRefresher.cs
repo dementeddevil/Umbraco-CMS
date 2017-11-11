@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using Umbraco.Core;
 using Umbraco.Core.Cache;
-using Umbraco.Core.Models.Membership;
 
 namespace Umbraco.Web.Cache
 {

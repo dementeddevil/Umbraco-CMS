@@ -1,4 +1,3 @@
-<%@ Register Namespace="umbraco" TagPrefix="umb" Assembly="umbraco" %>
 <%@ Register TagPrefix="cc1" Namespace="umbraco.uicontrols" Assembly="controls" %>
 
 <%@ Page Language="c#" MasterPageFile="../masterpages/umbracoPage.Master" ValidateRequest="false"

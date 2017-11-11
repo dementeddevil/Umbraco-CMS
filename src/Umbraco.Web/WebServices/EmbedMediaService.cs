@@ -22,7 +22,7 @@ namespace Umbraco.Web.WebServices
 
             if (currentUser == null)
                 throw new UnauthorizedAccessException("You must be logged in to use this service");
-            
+
             var url = HttpContext.Current.Request.Form["url"];
             var width = int.Parse(HttpContext.Current.Request.Form["width"]);
             var height = int.Parse(HttpContext.Current.Request.Form["height"]);
@@ -50,8 +50,7 @@ namespace Umbraco.Web.WebServices
 
                     foreach (var prop in prov.GetType().GetProperties().Where(prop => prop.IsDefined(typeof(ProviderSetting), true)))
                     {
-
-                        if (settings.Any(s => s.Key.ToLower() == prop.Name.ToLower()))
+                        if (settings.Any(s => s.Key.Equals(prop.Name, StringComparison.OrdinalIgnoreCase)))
                         {
                             var setting = settings.FirstOrDefault(s => s.Key.ToLower() == prop.Name.ToLower()).Value;
                             var settingType = typeof(Media.EmbedProviders.Settings.String);
@@ -60,9 +59,11 @@ namespace Umbraco.Web.WebServices
                                 settingType = Type.GetType(setting.Attributes["type"].Value);
 
                             var settingProv = (IEmbedSettingProvider)Activator.CreateInstance(settingType);
-                            prop.SetValue(prov, settingProv.GetSetting(settings.FirstOrDefault(s => s.Key.ToLower() == prop.Name.ToLower()).Value), null);
+                            prop.SetValue(prov, settingProv.GetSetting(settings.FirstOrDefault(
+                                s => s.Key.Equals(prop.Name, StringComparison.OrdinalIgnoreCase)).Value), null);
                         }
                     }
+
                     try
                     {
                         result.Markup = prov.GetMarkup(url, width, height);

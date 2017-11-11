@@ -3,9 +3,6 @@
 using System;
 using System.IO;
 using System.Web;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using Umbraco.Core.Configuration;
 
 #endregion

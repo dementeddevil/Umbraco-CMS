@@ -1,11 +1,6 @@
 using System;
 using System.Web;
-using System.Xml;
-using System.Xml.XPath;
-using System.Reflection;
-using Umbraco.Core.IO;
 using Umbraco.Web.UI;
-using umbraco.BusinessLogic;
 using umbraco.BasePages;
 
 namespace umbraco.presentation.create

@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using System.Web.Http.ModelBinding;
 using System.Web.Security;
 using AutoMapper;
 using Umbraco.Core;
@@ -15,7 +14,6 @@ using Umbraco.Web.Models.ContentEditing;
 using Umbraco.Web.WebApi.Filters;
 using System.Linq;
 using Umbraco.Core.Models.Membership;
-using Umbraco.Web;
 
 namespace Umbraco.Web.WebApi.Binders
 {
@@ -259,8 +257,8 @@ namespace Umbraco.Web.WebApi.Binders
 
             internal bool ValidateUniqueLogin(MemberSave contentItem, MembershipProvider membershipProvider, HttpActionContext actionContext)
             {
-                if (contentItem == null) throw new ArgumentNullException("contentItem");
-                if (membershipProvider == null) throw new ArgumentNullException("membershipProvider");
+                if (contentItem == null) throw new ArgumentNullException(nameof(contentItem));
+                if (membershipProvider == null) throw new ArgumentNullException(nameof(membershipProvider));
 
                 int totalRecs;
                 var existingByName = membershipProvider.FindUsersByName(contentItem.Username.Trim(), 0, int.MaxValue, out totalRecs);
@@ -299,8 +297,8 @@ namespace Umbraco.Web.WebApi.Binders
 
             internal bool ValidateUniqueEmail(MemberSave contentItem, MembershipProvider membershipProvider, HttpActionContext actionContext)
             {
-                if (contentItem == null) throw new ArgumentNullException("contentItem");
-                if (membershipProvider == null) throw new ArgumentNullException("membershipProvider");
+                if (contentItem == null) throw new ArgumentNullException(nameof(contentItem));
+                if (membershipProvider == null) throw new ArgumentNullException(nameof(membershipProvider));
 
                 if (membershipProvider.RequiresUniqueEmail == false)
                 {

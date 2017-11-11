@@ -1,19 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using Umbraco.Core.Logging;
 using umbraco.interfaces;
-using System.Text.RegularExpressions;
 using umbraco.BusinessLogic.Actions;
 using umbraco.businesslogic.Utils;
-using System.Text;
-using umbraco.cms.presentation.Trees;
-using umbraco.BasePages;
-using System.Web.Services;
-using umbraco.BusinessLogic;
 
 namespace umbraco.controls.Tree
 {

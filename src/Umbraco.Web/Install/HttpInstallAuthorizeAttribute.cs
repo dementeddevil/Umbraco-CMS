@@ -1,10 +1,7 @@
 using System;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using Umbraco.Core;
-using Umbraco.Web.Security;
-using umbraco.BasePages;
 using Umbraco.Core.Logging;
 
 namespace Umbraco.Web.Install
@@ -34,7 +31,7 @@ namespace Umbraco.Web.Install
         /// <param name="umbracoContext"></param>
         public HttpInstallAuthorizeAttribute(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _umbracoContext = umbracoContext;
             _applicationContext = _umbracoContext.Application;
         }

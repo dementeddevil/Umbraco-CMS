@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using umbraco.cms.businesslogic.web;
-using Umbraco.Core;
-using Umbraco.Core.Models.EntityBase;
+﻿using Umbraco.Core;
 using Umbraco.Core.Services;
 
 namespace Umbraco.Web.Strategies
@@ -26,10 +20,10 @@ namespace Umbraco.Web.Strategies
             foreach (var grp in e.SavedEntities)
             {
                 //check if the name has changed
-                if (grp.AdditionalData.ContainsKey("previousName") 
-                    && grp.AdditionalData["previousName"] != null
-                    && grp.AdditionalData["previousName"].ToString().IsNullOrWhiteSpace() == false
-                    && grp.AdditionalData["previousName"].ToString() != grp.Name)
+                if (grp.AdditionalData.ContainsKey("previousName") &&
+                    grp.AdditionalData["previousName"] != null &&
+                    grp.AdditionalData["previousName"].ToString().IsNullOrWhiteSpace() == false &&
+                    grp.AdditionalData["previousName"].ToString() != grp.Name)
                 {
                     ApplicationContext.Current.Services.PublicAccessService.RenameMemberGroupRoleRules(grp.AdditionalData["previousName"].ToString(), grp.Name);
                 }

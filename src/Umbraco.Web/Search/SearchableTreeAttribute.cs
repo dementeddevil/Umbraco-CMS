@@ -12,8 +12,8 @@ namespace Umbraco.Web.Search
         /// <param name="methodName"></param>
         public SearchableTreeAttribute(string serviceName, string methodName)
         {
-            if (string.IsNullOrWhiteSpace(serviceName)) throw new ArgumentException("Value cannot be null or whitespace.", "serviceName");
-            if (string.IsNullOrWhiteSpace(methodName)) throw new ArgumentException("Value cannot be null or whitespace.", "methodName");
+            if (string.IsNullOrWhiteSpace(serviceName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(serviceName));
+            if (string.IsNullOrWhiteSpace(methodName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(methodName));
             MethodName = methodName;
             ServiceName = serviceName;
         }
@@ -24,7 +24,7 @@ namespace Umbraco.Web.Search
         /// <param name="serviceName"></param>
         public SearchableTreeAttribute(string serviceName)
         {
-            if (string.IsNullOrWhiteSpace(serviceName)) throw new ArgumentException("Value cannot be null or whitespace.", "serviceName");
+            if (string.IsNullOrWhiteSpace(serviceName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(serviceName));
             MethodName = "";
             ServiceName = serviceName;
         }

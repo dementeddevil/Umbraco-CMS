@@ -1,10 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
+﻿using System.Web.Mvc;
 using Umbraco.Core.Configuration;
 using Umbraco.Web.Editors;
-using Umbraco.Web.Install;
-using Umbraco.Web.Install.Controllers;
 
 namespace Umbraco.Web.Mvc
 {

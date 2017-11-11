@@ -10,9 +10,7 @@ using System.Web.Http;
 using System.Xml;
 using umbraco;
 using umbraco.cms.businesslogic.packager;
-using umbraco.cms.businesslogic.packager.repositories;
 using umbraco.cms.presentation.Trees;
-using umbraco.presentation.developer.packages;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Events;
@@ -88,7 +86,7 @@ namespace Umbraco.Web.Editors
         /// <param name="pack"></param>
         protected void PerformUninstall(InstalledPackage pack)
         {
-            if (pack == null) throw new ArgumentNullException("pack");
+            if (pack == null) throw new ArgumentNullException(nameof(pack));
 
             var refreshCache = false;
 

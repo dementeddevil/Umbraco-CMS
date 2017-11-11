@@ -16,7 +16,7 @@ namespace Umbraco.Web.Editors
 
         public DashboardHelper(ISectionService sectionService)
         {
-            if (sectionService == null) throw new ArgumentNullException("sectionService");
+            if (sectionService == null) throw new ArgumentNullException(nameof(sectionService));
             _sectionService = sectionService;
         }
 

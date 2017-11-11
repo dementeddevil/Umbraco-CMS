@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Services;
-using Umbraco.Core;
 using Umbraco.Web.Trees;
-using Umbraco.Web.WebApi;
 using Umbraco.Web.WebServices;
-using umbraco.BusinessLogic;
-using umbraco.cms.presentation;
 using umbraco.cms.presentation.Trees;
-using System.Threading;
 
 namespace umbraco.presentation.webservices
 {

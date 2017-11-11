@@ -1,6 +1,4 @@
-using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.ComponentModel;
 
 namespace umbraco.layoutControls

@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web.Http;
 using System.Xml;
-using umbraco.BusinessLogic;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;
-using Umbraco.Web.WebApi.Filters;
-using Constants = Umbraco.Core.Constants;
 using Umbraco.Core.Media;
 using System.IO;
 

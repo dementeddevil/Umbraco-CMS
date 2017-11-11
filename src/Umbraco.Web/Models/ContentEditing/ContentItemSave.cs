@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using Umbraco.Core.Models;
 
 namespace Umbraco.Web.Models.ContentEditing

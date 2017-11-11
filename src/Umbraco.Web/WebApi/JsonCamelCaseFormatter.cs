@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http.Controllers;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Umbraco.Web.WebApi

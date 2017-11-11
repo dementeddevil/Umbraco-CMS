@@ -2,10 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
-using Umbraco.Web.Security;
-using umbraco.BasePages;
 
 namespace Umbraco.Web.Install
 {
@@ -34,7 +31,7 @@ namespace Umbraco.Web.Install
         /// <param name="umbracoContext"></param>
         public InstallAuthorizeAttribute(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _umbracoContext = umbracoContext;
             _applicationContext = _umbracoContext.Application;
         }
@@ -50,7 +47,7 @@ namespace Umbraco.Web.Install
         /// <returns></returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext == null) throw new ArgumentNullException("httpContext");
+            if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
 
             try
             {

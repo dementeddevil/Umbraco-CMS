@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Umbraco.Core.Configuration;
-using Umbraco.Web.Routing;
-using Umbraco.Web.Security;
 using umbraco.BusinessLogic;
 
 namespace Umbraco.Web.Mvc

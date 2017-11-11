@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -12,14 +10,10 @@ using Constants = Umbraco.Core.Constants;
 using Umbraco.Core.Services;
 using Umbraco.Core.PropertyEditors;
 using System.Net.Http;
-using umbraco;
 using Umbraco.Core;
-using Umbraco.Core.IO;
-using Umbraco.Core.Strings;
 using Umbraco.Web.WebApi;
 using Umbraco.Web.WebApi.Filters;
 using Umbraco.Core.Logging;
-using Umbraco.Web.Models;
 
 namespace Umbraco.Web.Editors
 {

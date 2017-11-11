@@ -28,15 +28,15 @@ namespace Umbraco.Web.Mvc
         /// <param name="umbracoContext"></param>
         protected PluginController(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             UmbracoContext = umbracoContext;
             InstanceId = Guid.NewGuid();
         }
 
         protected PluginController(UmbracoContext umbracoContext, UmbracoHelper umbracoHelper)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
-            if (umbracoHelper == null) throw new ArgumentNullException("umbracoHelper");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+            if (umbracoHelper == null) throw new ArgumentNullException(nameof(umbracoHelper));
             UmbracoContext = umbracoContext;
             InstanceId = Guid.NewGuid();
             _umbracoHelper = umbracoHelper;

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using System.Web.Services.Protocols;
-using System.Xml.Linq;
 using System.Collections.Generic;
-using UmbracoExamine;
 using System.Web.Script.Serialization;
 using Examine;
 using Examine.LuceneEngine.SearchCriteria;

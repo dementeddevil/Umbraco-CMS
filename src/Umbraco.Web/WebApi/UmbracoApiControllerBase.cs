@@ -22,15 +22,15 @@ namespace Umbraco.Web.WebApi
 
         protected UmbracoApiControllerBase(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             UmbracoContext = umbracoContext;
             InstanceId = Guid.NewGuid();            
         }
 
         protected UmbracoApiControllerBase(UmbracoContext umbracoContext, UmbracoHelper umbracoHelper)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
-            if (umbracoHelper == null) throw new ArgumentNullException("umbracoHelper");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+            if (umbracoHelper == null) throw new ArgumentNullException(nameof(umbracoHelper));
             UmbracoContext = umbracoContext;
             InstanceId = Guid.NewGuid();
             _umbraco = umbracoHelper;            

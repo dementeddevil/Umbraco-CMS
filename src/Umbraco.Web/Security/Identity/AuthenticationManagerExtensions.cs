@@ -11,22 +11,18 @@ namespace Umbraco.Web.Security.Identity
     {
         private static ExternalLoginInfo GetExternalLoginInfo(AuthenticateResult result)
         {
-            if (result == null || result.Identity == null)
-            {
-                return null;
-            }
-            var idClaim = result.Identity.FindFirst(ClaimTypes.NameIdentifier);
+            var idClaim = result?.Identity?.FindFirst(ClaimTypes.NameIdentifier);
             if (idClaim == null)
             {
                 return null;
             }
+
             // By default we don't allow spaces in user names
             var name = result.Identity.Name;
-            if (name != null)
-            {
-                name = name.Replace(" ", "");
-            }
+            name = name?.Replace(" ", "");
+
             var email = result.Identity.FindFirstValue(ClaimTypes.Email);
+
             return new ExternalLoginInfo
             {
                 ExternalIdentity = result.Identity,
@@ -53,13 +49,13 @@ namespace Umbraco.Web.Security.Identity
         {
             if (manager == null)
             {
-                throw new ArgumentNullException("manager");
+                throw new ArgumentNullException(nameof(manager));
             }
-            var result = await manager.AuthenticateAsync(authenticationType);
+
+            var result = await manager.AuthenticateAsync(authenticationType).ConfigureAwait(false);
+
             // Verify that the userId is the same as what we expect if requested
-            if (result != null &&
-                result.Properties != null &&
-                result.Properties.Dictionary != null &&
+            if (result?.Properties?.Dictionary != null &&
                 result.Properties.Dictionary.ContainsKey(xsrfKey) &&
                 result.Properties.Dictionary[xsrfKey] == expectedValue)
             {
@@ -78,9 +74,10 @@ namespace Umbraco.Web.Security.Identity
         {
             if (manager == null)
             {
-                throw new ArgumentNullException("manager");
+                throw new ArgumentNullException(nameof(manager));
             }
-            return GetExternalLoginInfo(await manager.AuthenticateAsync(authenticationType));
+
+            return GetExternalLoginInfo(await manager.AuthenticateAsync(authenticationType).ConfigureAwait(false));
         }
     }
 }

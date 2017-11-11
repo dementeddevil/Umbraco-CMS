@@ -31,8 +31,9 @@ namespace Umbraco.Web.Security.Identity
         public BackOfficeCookieManager(IUmbracoContextAccessor umbracoContextAccessor, IEnumerable<string> explicitPaths)
         {
             _umbracoContextAccessor = umbracoContextAccessor;
-            _explicitPaths = explicitPaths == null ? null : explicitPaths.ToArray();
-            _getRemainingSecondsPath = string.Format("{0}/backoffice/UmbracoApi/Authentication/GetRemainingTimeoutSeconds", GlobalSettings.Path);
+            _explicitPaths = explicitPaths?.ToArray();
+            _getRemainingSecondsPath =
+                $"{GlobalSettings.Path}/backoffice/UmbracoApi/Authentication/GetRemainingTimeoutSeconds";
         }
 
         /// <summary>

@@ -22,7 +22,7 @@ namespace Umbraco.Web.WebApi.Filters
         /// <exception cref="T:System.ArgumentNullException">The context parameter is null.</exception>
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            if (actionContext == null) throw new ArgumentNullException("actionContext");
+            if (actionContext == null) throw new ArgumentNullException(nameof(actionContext));
 
             var actionAttributes = actionContext.ActionDescriptor.GetCustomAttributes<AuthorizeAttribute>();
 

@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.WebPages;
-using Umbraco.Core.IO;
 using umbraco.cms.businesslogic.macro;
 using Umbraco.Core.Models;
 using umbraco.interfaces;
-using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
 using Umbraco.Core;
-using System.Web.Mvc.Html;
 
 namespace Umbraco.Web.Macros
 {
@@ -115,8 +109,8 @@ namespace Umbraco.Web.Macros
 
         public string Execute(MacroModel macro, IPublishedContent content)
         {
-            if (macro == null) throw new ArgumentNullException("macro");
-            if (content == null) throw new ArgumentNullException("content");
+            if (macro == null) throw new ArgumentNullException(nameof(macro));
+            if (content == null) throw new ArgumentNullException(nameof(content));
 			if (macro.ScriptName.IsNullOrWhiteSpace()) throw new ArgumentException("The ScriptName property of the macro object cannot be null or empty");
 		
             var http = _getHttpContext();

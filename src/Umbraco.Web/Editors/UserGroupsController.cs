@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Filters;
 using AutoMapper;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.Membership;
@@ -25,7 +24,7 @@ namespace Umbraco.Web.Editors
         [UserGroupValidate]
         public UserGroupDisplay PostSaveUserGroup(UserGroupSave userGroupSave)
         {
-            if (userGroupSave == null) throw new ArgumentNullException("userGroupSave");
+            if (userGroupSave == null) throw new ArgumentNullException(nameof(userGroupSave));
 
             //authorize that the user has access to save this user group
             var authHelper = new UserGroupEditorAuthorizationHelper(

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Web.WebApi;
 
 namespace Umbraco.Web.Mvc

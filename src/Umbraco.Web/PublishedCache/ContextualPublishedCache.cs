@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.XPath;
 using Umbraco.Core.Models;
 using Umbraco.Core.Xml;

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Web;
-using System.Web.Security;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Umbraco.Core;
 using Umbraco.Core.Dictionary;
 using Umbraco.Core.Dynamics;
 using Umbraco.Core.Models;
-using Umbraco.Core.Security;
 using Umbraco.Core.Services;
 using Umbraco.Core.Xml;
 using Umbraco.Web.Routing;
@@ -17,7 +15,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using Umbraco.Core.Cache;
 
 namespace Umbraco.Web
 {
@@ -163,16 +160,16 @@ namespace Umbraco.Web
             IUmbracoComponentRenderer componentRenderer,
             MembershipHelper membershipHelper)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
-            if (content == null) throw new ArgumentNullException("content");
-            if (typedQuery == null) throw new ArgumentNullException("typedQuery");
-            if (dynamicQuery == null) throw new ArgumentNullException("dynamicQuery");
-            if (tagQuery == null) throw new ArgumentNullException("tagQuery");
-            if (dataTypeService == null) throw new ArgumentNullException("dataTypeService");
-            if (urlProvider == null) throw new ArgumentNullException("urlProvider");
-            if (cultureDictionary == null) throw new ArgumentNullException("cultureDictionary");
-            if (componentRenderer == null) throw new ArgumentNullException("componentRenderer");
-            if (membershipHelper == null) throw new ArgumentNullException("membershipHelper");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+            if (content == null) throw new ArgumentNullException(nameof(content));
+            if (typedQuery == null) throw new ArgumentNullException(nameof(typedQuery));
+            if (dynamicQuery == null) throw new ArgumentNullException(nameof(dynamicQuery));
+            if (tagQuery == null) throw new ArgumentNullException(nameof(tagQuery));
+            if (dataTypeService == null) throw new ArgumentNullException(nameof(dataTypeService));
+            if (urlProvider == null) throw new ArgumentNullException(nameof(urlProvider));
+            if (cultureDictionary == null) throw new ArgumentNullException(nameof(cultureDictionary));
+            if (componentRenderer == null) throw new ArgumentNullException(nameof(componentRenderer));
+            if (membershipHelper == null) throw new ArgumentNullException(nameof(membershipHelper));
 
             _umbracoContext = umbracoContext;
             _tag = new TagQuery(tagQuery);
@@ -191,8 +188,8 @@ namespace Umbraco.Web
         public UmbracoHelper(UmbracoContext umbracoContext, IPublishedContent content, PublishedContentQuery query)
             : this(umbracoContext)
         {
-            if (content == null) throw new ArgumentNullException("content");
-            if (query == null) throw new ArgumentNullException("query");
+            if (content == null) throw new ArgumentNullException(nameof(content));
+            if (query == null) throw new ArgumentNullException(nameof(query));
             _currentPage = content;
             _query = query;
         }
@@ -205,7 +202,7 @@ namespace Umbraco.Web
         public UmbracoHelper(UmbracoContext umbracoContext, IPublishedContent content)
             : this(umbracoContext)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             _currentPage = content;
         }
 
@@ -215,7 +212,7 @@ namespace Umbraco.Web
         /// <param name="umbracoContext"></param>
         public UmbracoHelper(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             if (umbracoContext.RoutingContext == null) throw new NullReferenceException("The RoutingContext on the UmbracoContext cannot be null");
 
             _umbracoContext = umbracoContext;
@@ -230,7 +227,7 @@ namespace Umbraco.Web
         public UmbracoHelper(UmbracoContext umbracoContext, PublishedContentQuery query)
             : this(umbracoContext)
         {
-            if (query == null) throw new ArgumentNullException("query");
+            if (query == null) throw new ArgumentNullException(nameof(query));
             _query = query;
         }
         #endregion

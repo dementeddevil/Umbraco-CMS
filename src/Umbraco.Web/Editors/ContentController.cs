@@ -23,8 +23,6 @@ using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 using Umbraco.Web.WebApi.Binders;
 using Umbraco.Web.WebApi.Filters;
-using umbraco.cms.businesslogic.web;
-using umbraco.presentation.preview;
 using Umbraco.Core.Events;
 using Constants = Umbraco.Core.Constants;
 
@@ -472,7 +470,7 @@ namespace Umbraco.Web.Editors
         [HttpPost]
         public SimpleNotificationModel CreateBlueprintFromContent([FromUri]int contentId, [FromUri]string name)
         {
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Value cannot be null or whitespace.", "name");
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(name));
 
             var content = Services.ContentService.GetById(contentId);
             if (content == null)
@@ -1040,11 +1038,11 @@ namespace Umbraco.Web.Editors
                 char[] permissionsToCheck = null,
                 IContent contentItem = null)
         {
-            if (storage == null) throw new ArgumentNullException("storage");
-            if (user == null) throw new ArgumentNullException("user");
-            if (userService == null) throw new ArgumentNullException("userService");
-            if (contentService == null) throw new ArgumentNullException("contentService");
-            if (entityService == null) throw new ArgumentNullException("entityService");
+            if (storage == null) throw new ArgumentNullException(nameof(storage));
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            if (userService == null) throw new ArgumentNullException(nameof(userService));
+            if (contentService == null) throw new ArgumentNullException(nameof(contentService));
+            if (entityService == null) throw new ArgumentNullException(nameof(entityService));
 
             if (contentItem == null && nodeId != Constants.System.Root && nodeId != Constants.System.RecycleBinContent)
             {

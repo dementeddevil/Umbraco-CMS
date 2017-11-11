@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
-using umbraco;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 
@@ -24,7 +22,7 @@ namespace Umbraco.Web.Mvc
         /// <param name="appContext"></param>
         public AdminTokenAuthorizeAttribute(ApplicationContext appContext)
         {
-            if (appContext == null) throw new ArgumentNullException("appContext");
+            if (appContext == null) throw new ArgumentNullException(nameof(appContext));
             _applicationContext = appContext;
         }
 
@@ -73,7 +71,7 @@ namespace Umbraco.Web.Mvc
         /// <returns></returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext == null) throw new ArgumentNullException("httpContext");
+            if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
 
             var appContext = GetApplicationContext();
 

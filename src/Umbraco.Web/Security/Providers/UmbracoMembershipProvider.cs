@@ -3,7 +3,6 @@ using System.Collections.Specialized;
 using System.Configuration.Provider;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Configuration;
 using System.Web.Security;
 using Umbraco.Core;
@@ -13,7 +12,6 @@ using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Persistence.Querying;
 using Umbraco.Core.Security;
 using Umbraco.Core.Services;
-using Umbraco.Core.Models.Identity;
 
 namespace Umbraco.Web.Security.Providers
 {
@@ -27,7 +25,7 @@ namespace Umbraco.Web.Security.Providers
         where TEntity : class, IMembershipUser
     {
 
-        protected IMembershipMemberService<TEntity> MemberService { get; private set; }
+        protected IMembershipMemberService<TEntity> MemberService { get; }
 
         protected UmbracoMembershipProvider(IMembershipMemberService<TEntity> memberService)
         {
@@ -43,10 +41,7 @@ namespace Umbraco.Web.Security.Providers
         /// <summary>
         /// For backwards compatibility, this provider supports this option by default it is false
         /// </summary>
-        public override bool AllowManuallyChangingPassword
-        {
-            get { return _allowManuallyChangingPassword; }
-        }
+        public override bool AllowManuallyChangingPassword => _allowManuallyChangingPassword;
 
         /// <summary>
         /// Initializes the provider.
@@ -60,7 +55,7 @@ namespace Umbraco.Web.Security.Providers
         /// <exception cref="T:System.ArgumentException">The name of the provider has a length of zero.</exception>       
         public override void Initialize(string name, NameValueCollection config)
         {
-            if (config == null) { throw new ArgumentNullException("config"); }
+            if (config == null) { throw new ArgumentNullException(nameof(config)); }
 
             if (string.IsNullOrEmpty(name)) name = ProviderName;
 
@@ -447,7 +442,7 @@ namespace Umbraco.Web.Security.Providers
             member = MemberService.GetByUsername(username);
             if (member == null)
             {
-                throw new ProviderException(string.Format("No member with the username '{0}' found", username));
+                throw new ProviderException($"No member with the username '{username}' found");
             }
 
             // Non need to update		
@@ -485,7 +480,7 @@ namespace Umbraco.Web.Security.Providers
 
             if (m == null)
             {
-                throw new ProviderException(string.Format("No member with the username '{0}' found", user.UserName));
+                throw new ProviderException($"No member with the username '{user.UserName}' found");
             }
 
             if (RequiresUniqueEmail && user.Email.Trim().IsNullOrWhiteSpace() == false)
@@ -494,7 +489,7 @@ namespace Umbraco.Web.Security.Providers
                 var byEmail = MemberService.FindByEmail(user.Email.Trim(), 0, int.MaxValue, out totalRecs, StringPropertyMatchType.Exact);
                 if (byEmail.Count(x => x.Id != m.Id) > 0)
                 {
-                    throw new ProviderException(string.Format("A member with the email '{0}' already exists", user.Email));
+                    throw new ProviderException($"A member with the email '{user.Email}' already exists");
                 }
             }
             m.Email = user.Email;

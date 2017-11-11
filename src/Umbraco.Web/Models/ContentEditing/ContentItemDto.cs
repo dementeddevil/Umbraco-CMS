@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Umbraco.Core.Models;
+﻿using Umbraco.Core.Models;
 
 namespace Umbraco.Web.Models.ContentEditing
 {

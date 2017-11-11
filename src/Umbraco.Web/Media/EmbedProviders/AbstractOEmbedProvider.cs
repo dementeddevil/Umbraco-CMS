@@ -3,7 +3,6 @@ using System.Text;
 using System.Xml;
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Web;
 using Newtonsoft.Json;
 using Umbraco.Core.Media;

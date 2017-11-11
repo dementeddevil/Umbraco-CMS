@@ -352,8 +352,8 @@ namespace Umbraco.Web
         /// <returns></returns>
         public static string GetAbsoluteMediaUrl(this UrlHelper urlHelper, IPublishedContent mediaItem)
         {
-            if (urlHelper == null) throw new ArgumentNullException("urlHelper");
-            if (mediaItem == null) throw new ArgumentNullException("mediaItem");
+            if (urlHelper == null) throw new ArgumentNullException(nameof(urlHelper));
+            if (mediaItem == null) throw new ArgumentNullException(nameof(mediaItem));
 
             if (urlHelper.RequestContext.HttpContext.Request.Url != null)
             {

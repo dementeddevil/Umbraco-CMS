@@ -1,29 +1,17 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Principal;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 using System.Web.Routing;
-using Newtonsoft.Json;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
-using Umbraco.Core.Security;
-using Umbraco.Web.Editors;
 using Umbraco.Web.Routing;
 using Umbraco.Web.Security;
-using umbraco;
 using Umbraco.Core.Sync;
 using GlobalSettings = Umbraco.Core.Configuration.GlobalSettings;
-using ObjectExtensions = Umbraco.Core.ObjectExtensions;
-using RenderingEngine = Umbraco.Core.RenderingEngine;
 
 namespace Umbraco.Web
 {

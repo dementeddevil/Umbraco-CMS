@@ -44,7 +44,7 @@ namespace Umbraco.Web.Templates
         /// <returns></returns>
         public static string ParseInternalLinks(string text, UrlProvider urlProvider)
         {
-            if (urlProvider == null) throw new ArgumentNullException("urlProvider");
+            if (urlProvider == null) throw new ArgumentNullException(nameof(urlProvider));
 
             // Parse internal links
             var tags = LocalLinkPattern.Matches(text);

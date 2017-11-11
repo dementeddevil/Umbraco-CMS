@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using Umbraco.Core;
 using Umbraco.Core.Logging;
-using Umbraco.Core.Models;
 using Umbraco.Core.ObjectResolution;
 using Umbraco.Core.Services;
-using Umbraco.Web.Editors;
-using Umbraco.Web.Trees;
 
 namespace Umbraco.Web.Search
 {

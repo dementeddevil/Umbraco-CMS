@@ -6,10 +6,7 @@ using Umbraco.Core;
 using Umbraco.Core.Events;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.Membership;
-using Umbraco.Core.Persistence.Repositories;
 using Umbraco.Core.Services;
-using umbraco.BusinessLogic;
-using umbraco.cms.businesslogic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -20,9 +17,7 @@ using Umbraco.Core.ObjectResolution;
 using Umbraco.Core.Publishing;
 using Umbraco.Web.Routing;
 using Umbraco.Web.Security;
-using Content = Umbraco.Core.Models.Content;
 using ApplicationTree = Umbraco.Core.Models.ApplicationTree;
-using DeleteEventArgs = umbraco.cms.businesslogic.DeleteEventArgs;
 
 namespace Umbraco.Web.Cache
 {

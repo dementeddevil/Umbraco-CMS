@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -13,10 +12,7 @@ using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Routing;
-using umbraco.cms.businesslogic.property;
-using umbraco.cms.businesslogic.template;
 using umbraco.cms.businesslogic.web;
-using umbraco.interfaces;
 using Umbraco.Core.Configuration;
 using Property = umbraco.cms.businesslogic.property.Property;
 
@@ -104,7 +100,7 @@ namespace umbraco
 		{
 
 			if (!docreq.HasPublishedContent)
-				throw new ArgumentException("Document request has no node.", "docreq");
+				throw new ArgumentException("Document request has no node.", nameof(docreq));
 			
 			populatePageData(docreq.PublishedContent.Id,
 				docreq.PublishedContent.Name, docreq.PublishedContent.DocumentTypeId, docreq.PublishedContent.DocumentTypeAlias,
@@ -128,7 +124,7 @@ namespace umbraco
 		/// <param name="doc"></param>
 		internal page(IPublishedContent doc)
 		{
-			if (doc == null) throw new ArgumentNullException("doc");
+			if (doc == null) throw new ArgumentNullException(nameof(doc));
 			
 			populatePageData(doc.Id,
 				doc.Name, doc.DocumentTypeId, doc.DocumentTypeAlias,

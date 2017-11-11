@@ -1,12 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Http.ModelBinding;
 using System.Web.Security;
-using Microsoft.AspNet.Identity;
-using umbraco.cms.businesslogic.packager;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
@@ -14,7 +10,6 @@ using Umbraco.Core.Models.Identity;
 using Umbraco.Core.Security;
 using Umbraco.Core.Services;
 using Umbraco.Web.Models;
-using Umbraco.Web.Security;
 using IUser = Umbraco.Core.Models.Membership.IUser;
 
 namespace Umbraco.Web.Editors
@@ -46,8 +41,8 @@ namespace Umbraco.Web.Editors
             ChangingPasswordModel passwordModel, 
             BackOfficeUserManager<BackOfficeIdentityUser> userMgr)
         {
-            if (passwordModel == null) throw new ArgumentNullException("passwordModel");
-            if (userMgr == null) throw new ArgumentNullException("userMgr");
+            if (passwordModel == null) throw new ArgumentNullException(nameof(passwordModel));
+            if (userMgr == null) throw new ArgumentNullException(nameof(userMgr));
 
             //check if this identity implementation is powered by an underlying membership provider (it will be in most cases)
             var membershipPasswordHasher = userMgr.PasswordHasher as IMembershipProviderPasswordHasher;
@@ -148,8 +143,8 @@ namespace Umbraco.Web.Editors
         {
             // YES! It is completely insane how many options you have to take into account based on the membership provider. yikes!        
 
-            if (passwordModel == null) throw new ArgumentNullException("passwordModel");
-            if (membershipProvider == null) throw new ArgumentNullException("membershipProvider");
+            if (passwordModel == null) throw new ArgumentNullException(nameof(passwordModel));
+            if (membershipProvider == null) throw new ArgumentNullException(nameof(membershipProvider));
 
             BackOfficeUserManager<BackOfficeIdentityUser> backofficeUserManager = null;
             var userId = -1;

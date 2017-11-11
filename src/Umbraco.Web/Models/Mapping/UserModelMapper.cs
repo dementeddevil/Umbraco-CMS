@@ -6,13 +6,8 @@ using Umbraco.Core;
 using Umbraco.Core.Models.Mapping;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Web.Models.ContentEditing;
-using umbraco;
-using umbraco.BusinessLogic.Actions;
-using Umbraco.Core.IO;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.EntityBase;
-using Umbraco.Core.Models.Identity;
-using Umbraco.Core.Security;
 using Umbraco.Core.Services;
 using UserProfile = Umbraco.Web.Models.ContentEditing.UserProfile;
 

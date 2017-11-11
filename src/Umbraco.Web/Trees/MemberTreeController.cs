@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,8 +8,6 @@ using System.Web.Http;
 using System.Web.Security;
 using Umbraco.Core;
 using Umbraco.Core.Models;
-using Umbraco.Core.Models.EntityBase;
-using Umbraco.Core.Persistence.Querying;
 using Umbraco.Core.Security;
 using Umbraco.Web.Models.Trees;
 using Umbraco.Web.Mvc;

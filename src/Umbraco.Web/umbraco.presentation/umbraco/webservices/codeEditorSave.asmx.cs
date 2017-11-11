@@ -223,7 +223,7 @@ namespace umbraco.presentation.webservices
             if (AuthorizeRequest(DefaultApps.developer.ToString()))
             {
                 if (string.IsNullOrEmpty(fileName))
-                    throw new ArgumentNullException("fileName");
+                    throw new ArgumentNullException(nameof(fileName));
 
                 var allowedExtensions = new List<string>();
                 foreach (var lang in MacroEngineFactory.GetSupportedUILanguages())

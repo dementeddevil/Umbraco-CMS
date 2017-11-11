@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -9,13 +8,8 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Controllers;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
-using System.Web.WebPages;
 using AutoMapper;
-using ClientDependency.Core;
 using Microsoft.AspNet.Identity;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
@@ -32,7 +26,6 @@ using Umbraco.Web.Models.ContentEditing;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 using Umbraco.Web.WebApi.Filters;
-using ActionFilterAttribute = System.Web.Http.Filters.ActionFilterAttribute;
 using Constants = Umbraco.Core.Constants;
 using IUser = Umbraco.Core.Models.Membership.IUser;
 using Task = System.Threading.Tasks.Task;
@@ -260,7 +253,7 @@ namespace Umbraco.Web.Editors
         /// <returns></returns>
         public async Task<UserDisplay> PostCreateUser(UserInvite userSave)
         {
-            if (userSave == null) throw new ArgumentNullException("userSave");
+            if (userSave == null) throw new ArgumentNullException(nameof(userSave));
 
             if (ModelState.IsValid == false)
             {
@@ -342,7 +335,7 @@ namespace Umbraco.Web.Editors
         /// </remarks>
         public async Task<UserDisplay> PostInviteUser(UserInvite userSave)
         {
-            if (userSave == null) throw new ArgumentNullException("userSave");
+            if (userSave == null) throw new ArgumentNullException(nameof(userSave));
 
             if (userSave.Message.IsNullOrWhiteSpace())
                 ModelState.AddModelError("Message", "Message cannot be empty");
@@ -496,7 +489,7 @@ namespace Umbraco.Web.Editors
         /// <returns></returns>
         public async Task<UserDisplay> PostSaveUser(UserSave userSave)
         {
-            if (userSave == null) throw new ArgumentNullException("userSave");
+            if (userSave == null) throw new ArgumentNullException(nameof(userSave));
 
             if (ModelState.IsValid == false)
             {

@@ -1,6 +1,5 @@
 ﻿using Umbraco.Core;
 using Umbraco.Core.Models;
-using Umbraco.Web.PropertyEditors;
 
 namespace Umbraco.Web
 {

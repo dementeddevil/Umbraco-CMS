@@ -1,9 +1,4 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Umbraco.Core;
 using Umbraco.Core.PropertyEditors;
-using umbraco;
-using ClientDependency.Core;
 using Constants = Umbraco.Core.Constants;
 
 namespace Umbraco.Web.PropertyEditors

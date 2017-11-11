@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Umbraco.Web.UI
+﻿namespace Umbraco.Web.UI
 {
     public enum SpeechBubbleIcon
     {

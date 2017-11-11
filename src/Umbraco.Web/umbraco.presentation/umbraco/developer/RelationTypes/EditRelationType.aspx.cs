@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using umbraco.BasePages;
-using umbraco.BusinessLogic;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using RelationType = umbraco.cms.businesslogic.relation.RelationType;

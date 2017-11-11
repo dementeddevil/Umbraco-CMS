@@ -1,20 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
-using AutoMapper;
-using Umbraco.Web.Models.ContentEditing;
-using Umbraco.Web.Mvc;
-using umbraco;
-using Umbraco.Web.WebApi;
-using System;
-using System.Net.Http.Headers;
+﻿using System;
 using System.Web;
 using System.IO;
 using Umbraco.Core;
 using Umbraco.Core.Models;
-using Umbraco.Core.Services;
 using System.Linq;
 using System.Text.RegularExpressions;
 

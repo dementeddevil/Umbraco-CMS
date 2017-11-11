@@ -27,8 +27,8 @@ namespace Umbraco.Web.Models.Mapping
         /// <param name="preValues"></param>        
         internal static void MapPreValueValuesToPreValueFields(PreValueFieldDisplay[] fields, IDictionary<string, object> preValues)
         {
-            if (fields == null) throw new ArgumentNullException("fields");
-            if (preValues == null) throw new ArgumentNullException("preValues");
+            if (fields == null) throw new ArgumentNullException(nameof(fields));
+            if (preValues == null) throw new ArgumentNullException(nameof(preValues));
             //now we need to wire up the pre-values values with the actual fields defined            
             foreach (var field in fields)
             {

@@ -7,7 +7,6 @@ using System.Reflection;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Dynamics;
-using Umbraco.Web.Models;
 
 namespace Umbraco.Web.Dynamics
 {
@@ -214,7 +213,7 @@ namespace Umbraco.Web.Dynamics
 
 		public ExpressionParser(ParameterExpression[] parameters, string expression, object[] values, bool flagConvertDynamicNullToBooleanFalse)
 		{
-			if (expression == null) throw new ArgumentNullException("expression");
+			if (expression == null) throw new ArgumentNullException(nameof(expression));
 			if (keywords == null) keywords = CreateKeywords();
 			symbols = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
 			literals = new Dictionary<Expression, string>();

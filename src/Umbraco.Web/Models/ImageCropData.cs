@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using System.Threading.Tasks;
 using Umbraco.Core.Dynamics;
 
 namespace Umbraco.Web.Models

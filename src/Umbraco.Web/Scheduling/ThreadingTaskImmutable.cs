@@ -19,7 +19,7 @@ namespace Umbraco.Web.Scheduling
         public ThreadingTaskImmutable(Task task)
         {
             if (task == null)
-                throw new ArgumentNullException("task");
+                throw new ArgumentNullException(nameof(task));
             _task = task;
         }
 

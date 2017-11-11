@@ -26,7 +26,7 @@ namespace Umbraco.Web.Mvc
 
         public override void ExecuteResult(ControllerContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new ArgumentNullException(nameof(context));
 
             if (context.IsChildAction)
             {

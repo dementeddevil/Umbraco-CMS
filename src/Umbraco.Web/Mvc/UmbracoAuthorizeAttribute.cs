@@ -2,8 +2,6 @@
 using System.Web;
 using System.Web.Mvc;
 using Umbraco.Core;
-using Umbraco.Web.Security;
-using umbraco.BasePages;
 
 namespace Umbraco.Web.Mvc
 {
@@ -31,7 +29,7 @@ namespace Umbraco.Web.Mvc
         /// <param name="umbracoContext"></param>
         public UmbracoAuthorizeAttribute(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _umbracoContext = umbracoContext;
             _applicationContext = _umbracoContext.Application;
         }
@@ -47,7 +45,7 @@ namespace Umbraco.Web.Mvc
 		/// <returns></returns>
 		protected override bool AuthorizeCore(HttpContextBase httpContext)
 		{
-		    if (httpContext == null) throw new ArgumentNullException("httpContext");
+		    if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
             
 		    try
 			{

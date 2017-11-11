@@ -7,7 +7,6 @@ using System.Xml;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
 using Umbraco.Web;
-using umbraco;
 using umbraco.BusinessLogic;
 using umbraco.DataLayer;
 

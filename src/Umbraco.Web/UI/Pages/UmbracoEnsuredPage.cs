@@ -3,8 +3,6 @@ using System.Linq;
 using System.Web;
 using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
-using Umbraco.Web.Security;
-using umbraco;
 using umbraco.BusinessLogic;
 using umbraco.businesslogic.Exceptions;
 using umbraco.interfaces;

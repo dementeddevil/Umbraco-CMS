@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using Umbraco.Core.Logging;
-using umbraco.interfaces;
 
 namespace Umbraco.Web.Routing
 {

@@ -3,7 +3,6 @@ using System.Web;
 using System.Web.SessionState;
 using System.Linq;
 using Umbraco.Core.Configuration;
-using Umbraco.Core.Configuration.BaseRest;
 
 namespace Umbraco.Web.BaseRest
 {

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
-using Umbraco.Core.Services;
 
 namespace Umbraco.Web.Models
 {
@@ -23,7 +20,7 @@ namespace Umbraco.Web.Models
         internal static IPublishedProperty GetDetached(PublishedPropertyType propertyType, object value, bool isPreviewing = false)
         {
             if (propertyType.IsDetachedOrNested == false)
-                throw new ArgumentException("Property type is neither detached nor nested.", "propertyType");
+                throw new ArgumentException("Property type is neither detached nor nested.", nameof(propertyType));
             var property = UmbracoContext.Current.ContentCache.InnerCache.CreateDetachedProperty(propertyType, value, isPreviewing);
             return property;
         }

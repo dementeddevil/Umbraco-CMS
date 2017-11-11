@@ -30,8 +30,8 @@ namespace Umbraco.Web
         [Obsolete("Use the alternate constructor specifying the ITypedPublishedContentQuery instead")]
         public TagQuery(ITagService tagService, PublishedContentQuery contentQuery)
         {
-            if (tagService == null) throw new ArgumentNullException("tagService");
-            if (contentQuery == null) throw new ArgumentNullException("contentQuery");
+            if (tagService == null) throw new ArgumentNullException(nameof(tagService));
+            if (contentQuery == null) throw new ArgumentNullException(nameof(contentQuery));
             _tagService = tagService;
             _typedContentQuery = contentQuery;
         }
@@ -42,7 +42,7 @@ namespace Umbraco.Web
         /// <param name="wrappedQuery"></param>
         internal TagQuery(ITagQuery wrappedQuery)
         {
-            if (wrappedQuery == null) throw new ArgumentNullException("wrappedQuery");
+            if (wrappedQuery == null) throw new ArgumentNullException(nameof(wrappedQuery));
             _wrappedQuery = wrappedQuery;
         }
 
@@ -53,8 +53,8 @@ namespace Umbraco.Web
         /// <param name="typedContentQuery"></param>
         public TagQuery(ITagService tagService, ITypedPublishedContentQuery typedContentQuery)
         {
-            if (tagService == null) throw new ArgumentNullException("tagService");
-            if (typedContentQuery == null) throw new ArgumentNullException("typedContentQuery");
+            if (tagService == null) throw new ArgumentNullException(nameof(tagService));
+            if (typedContentQuery == null) throw new ArgumentNullException(nameof(typedContentQuery));
             _tagService = tagService;
             _typedContentQuery = typedContentQuery;
         }

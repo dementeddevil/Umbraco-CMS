@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Globalization;
 using System.Linq;
-using System.Web.UI.WebControls;
-using System.Xml;
 using Umbraco.Core;
 using Umbraco.Web;
 using umbraco.BasePages;
 using umbraco.BusinessLogic.Actions;
-using umbraco.cms.businesslogic;
-using umbraco.cms.businesslogic.media;
-using umbraco.cms.businesslogic.web;
 using System.Web.UI;
 using System.Collections.Generic;
-using umbraco.businesslogic.Exceptions;
 using Umbraco.Core.Models;
 
 namespace umbraco.cms.presentation

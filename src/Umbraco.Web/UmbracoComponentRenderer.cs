@@ -2,29 +2,14 @@ using System;
 using System.Collections;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Xml.Linq;
-using System.Xml.XPath;
-using HtmlAgilityPack;
 using Umbraco.Core;
-using Umbraco.Core.Dictionary;
-using Umbraco.Core.Dynamics;
 using Umbraco.Core.Models;
-using Umbraco.Core.Security;
-using Umbraco.Core.Services;
-using Umbraco.Core.Xml;
-using Umbraco.Web.Routing;
-using Umbraco.Web.Security;
 using Umbraco.Web.Templates;
 using umbraco;
 using System.Collections.Generic;
-using umbraco.cms.businesslogic.web;
 using umbraco.presentation.templateControls;
-using Umbraco.Core.Cache;
 
 namespace Umbraco.Web
 {
@@ -114,8 +99,8 @@ namespace Umbraco.Web
         /// <returns></returns>
         internal IHtmlString RenderMacro(string alias, IDictionary<string, object> parameters, page umbracoPage)
         {
-            if (alias == null) throw new ArgumentNullException("alias");
-            if (umbracoPage == null) throw new ArgumentNullException("umbracoPage");
+            if (alias == null) throw new ArgumentNullException(nameof(alias));
+            if (umbracoPage == null) throw new ArgumentNullException(nameof(umbracoPage));
 
             var m = macro.GetMacro(alias);
             if (m == null)
@@ -135,8 +120,8 @@ namespace Umbraco.Web
         /// <returns></returns>
         internal IHtmlString RenderMacro(macro m, IDictionary<string, object> parameters, page umbracoPage)
         {
-            if (umbracoPage == null) throw new ArgumentNullException("umbracoPage");
-            if (m == null) throw new ArgumentNullException("m");
+            if (umbracoPage == null) throw new ArgumentNullException(nameof(umbracoPage));
+            if (m == null) throw new ArgumentNullException(nameof(m));
 
             if (_umbracoContext.PageId == null)
             {

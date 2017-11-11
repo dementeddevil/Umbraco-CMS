@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web;
-using Umbraco.Core.IO;
-using umbraco.BasePages;
+﻿using Umbraco.Core.IO;
 using System.Web.UI;
-using umbraco.BusinessLogic;
 using Umbraco.Core;
 
 namespace Umbraco.Web.UI.Pages

@@ -16,14 +16,14 @@ namespace Umbraco.Web.Mvc
     {
         protected UmbracoController(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             UmbracoContext = umbracoContext;
         }
 
         protected UmbracoController(UmbracoContext umbracoContext, UmbracoHelper umbracoHelper)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
-            if (umbracoHelper == null) throw new ArgumentNullException("umbracoHelper");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+            if (umbracoHelper == null) throw new ArgumentNullException(nameof(umbracoHelper));
             UmbracoContext = umbracoContext;
             _umbraco = umbracoHelper;
         }

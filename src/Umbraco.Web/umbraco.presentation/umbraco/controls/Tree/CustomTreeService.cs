@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Script.Services;
 using System.Web.Services;
-using umbraco;
 using umbraco.cms.businesslogic;
 using umbraco.cms.presentation.Trees;
-using umbraco.controls.Tree;
 
 namespace umbraco.controls.Tree
 {

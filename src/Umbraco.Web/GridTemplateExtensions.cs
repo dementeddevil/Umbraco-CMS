@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc.Html;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using System.Web.Mvc;
-using Umbraco.Web.Templates;
 using System.IO;
-using System.Web.Routing;
-using Umbraco.Web.Mvc;
 
 namespace Umbraco.Web
 {

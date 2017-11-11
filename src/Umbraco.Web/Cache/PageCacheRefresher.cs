@@ -2,7 +2,6 @@
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Models;
-using Umbraco.Core.Sync;
 using umbraco;
 using umbraco.cms.businesslogic.web;
 using Umbraco.Web.PublishedCache.XmlPublishedCache;

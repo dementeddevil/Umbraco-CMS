@@ -4,9 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
-using AutoMapper;
 using Umbraco.Core;
-using Umbraco.Core.Logging;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Security;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,7 +12,6 @@ using Microsoft.Owin;
 using umbraco.businesslogic.Exceptions;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.Identity;
-using Umbraco.Web.Models.ContentEditing;
 using GlobalSettings = Umbraco.Core.Configuration.GlobalSettings;
 using User = umbraco.BusinessLogic.User;
 
@@ -166,7 +163,7 @@ namespace Umbraco.Web.Security
         public virtual MembershipUser GetBackOfficeMembershipUser(string username, bool setOnline)
         {
             var membershipProvider = Core.Security.MembershipProviderExtensions.GetUsersMembershipProvider();
-            return membershipProvider != null ? membershipProvider.GetUser(username, setOnline) : null;
+            return membershipProvider?.GetUser(username, setOnline);
         }
 
         /// <summary>
@@ -214,9 +211,7 @@ namespace Umbraco.Web.Security
         public virtual string GetSessionId()
         {
             var identity = _httpContext.GetCurrentIdentity(false);
-            if (identity == null)
-                return null;
-            return identity.SessionId;
+            return identity?.SessionId;
         }
 
         /// <summary>
@@ -344,7 +339,5 @@ namespace Umbraco.Web.Security
         {
             _httpContext = null;
         }
-
-        
     }
 }

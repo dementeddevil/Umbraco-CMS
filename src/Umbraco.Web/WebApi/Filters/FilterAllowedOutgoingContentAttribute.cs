@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Services;
 using umbraco.BusinessLogic.Actions;
@@ -44,8 +43,8 @@ namespace Umbraco.Web.WebApi.Filters
         public FilterAllowedOutgoingContentAttribute(Type outgoingType, IUserService userService, IEntityService entityService)
             : base(outgoingType)
         {
-            if (userService == null) throw new ArgumentNullException("userService");
-            if (entityService == null) throw new ArgumentNullException("entityService");
+            if (userService == null) throw new ArgumentNullException(nameof(userService));
+            if (entityService == null) throw new ArgumentNullException(nameof(entityService));
             _userService = userService;
             _entityService = entityService;
             _permissionToCheck = ActionBrowse.Instance.Letter;
@@ -54,8 +53,8 @@ namespace Umbraco.Web.WebApi.Filters
         public FilterAllowedOutgoingContentAttribute(Type outgoingType, char permissionToCheck, IUserService userService, IEntityService entityService)
             : base(outgoingType)
         {
-            if (userService == null) throw new ArgumentNullException("userService");
-            if (entityService == null) throw new ArgumentNullException("entityService");
+            if (userService == null) throw new ArgumentNullException(nameof(userService));
+            if (entityService == null) throw new ArgumentNullException(nameof(entityService));
             _userService = userService;
             _entityService = entityService;
             _permissionToCheck = permissionToCheck;
@@ -64,8 +63,8 @@ namespace Umbraco.Web.WebApi.Filters
         public FilterAllowedOutgoingContentAttribute(Type outgoingType, string propertyName, IUserService userService, IEntityService entityService)
             : base(outgoingType, propertyName)
         {
-            if (userService == null) throw new ArgumentNullException("userService");
-            if (entityService == null) throw new ArgumentNullException("entityService");
+            if (userService == null) throw new ArgumentNullException(nameof(userService));
+            if (entityService == null) throw new ArgumentNullException(nameof(entityService));
             _userService = userService;
             _entityService = entityService;
             _permissionToCheck = ActionBrowse.Instance.Letter;

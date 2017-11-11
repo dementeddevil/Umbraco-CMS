@@ -7,7 +7,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Diagnostics;
 using Umbraco.Core.Dynamics;
-using Umbraco.Web.Models;
 
 namespace Umbraco.Web.Dynamics
 {
@@ -25,8 +24,8 @@ namespace Umbraco.Web.Dynamics
 
         public static IQueryable Where<T>(this IQueryable source, string predicate, params object[] values)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (predicate == null) throw new ArgumentNullException("predicate");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
             LambdaExpression lambda = DynamicExpression.ParseLambda<T>(source.ElementType, typeof(bool), predicate, true, values);
             if (lambda.Parameters.Count > 0 && lambda.Parameters[0].Type == typeof(T))
             {
@@ -95,8 +94,8 @@ namespace Umbraco.Web.Dynamics
 
         public static IQueryable Select<T>(this IQueryable<T> source, string selector, params object[] values)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (selector == null) throw new ArgumentNullException("selector");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
             LambdaExpression lambda = DynamicExpression.ParseLambda<T>(source.ElementType, typeof(object), selector, false, values);
 			if (lambda.Parameters.Count > 0 && lambda.Parameters[0].Type == typeof(T))
             {
@@ -137,8 +136,8 @@ namespace Umbraco.Web.Dynamics
 
 		public static IQueryable OrderBy<T>(this IQueryable source, string ordering, Func<Type> getDynamicListTypeCallback, params object[] values)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (ordering == null) throw new ArgumentNullException("ordering");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (ordering == null) throw new ArgumentNullException(nameof(ordering));
 
 			IQueryable<T> typedSource = source as IQueryable<T>;
             if (!ordering.Contains(","))
@@ -269,7 +268,7 @@ namespace Umbraco.Web.Dynamics
         }
         public static IQueryable Take(this IQueryable source, int count)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return source.Provider.CreateQuery(
                 Expression.Call(
                     typeof(Queryable), "Take",
@@ -279,7 +278,7 @@ namespace Umbraco.Web.Dynamics
 
         public static IQueryable Skip(this IQueryable source, int count)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return source.Provider.CreateQuery(
                 Expression.Call(
                     typeof(Queryable), "Skip",
@@ -289,9 +288,9 @@ namespace Umbraco.Web.Dynamics
 
         public static IQueryable GroupBy<T>(this IQueryable source, string keySelector, string elementSelector, params object[] values)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (keySelector == null) throw new ArgumentNullException("keySelector");
-            if (elementSelector == null) throw new ArgumentNullException("elementSelector");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+            if (elementSelector == null) throw new ArgumentNullException(nameof(elementSelector));
             LambdaExpression keyLambda = DynamicExpression.ParseLambda<T>(source.ElementType, null, keySelector, true, values);
             LambdaExpression elementLambda = DynamicExpression.ParseLambda<T>(source.ElementType, null, elementSelector, true, values);
             return source.Provider.CreateQuery(
@@ -303,7 +302,7 @@ namespace Umbraco.Web.Dynamics
 
         public static bool Any(this IQueryable source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return (bool)source.Provider.Execute(
                 Expression.Call(
                     typeof(Queryable), "Any",
@@ -312,7 +311,7 @@ namespace Umbraco.Web.Dynamics
 
         public static int Count(this IQueryable source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return (int)source.Provider.Execute(
                 Expression.Call(
                     typeof(Queryable), "Count",

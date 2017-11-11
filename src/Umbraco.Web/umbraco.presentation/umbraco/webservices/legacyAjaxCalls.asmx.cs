@@ -1,6 +1,5 @@
 using System;
 using System.Web;
-using System.Web.Security;
 using System.Web.Services;
 using System.ComponentModel;
 using System.Web.Script.Services;
@@ -10,11 +9,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Web.UI;
-using Umbraco.Core;
 using Umbraco.Core.IO;
 using Umbraco.Web.UI;
-using Umbraco.Web;
-using Umbraco.Web.Cache;
 using Umbraco.Web.WebServices;
 
 using umbraco.BusinessLogic;

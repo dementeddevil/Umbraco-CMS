@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Web.Script.Serialization;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Events;
-using Umbraco.Core.IO;
 using Umbraco.Core.Models;
 
 using Umbraco.Core.Persistence.Repositories;
-using umbraco.interfaces;
 using System.Linq;
 using Newtonsoft.Json;
 using Umbraco.Web.PublishedCache.XmlPublishedCache;

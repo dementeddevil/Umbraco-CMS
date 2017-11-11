@@ -1,17 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net.Http.Formatting;
-using System.Web.Services.Description;
 using AutoMapper;
 using umbraco;
 using umbraco.BusinessLogic.Actions;
-using umbraco.cms.businesslogic.template;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Web.Models.ContentEditing;
 using Umbraco.Web.Models.Trees;

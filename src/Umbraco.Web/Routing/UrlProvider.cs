@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Configuration.UmbracoSettings;
-using Umbraco.Web.PublishedCache;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 
@@ -24,8 +22,8 @@ namespace Umbraco.Web.Routing
         /// <param name="urlProviders">The list of url providers.</param>
         public UrlProvider(UmbracoContext umbracoContext, IWebRoutingSection routingSettings, IEnumerable<IUrlProvider> urlProviders)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
-            if (routingSettings == null) throw new ArgumentNullException("routingSettings");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+            if (routingSettings == null) throw new ArgumentNullException(nameof(routingSettings));
 
             _umbracoContext = umbracoContext;
             _urlProviders = urlProviders;
@@ -47,7 +45,7 @@ namespace Umbraco.Web.Routing
         /// <param name="provider"></param>
         public UrlProvider(UmbracoContext umbracoContext, IEnumerable<IUrlProvider> urlProviders, UrlProviderMode provider = UrlProviderMode.Auto)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
 
             _umbracoContext = umbracoContext;
             _urlProviders = urlProviders;

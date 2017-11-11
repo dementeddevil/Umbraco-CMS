@@ -1,5 +1,4 @@
 using Umbraco.Core;
-using Umbraco.Core.Logging;
 using Umbraco.Core.Sync;
 
 namespace Umbraco.Web

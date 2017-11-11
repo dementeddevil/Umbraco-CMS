@@ -8,7 +8,6 @@ using Examine;
 using Examine.LuceneEngine;
 using Examine.LuceneEngine.Providers;
 using Examine.Providers;
-using Lucene.Net.Search;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Web.Search;

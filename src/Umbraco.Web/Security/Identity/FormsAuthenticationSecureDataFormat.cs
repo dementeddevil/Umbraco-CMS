@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Security.Claims;
 using System.Web.Security;
-using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
 using Newtonsoft.Json;
-using Owin;
 using Umbraco.Core.Security;
 
 namespace Umbraco.Web.Security.Identity

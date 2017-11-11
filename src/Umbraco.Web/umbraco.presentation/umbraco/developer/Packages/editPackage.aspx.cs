@@ -11,7 +11,6 @@ using umbraco.cms.businesslogic.language;
 using umbraco.cms.businesslogic.macro;
 using umbraco.cms.businesslogic.template;
 using umbraco.cms.businesslogic.web;
-using umbraco.cms.presentation.Trees;
 using umbraco.controls;
 using Umbraco.Core;
 using Umbraco.Core.IO;

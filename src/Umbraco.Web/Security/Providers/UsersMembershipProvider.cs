@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Configuration.Provider;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web;
 using System.Web.Security;
 using Umbraco.Core;
@@ -69,7 +67,7 @@ namespace Umbraco.Web.Security.Providers
         {
             base.Initialize(name, config);
 
-            if (config == null) { throw new ArgumentNullException("config"); }
+            if (config == null) { throw new ArgumentNullException(nameof(config)); }
             
             _allowManuallyChangingPassword = config.GetValue("allowManuallyChangingPassword", false);
             _enablePasswordReset = config.GetValue("enablePasswordReset", false);

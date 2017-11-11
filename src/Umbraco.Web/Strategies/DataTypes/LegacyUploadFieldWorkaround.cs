@@ -2,10 +2,8 @@
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Xml;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
-using umbraco.interfaces;
 using Umbraco.Core;
 
 namespace Umbraco.Web.Strategies.DataTypes

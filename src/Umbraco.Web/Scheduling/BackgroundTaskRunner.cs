@@ -96,8 +96,8 @@ namespace Umbraco.Web.Scheduling
         /// <param name="mainDomRelease">An optional action to execute when the main domain status is released.</param>
         public BackgroundTaskRunner(string name, BackgroundTaskRunnerOptions options, ILogger logger, Action mainDomInstall = null, Action mainDomRelease = null)
         {
-            if (options == null) throw new ArgumentNullException("options");
-            if (logger == null) throw new ArgumentNullException("logger");
+            if (options == null) throw new ArgumentNullException(nameof(options));
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
             _options = options;
             _logPrefix = "[" + name + "] ";
             _logger = logger;

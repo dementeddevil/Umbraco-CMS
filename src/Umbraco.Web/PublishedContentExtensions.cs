@@ -8,11 +8,9 @@ using System.Web;
 using Examine.LuceneEngine.SearchCriteria;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Core.Services;
 using Umbraco.Web.Models;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
-using Umbraco.Web.Routing;
 using ContentType = umbraco.cms.businesslogic.ContentType;
 
 namespace Umbraco.Web
@@ -549,7 +547,7 @@ namespace Umbraco.Web
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static HtmlString Where(this IPublishedContent content, string predicate, string valueIfTrue)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             return content.Where(predicate, valueIfTrue, string.Empty);
         }
 
@@ -557,7 +555,7 @@ namespace Umbraco.Web
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static HtmlString Where(this IPublishedContent content, string predicate, string valueIfTrue, string valueIfFalse)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             return new HtmlString(content.Where(predicate) ? valueIfTrue : valueIfFalse);
         }
 
@@ -565,7 +563,7 @@ namespace Umbraco.Web
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool Where(this IPublishedContent content, string predicate)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             var dynamicDocumentList = new DynamicPublishedContentList { content.AsDynamicOrNull() };
             var filtered = dynamicDocumentList.Where<DynamicPublishedContent>(predicate);
             return filtered.Count() == 1;
@@ -579,7 +577,7 @@ namespace Umbraco.Web
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static dynamic AsDynamic(this IPublishedContent content)
 		{
-			if (content == null) throw new ArgumentNullException("content");
+			if (content == null) throw new ArgumentNullException(nameof(content));
 			return new DynamicPublishedContent(content);
 		}
 
@@ -1213,7 +1211,7 @@ namespace Umbraco.Web
         /// <returns>Enumerates bottom-up ie walking up the tree (parent, grand-parent, etc).</returns>
         internal static IEnumerable<IPublishedContent> EnumerateAncestors(this IPublishedContent content, bool orSelf)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             if (orSelf) yield return content;
             while ((content = content.Parent) != null)
                 yield return content;
@@ -1386,7 +1384,7 @@ namespace Umbraco.Web
 
         internal static IEnumerable<IPublishedContent> EnumerateDescendants(this IPublishedContent content, bool orSelf)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             if (orSelf) yield return content;
 
             foreach (var child in content.Children)
@@ -1419,7 +1417,7 @@ namespace Umbraco.Web
 		public static IPublishedContent Up(this IPublishedContent content, int number)
 		{
             if (number < 0)
-                throw new ArgumentOutOfRangeException("number", "Must be greater than, or equal to, zero.");
+                throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than, or equal to, zero.");
 		    return number == 0 ? content : content.EnumerateAncestors(false).Skip(number).FirstOrDefault();
 		}
 
@@ -1442,7 +1440,7 @@ namespace Umbraco.Web
 		public static IPublishedContent Down(this IPublishedContent content, int number)
 		{
             if (number < 0)
-                throw new ArgumentOutOfRangeException("number", "Must be greater than, or equal to, zero.");
+                throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than, or equal to, zero.");
 		    if (number == 0) return content;
 
             content = content.Children.FirstOrDefault();
@@ -1482,7 +1480,7 @@ namespace Umbraco.Web
         public static IPublishedContent Next(this IPublishedContent content, int number)
 		{
             if (number < 0)
-                throw new ArgumentOutOfRangeException("number", "Must be greater than, or equal to, zero.");
+                throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than, or equal to, zero.");
             return number == 0 ? content : content.ContentSet.ElementAtOrDefault(content.GetIndex() + number);
         }
 
@@ -1549,7 +1547,7 @@ namespace Umbraco.Web
 		public static IPublishedContent Previous(this IPublishedContent content, int number)
 		{
             if (number < 0)
-                throw new ArgumentOutOfRangeException("number", "Must be greater than, or equal to, zero.");
+                throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than, or equal to, zero.");
             return number == 0 ? content : content.ContentSet.ElementAtOrDefault(content.GetIndex() - number);
         }
 
@@ -1581,7 +1579,7 @@ namespace Umbraco.Web
 		public static IPublishedContent Sibling(this IPublishedContent content, int number)
         {
             if (number < 0)
-                throw new ArgumentOutOfRangeException("number", "Must be greater than, or equal to, zero.");
+                throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than, or equal to, zero.");
             number += 1; // legacy is zero-based
             return content.FollowingSibling(number);
 		}
@@ -1608,7 +1606,7 @@ namespace Umbraco.Web
         public static IPublishedContent FollowingSibling(this IPublishedContent content, int number)
         {
             if (number < 0)
-                throw new ArgumentOutOfRangeException("number", "Must be greater than, or equal to, zero.");
+                throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than, or equal to, zero.");
             return number == 0 ? content : content.Siblings().ElementAtOrDefault(content.GetIndex(content.Siblings()) + number);
         }
 
@@ -1645,7 +1643,7 @@ namespace Umbraco.Web
         public static IPublishedContent PrecedingSibling(this IPublishedContent content, int number)
         {
             if (number < 0)
-                throw new ArgumentOutOfRangeException("number", "Must be greater than, or equal to, zero.");
+                throw new ArgumentOutOfRangeException(nameof(number), "Must be greater than, or equal to, zero.");
             return number == 0 ? content : content.Siblings().ElementAtOrDefault(content.GetIndex(content.Siblings()) - number);
         }
 
@@ -1721,7 +1719,7 @@ namespace Umbraco.Web
         public static T Parent<T>(this IPublishedContent content)
             where T : class, IPublishedContent
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             return content.Parent as T;
         }
 
@@ -1740,7 +1738,7 @@ namespace Umbraco.Web
 		/// </remarks>
 		public static IEnumerable<IPublishedContent> Children(this IPublishedContent content)
         {
-            if (content == null) throw new ArgumentNullException("content");
+            if (content == null) throw new ArgumentNullException(nameof(content));
             return content.Children;
         }
 

@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Web;
 using System.Xml;
 using Umbraco.Core;
 using Umbraco.Core.IO;
-using umbraco.BasePages;
 using umbraco.BusinessLogic;
 using umbraco.interfaces;
-using System.Linq;
 
 namespace Umbraco.Web.UI
 {
@@ -48,9 +44,9 @@ namespace Umbraco.Web.UI
         /// </remarks>
         private static ITask GetTaskForOperation(HttpContextBase httpContext, User umbracoUser, Operation op, string nodeType)
         {
-            if (httpContext == null) throw new ArgumentNullException("httpContext");
-            if (umbracoUser == null) throw new ArgumentNullException("umbracoUser");
-            if (nodeType == null) throw new ArgumentNullException("nodeType");
+            if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
+            if (umbracoUser == null) throw new ArgumentNullException(nameof(umbracoUser));
+            if (nodeType == null) throw new ArgumentNullException(nameof(nodeType));
 
             var ctxKey = op == Operation.Create ? ContextKeyCreate : ContextKeyDelete;
 

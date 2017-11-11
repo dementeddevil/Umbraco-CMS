@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Umbraco.Core.Models;
-
-namespace Umbraco.Web.PublishedCache
+﻿namespace Umbraco.Web.PublishedCache
 {
     /// <summary>
     /// Provides access to cached medias in a specified context.

@@ -1,8 +1,4 @@
-using System;
-using System.Web.Http.Filters;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Windows.Forms;
 using Umbraco.Web.Models;
 
 namespace Umbraco.Web.Mvc

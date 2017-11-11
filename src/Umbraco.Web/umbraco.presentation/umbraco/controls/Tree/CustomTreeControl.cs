@@ -1,9 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using ClientDependency.Core;
-using umbraco.controls.Tree;
 using Umbraco.Core.IO;
 
 namespace umbraco.controls.Tree

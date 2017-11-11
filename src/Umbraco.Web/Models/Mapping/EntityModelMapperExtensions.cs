@@ -1,6 +1,5 @@
 using AutoMapper;
 using Umbraco.Core.Models.EntityBase;
-using Umbraco.Web.Models.ContentEditing;
 
 namespace Umbraco.Web.Models.Mapping
 {

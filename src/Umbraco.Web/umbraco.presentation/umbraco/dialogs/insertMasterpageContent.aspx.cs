@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Text.RegularExpressions;
 using umbraco.BusinessLogic;
-using umbraco.cms.businesslogic;
 
 namespace umbraco.presentation.umbraco.dialogs
 {

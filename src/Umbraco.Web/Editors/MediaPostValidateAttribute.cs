@@ -28,8 +28,8 @@ namespace Umbraco.Web.Editors
 
         public MediaPostValidateAttribute(IMediaService mediaService, IEntityService entityService, WebSecurity security)
         {
-            if (mediaService == null) throw new ArgumentNullException("mediaService");
-            if (security == null) throw new ArgumentNullException("security");
+            if (mediaService == null) throw new ArgumentNullException(nameof(mediaService));
+            if (security == null) throw new ArgumentNullException(nameof(security));
             _mediaService = mediaService;
             _entityService = entityService;
             _security = security;

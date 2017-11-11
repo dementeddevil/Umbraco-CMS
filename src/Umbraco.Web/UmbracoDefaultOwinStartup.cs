@@ -86,10 +86,7 @@ namespace Umbraco.Web
         /// </summary>
         public static event EventHandler<OwinMiddlewareConfiguredEventArgs> MiddlewareConfigured;
 
-        protected virtual ApplicationContext ApplicationContext
-        {
-            get { return ApplicationContext.Current; }
-        }
+        protected virtual ApplicationContext ApplicationContext => ApplicationContext.Current;
 
         internal static void OnMiddlewareConfigured(OwinMiddlewareConfiguredEventArgs args)
         {

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using Newtonsoft.Json;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Services;
@@ -113,7 +110,7 @@ namespace Umbraco.Web.Strategies
                 IServerRegistrationService svc, DatabaseServerRegistrar registrar, string serverAddress)
                 : base(runner, delayMilliseconds, periodMilliseconds)
             {
-                if (svc == null) throw new ArgumentNullException("svc");
+                if (svc == null) throw new ArgumentNullException(nameof(svc));
                 _svc = svc;
                 _registrar = registrar;
                 _serverAddress = serverAddress;

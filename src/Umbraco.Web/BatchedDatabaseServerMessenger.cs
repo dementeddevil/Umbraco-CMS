@@ -107,7 +107,7 @@ namespace Umbraco.Web
 
             Type arrayType;
             if (GetArrayType(idsA, out arrayType) == false)
-                throw new ArgumentException("All items must be of the same type, either int or Guid.", "ids");
+                throw new ArgumentException("All items must be of the same type, either int or Guid.", nameof(ids));
 
             BatchMessage(servers, refresher, messageType, idsA, arrayType, json);
         }

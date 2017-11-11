@@ -3,10 +3,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Security;
 using Microsoft.Owin;
 using Microsoft.Owin.Logging;
-using Microsoft.Owin.Security.Cookies;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Configuration.UmbracoSettings;
@@ -34,8 +32,8 @@ namespace Umbraco.Web.Security.Identity
             ILogger logger)
             : base(next)
         {
-            if (authOptions == null) throw new ArgumentNullException("authOptions");
-            if (logger == null) throw new ArgumentNullException("logger");
+            if (authOptions == null) throw new ArgumentNullException(nameof(authOptions));
+            if (logger == null) throw new ArgumentNullException(nameof(logger));
             _authOptions = authOptions;
             _security = security;
             _logger = logger;

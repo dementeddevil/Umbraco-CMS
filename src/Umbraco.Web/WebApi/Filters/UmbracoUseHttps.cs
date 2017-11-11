@@ -1,11 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Web.Http;
-using System.Web.Http.Controllers;
-using Umbraco.Core;
-using System.Web.Mvc;
-using GlobalSettings = Umbraco.Core.Configuration.GlobalSettings;
 
 namespace Umbraco.Web.WebApi.Filters
 {

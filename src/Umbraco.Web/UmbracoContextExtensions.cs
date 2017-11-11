@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web;
-using Umbraco.Core;
 using Umbraco.Core.Events;
 
 namespace Umbraco.Web
@@ -36,7 +32,7 @@ namespace Umbraco.Web
         /// </remarks>
         public static UmbracoContext GetUmbracoContext(this HttpContextBase http)
         {
-            if (http == null) throw new ArgumentNullException("http");
+            if (http == null) throw new ArgumentNullException(nameof(http));
 
             if (http.Items.Contains(UmbracoContext.HttpContextItemName))
             {
@@ -54,7 +50,7 @@ namespace Umbraco.Web
         public static EventMessages GetCurrentEventMessages(this UmbracoContext umbracoContext)
         {
             var eventMessagesFactory = umbracoContext.Application.Services.EventMessagesFactory as ScopeLifespanMessagesFactory;
-            return eventMessagesFactory == null ? null : eventMessagesFactory.TryGet();
+            return eventMessagesFactory?.TryGet();
         }
 
     }

@@ -1,17 +1,11 @@
 #region namespace
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Web;
-using System.Web.Security;
-using System.Configuration;
 using Umbraco.Core.Logging;
-using umbraco.BusinessLogic;
-using System.Security.Cryptography;
-using System.Web.Util;
 using System.Collections.Specialized;
 using System.Configuration.Provider;
-using System.Collections;
+
 #endregion
 
 namespace umbraco.presentation.nodeFactory

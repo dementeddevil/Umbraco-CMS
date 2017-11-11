@@ -2,12 +2,10 @@ using System;
 using System.Collections;
 using System.Web;
 using System.Xml;
-using StackExchange.Profiling;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Web;
-using Umbraco.Core.Profiling;
 using Umbraco.Core.Strings;
 
 namespace umbraco

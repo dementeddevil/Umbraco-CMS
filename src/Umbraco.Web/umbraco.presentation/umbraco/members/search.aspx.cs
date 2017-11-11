@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Linq;
-using System.Web.Security;
-using umbraco.cms.businesslogic.member;
-using umbraco.DataLayer.SqlHelpers;
-using umbraco.BusinessLogic;
-using Examine;
+﻿using umbraco.BusinessLogic;
 
 namespace umbraco.presentation.members
 {

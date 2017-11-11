@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace umbraco
+﻿namespace umbraco
 {
     /// <summary>
     /// namespacing this interface, as only relevant to uQuery

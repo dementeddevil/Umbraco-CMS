@@ -1,8 +1,4 @@
 using System;
-using System.Xml;
-using Newtonsoft.Json;
-using umbraco.cms.businesslogic.web;
-using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Models;
 

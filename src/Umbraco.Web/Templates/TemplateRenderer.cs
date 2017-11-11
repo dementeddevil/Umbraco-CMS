@@ -31,7 +31,7 @@ namespace Umbraco.Web.Templates
 
 		public TemplateRenderer(UmbracoContext umbracoContext, int pageId, int? altTemplateId)
 		{
-			if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+			if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
 			PageId = pageId;
 			AltTemplate = altTemplateId;
 			_umbracoContext = umbracoContext;
@@ -49,7 +49,7 @@ namespace Umbraco.Web.Templates
 
 		public void Render(StringWriter writer)
 		{
-			if (writer == null) throw new ArgumentNullException("writer");
+			if (writer == null) throw new ArgumentNullException(nameof(writer));
 			// instanciate a request a process
 			// important to use CleanedUmbracoUrl - lowercase path-only version of the current url, though this isn't going to matter
 			// terribly much for this implementation since we are just creating a doc content request to modify it's properties manually.

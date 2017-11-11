@@ -2,17 +2,13 @@
 using System.Globalization;
 using System.Linq;
 using System.Web.Security;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms.VisualStyles;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 using umbraco.cms.businesslogic.member;
 using umbraco.cms.businesslogic.web;
 using umbraco.controls;
-using umbraco.cms.helpers;
 using umbraco.BasePages;
-using Umbraco.Core.Persistence;
 using Umbraco.Core.Security;
 
 namespace umbraco.presentation.umbraco.dialogs

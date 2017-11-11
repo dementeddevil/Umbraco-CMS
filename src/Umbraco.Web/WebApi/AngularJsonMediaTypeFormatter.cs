@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Umbraco.Core.Logging;
 
 namespace Umbraco.Web.WebApi
 {
@@ -34,8 +29,8 @@ namespace Umbraco.Web.WebApi
         /// <returns></returns>
         public override async Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
         {
-            if (type == null) throw new ArgumentNullException("type");
-            if (writeStream == null) throw new ArgumentNullException("writeStream");
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (writeStream == null) throw new ArgumentNullException(nameof(writeStream));
 
             var effectiveEncoding = SelectCharacterEncoding(content == null ? null : content.Headers);
 

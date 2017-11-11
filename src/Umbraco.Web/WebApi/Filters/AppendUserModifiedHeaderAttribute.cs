@@ -1,7 +1,6 @@
 using System;
 using System.Web.Http.Filters;
 using Umbraco.Core;
-using Umbraco.Core.Models;
 
 namespace Umbraco.Web.WebApi.Filters
 {
@@ -25,7 +24,7 @@ namespace Umbraco.Web.WebApi.Filters
         /// <param name="userIdParameter"></param>
         public AppendUserModifiedHeaderAttribute(string userIdParameter)
         {
-            if (userIdParameter == null) throw new ArgumentNullException("userIdParameter");
+            if (userIdParameter == null) throw new ArgumentNullException(nameof(userIdParameter));
             _userIdParameter = userIdParameter;
         }
 

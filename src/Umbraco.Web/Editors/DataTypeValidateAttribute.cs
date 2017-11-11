@@ -2,13 +2,11 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using AutoMapper;
 using Umbraco.Core;
 using Umbraco.Core.Models;
-using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Core.Services;
 using Umbraco.Web.Models.ContentEditing;
@@ -29,7 +27,7 @@ namespace Umbraco.Web.Editors
 
         public DataTypeValidateAttribute(IDataTypeService dataTypeService)
         {
-            if (dataTypeService == null) throw new ArgumentNullException("dataTypeService");
+            if (dataTypeService == null) throw new ArgumentNullException(nameof(dataTypeService));
             _dataTypeService = dataTypeService;
         }
 

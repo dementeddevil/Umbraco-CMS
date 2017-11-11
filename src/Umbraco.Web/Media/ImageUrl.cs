@@ -7,7 +7,6 @@ using System.Web;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Media;
-using umbraco;
 
 namespace Umbraco.Web.Media
 {

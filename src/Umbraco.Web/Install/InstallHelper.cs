@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
-using System.Web.Script.Serialization;
-using System.Web.UI;
 using umbraco.BusinessLogic;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
-using Umbraco.Core.Persistence;
 using Umbraco.Web.Install.InstallSteps;
 using Umbraco.Web.Install.Models;
 

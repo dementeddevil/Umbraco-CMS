@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Web;
-using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Media;
 using Umbraco.Core.ObjectResolution;
-using umbraco.BusinessLogic;
-using umbraco.BusinessLogic.Utils;
 
 namespace Umbraco.Web.Media.ThumbnailProviders
 {

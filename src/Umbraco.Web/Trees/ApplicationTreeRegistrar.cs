@@ -2,11 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using umbraco.businesslogic;
-using Umbraco.Core.Services;
 
 namespace Umbraco.Web.Trees
 {

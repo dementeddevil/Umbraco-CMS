@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -130,9 +129,9 @@ namespace Umbraco.Web.Mvc
             TempDataDictionary tempData,
             string viewName, object model, bool isPartial = false)
         {
-            if (requestContext == null) throw new ArgumentNullException("requestContext");
-            if (viewData == null) throw new ArgumentNullException("viewData");
-            if (tempData == null) throw new ArgumentNullException("tempData");
+            if (requestContext == null) throw new ArgumentNullException(nameof(requestContext));
+            if (viewData == null) throw new ArgumentNullException(nameof(viewData));
+            if (tempData == null) throw new ArgumentNullException(nameof(tempData));
 
             var routeData = requestContext.RouteData;
             if (routeData.Values.ContainsKey("controller") == false)

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web.UI;
 using Examine.LuceneEngine.SearchCriteria;
 using Examine.SearchCriteria;
-using umbraco.cms.businesslogic.member;
 using System.Web.Security;
 using Umbraco.Core.Security;
 

@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using Umbraco.Core.Models;
-using Umbraco.Web.Mvc;
 
 namespace Umbraco.Web.Models
 {

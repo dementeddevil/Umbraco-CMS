@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Web.Security;
 using Umbraco.Core;
 using Umbraco.Core.Dynamics;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Core.PropertyEditors;
-using Umbraco.Core.Services;
 using Umbraco.Web.Models;
 
 namespace Umbraco.Web.PublishedCache
@@ -29,7 +23,7 @@ namespace Umbraco.Web.PublishedCache
 
         public MemberPublishedContent(IMember member)
         {
-            if (member == null) throw new ArgumentNullException("member");            
+            if (member == null) throw new ArgumentNullException(nameof(member));            
 
             _member = member;
             _membershipUser = member;

@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
 using Umbraco.Web.Install.Models;
 

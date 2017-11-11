@@ -23,8 +23,8 @@ namespace Umbraco.Web.Routing
         /// </remarks>
         public static IEnumerable<string> GetContentUrls(this IContent content, UmbracoContext umbracoContext)
         {
-            if (content == null) throw new ArgumentNullException("content");
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (content == null) throw new ArgumentNullException(nameof(content));
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
 
             var urls = new List<string>();
 

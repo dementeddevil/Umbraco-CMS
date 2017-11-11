@@ -1,19 +1,12 @@
 using System;
-using System.Data;
 using System.Web;
-using System.Linq;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
-using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Profiling;
 using Umbraco.Core.Services;
 using Umbraco.Web.Security;
-using umbraco.BusinessLogic;
-using umbraco.DataLayer;
 using System.Web.UI;
 
 namespace Umbraco.Web.UI.Pages

@@ -911,10 +911,10 @@ namespace Umbraco.Web.Editors
         /// <returns></returns>
         internal static bool CheckPermissions(IDictionary<string, object> storage, IUser user, IMediaService mediaService, IEntityService entityService, int nodeId, IMedia media = null)
         {
-            if (storage == null) throw new ArgumentNullException("storage");
-            if (user == null) throw new ArgumentNullException("user");
-            if (mediaService == null) throw new ArgumentNullException("mediaService");
-            if (entityService == null) throw new ArgumentNullException("entityService");
+            if (storage == null) throw new ArgumentNullException(nameof(storage));
+            if (user == null) throw new ArgumentNullException(nameof(user));
+            if (mediaService == null) throw new ArgumentNullException(nameof(mediaService));
+            if (entityService == null) throw new ArgumentNullException(nameof(entityService));
 
             if (media == null && nodeId != Constants.System.Root && nodeId != Constants.System.RecycleBinMedia)
             {

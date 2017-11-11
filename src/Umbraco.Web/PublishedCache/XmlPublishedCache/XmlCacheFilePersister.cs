@@ -1,6 +1,5 @@
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using umbraco;
 using Umbraco.Core;
 using Umbraco.Core.Logging;

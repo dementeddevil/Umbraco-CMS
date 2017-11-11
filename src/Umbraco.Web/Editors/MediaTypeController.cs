@@ -11,7 +11,6 @@ using System.Net;
 using System.Net.Http;
 using Umbraco.Web.WebApi;
 using Umbraco.Core.Services;
-using Umbraco.Core.Models.EntityBase;
 using System;
 using System.ComponentModel;
 using System.Web.Http.Controllers;

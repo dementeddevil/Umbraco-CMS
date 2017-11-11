@@ -39,7 +39,7 @@ namespace Umbraco.Web.PropertyEditors.ValueConverters
 
         public LegacyMediaPickerPropertyConverter(IDataTypeService dataTypeService)
         {
-            if (dataTypeService == null) throw new ArgumentNullException("dataTypeService");
+            if (dataTypeService == null) throw new ArgumentNullException(nameof(dataTypeService));
             _dataTypeService = dataTypeService;
         }
 

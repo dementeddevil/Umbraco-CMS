@@ -24,7 +24,7 @@ namespace Umbraco.Web.Security.Identity
         {
         }
 
-        public override async Task Invoke(IOwinContext context)
+        public override Task Invoke(IOwinContext context)
         {
             if (context.Request.Uri.IsClientSideRequest() == false)
             {
@@ -42,10 +42,7 @@ namespace Umbraco.Web.Security.Identity
                 }
             }
 
-            if (Next != null)
-            {
-                await Next.Invoke(context);
-            }
+            return Next?.Invoke(context) ?? Task.CompletedTask;
         }
     }
 }

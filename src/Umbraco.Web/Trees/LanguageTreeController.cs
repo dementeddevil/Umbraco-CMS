@@ -1,13 +1,10 @@
 using System;
-using System.Data.SqlClient;
 using System.Globalization;
 using System.Net.Http.Formatting;
-using System.Web.Services.Description;
 using umbraco;
 using umbraco.BusinessLogic.Actions;
 using Umbraco.Core;
 using Umbraco.Core.Models;
-using umbraco.presentation.actions;
 using Umbraco.Web.Models.Trees;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi.Filters;

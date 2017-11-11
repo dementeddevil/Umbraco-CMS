@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.UI;
-using Umbraco.Core;
-using Umbraco.Core.Services;
 
 namespace Umbraco.Web
 {

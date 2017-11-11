@@ -1,4 +1,3 @@
-using System;
 using Umbraco.Core.ObjectResolution;
 
 namespace Umbraco.Web.Routing

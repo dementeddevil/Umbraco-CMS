@@ -1,7 +1,6 @@
 using System;
 using System.ComponentModel;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Models.Identity;

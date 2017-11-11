@@ -1,5 +1,4 @@
-﻿using System.Web.Http.Controllers;
-using Umbraco.Core.Models.Identity;
+﻿using Umbraco.Core.Models.Identity;
 using Umbraco.Core.Security;
 using Umbraco.Web.WebApi;
 using Umbraco.Web.WebApi.Filters;

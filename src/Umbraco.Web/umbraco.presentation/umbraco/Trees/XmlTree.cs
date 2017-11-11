@@ -6,7 +6,6 @@ using System.Xml.Schema;
 using umbraco.interfaces;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
-using System.Text;
 using umbraco.businesslogic.Utils;
 using umbraco.BasePages;
 using Umbraco.Core.IO;

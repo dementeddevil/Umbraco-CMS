@@ -1,16 +1,11 @@
 ﻿using System.Web;
-using System.Web.UI;
-using ClientDependency.Core;
 using Umbraco.Core;
-using Umbraco.Core.Logging;
 using Umbraco.Web.UI;
 using Umbraco.Web;
 using System;
-using Umbraco.Web.UI.Controls;
 using System.Web.UI.WebControls;
 using umbraco.BasePages;
 using umbraco.BusinessLogic;
-using Umbraco.Web;
 using System.Linq;
 using UmbracoUserControl = Umbraco.Web.UI.Controls.UmbracoUserControl;
 

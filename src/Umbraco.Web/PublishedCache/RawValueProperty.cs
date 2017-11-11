@@ -30,7 +30,7 @@ namespace Umbraco.Web.PublishedCache
             : this(propertyType)
         {
             if (propertyData == null)
-                throw new ArgumentNullException("propertyData");
+                throw new ArgumentNullException(nameof(propertyData));
             _dbVal = propertyData;
         }
 

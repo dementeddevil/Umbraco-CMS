@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Web.Http;
-using System.Web.Services.Description;
 using Umbraco.Core;
 using Umbraco.Core.Models;
-using Umbraco.Web.Routing;
 using Umbraco.Web.WebApi;
 //using umbraco.cms.businesslogic.language;
 using umbraco.BusinessLogic.Actions;
-using umbraco.cms.businesslogic.web;
 using Umbraco.Web.WebApi.Filters;
 
 namespace Umbraco.Web.WebServices

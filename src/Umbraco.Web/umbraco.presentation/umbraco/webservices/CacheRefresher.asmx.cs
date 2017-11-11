@@ -4,16 +4,13 @@ using System.Web;
 using System.Web.Services;
 using System.Xml;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Newtonsoft.Json;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Sync;
 using umbraco.interfaces;
-using Umbraco.Core.Models.Identity;
 using Umbraco.Core.Security;
-using Umbraco.Web.Security;
 
 namespace umbraco.presentation.webservices
 {

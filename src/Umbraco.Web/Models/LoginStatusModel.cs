@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Web;
-using Umbraco.Core;
 using Umbraco.Web.Security;
 
 namespace Umbraco.Web.Models

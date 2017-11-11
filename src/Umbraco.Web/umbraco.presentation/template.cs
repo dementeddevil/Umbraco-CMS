@@ -1,18 +1,12 @@
 using System;
-using System.Xml;
-using System.Web.Caching;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
-
-using System.Data;
 using System.Web.UI;
 using System.Collections;
-using System.Collections.Generic;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Configuration;
-using Umbraco.Web;
 using Umbraco.Web.Cache;
 using umbraco.DataLayer;
 using umbraco.BusinessLogic;

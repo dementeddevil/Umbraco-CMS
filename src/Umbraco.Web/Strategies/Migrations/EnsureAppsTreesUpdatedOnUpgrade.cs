@@ -1,7 +1,6 @@
 ﻿using Umbraco.Core;
 using Umbraco.Core.Persistence.Migrations.Upgrades.TargetVersionSix;
 using umbraco.BusinessLogic;
-using umbraco.interfaces;
 
 namespace Umbraco.Web.Strategies.Migrations
 {

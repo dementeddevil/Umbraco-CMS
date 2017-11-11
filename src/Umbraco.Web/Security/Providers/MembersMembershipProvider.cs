@@ -1,14 +1,8 @@
 ﻿using System.Collections.Specialized;
-using System.ComponentModel.DataAnnotations;
 using System.Configuration.Provider;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web.Hosting;
 using System.Web.Security;
 using Umbraco.Core;
 using Umbraco.Core.Models;
-using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.Security;
 using Umbraco.Core.Services;
 using Umbraco.Core.Models.Membership;
@@ -54,15 +48,15 @@ namespace Umbraco.Web.Security.Providers
             return entity.AsConcreteMembershipUser(Name, _providerKeyAsGuid);
         }
 
-        public string LockPropertyTypeAlias { get; private set; }
-        public string LastLockedOutPropertyTypeAlias { get; private set; }
-        public string FailedPasswordAttemptsPropertyTypeAlias { get; private set; }
-        public string ApprovedPropertyTypeAlias { get; private set; }
-        public string CommentPropertyTypeAlias { get; private set; }
-        public string LastLoginPropertyTypeAlias { get; private set; }
-        public string LastPasswordChangedPropertyTypeAlias { get; private set; }
-        public string PasswordRetrievalQuestionPropertyTypeAlias { get; private set; }
-        public string PasswordRetrievalAnswerPropertyTypeAlias { get; private set; }
+        public string LockPropertyTypeAlias { get; }
+        public string LastLockedOutPropertyTypeAlias { get; }
+        public string FailedPasswordAttemptsPropertyTypeAlias { get; }
+        public string ApprovedPropertyTypeAlias { get; }
+        public string CommentPropertyTypeAlias { get; }
+        public string LastLoginPropertyTypeAlias { get; }
+        public string LastPasswordChangedPropertyTypeAlias { get; }
+        public string PasswordRetrievalQuestionPropertyTypeAlias { get; }
+        public string PasswordRetrievalAnswerPropertyTypeAlias { get; }
 
         public override void Initialize(string name, NameValueCollection config)
         {

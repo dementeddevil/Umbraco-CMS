@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Umbraco.Core.Models;
-using Umbraco.Core.PropertyEditors;
 
 namespace Umbraco.Web.Models.ContentEditing
 {

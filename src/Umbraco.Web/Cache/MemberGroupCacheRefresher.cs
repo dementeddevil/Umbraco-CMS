@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using Umbraco.Core;
 using Umbraco.Core.Cache;

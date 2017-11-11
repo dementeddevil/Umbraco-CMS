@@ -1,6 +1,4 @@
-using Newtonsoft.Json;
 using Umbraco.Core;
-using Umbraco.Core.Logging;
 using Umbraco.Core.PropertyEditors;
 
 namespace Umbraco.Web.PropertyEditors

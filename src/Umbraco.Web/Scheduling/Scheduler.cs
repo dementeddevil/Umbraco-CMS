@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Threading;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
-using Umbraco.Core.Configuration.HealthChecks;
 using Umbraco.Core.Logging;
-using Umbraco.Web.HealthCheck;
 using Umbraco.Web.Routing;
 
 namespace Umbraco.Web.Scheduling

@@ -9,7 +9,6 @@ using System.Xml.Serialization;
 using System.Xml.XPath;
 using Umbraco.Core.Configuration;
 using umbraco.cms.businesslogic;
-using umbraco.cms.businesslogic.propertytype;
 using umbraco.interfaces;
 using Umbraco.Core;
 using Umbraco.Web;

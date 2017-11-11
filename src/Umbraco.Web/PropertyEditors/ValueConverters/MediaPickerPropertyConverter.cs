@@ -12,12 +12,10 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Core.Services;
-using Umbraco.Web.Extensions;
 
 namespace Umbraco.Web.PropertyEditors.ValueConverters
 {
@@ -37,7 +35,7 @@ namespace Umbraco.Web.PropertyEditors.ValueConverters
 
         public MediaPickerPropertyConverter(IDataTypeService dataTypeService)
         {
-            if (dataTypeService == null) throw new ArgumentNullException("dataTypeService");
+            if (dataTypeService == null) throw new ArgumentNullException(nameof(dataTypeService));
             _dataTypeService = dataTypeService;
         }
 

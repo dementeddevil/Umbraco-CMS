@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http.Formatting;
-using System.Threading;
-using System.Web.Security;
-using Umbraco.Core;
-using Umbraco.Core.Models;
-using Umbraco.Web.Models.Trees;
-using Umbraco.Web.Mvc;
-using Umbraco.Core.Services;
-
-namespace Umbraco.Web.Trees
+﻿namespace Umbraco.Web.Trees
 {
     /// <summary>
     /// The base controller for all tree requests

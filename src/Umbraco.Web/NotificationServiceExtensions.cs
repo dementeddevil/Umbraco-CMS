@@ -7,7 +7,6 @@ using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Services;
 using umbraco;
-using umbraco.BusinessLogic.Actions;
 using umbraco.interfaces;
 using System.Collections.Generic;
 
@@ -108,9 +107,9 @@ namespace Umbraco.Web
 
         internal static void SendNotification(this INotificationService service, IUser sender, IUmbracoEntity entity, IAction action, UmbracoContext umbracoContext, ApplicationContext applicationContext)
         {
-            if (sender == null) throw new ArgumentNullException("sender");
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
-            if (applicationContext == null) throw new ArgumentNullException("applicationContext");
+            if (sender == null) throw new ArgumentNullException(nameof(sender));
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+            if (applicationContext == null) throw new ArgumentNullException(nameof(applicationContext));
 
             
             applicationContext.Services.NotificationService.SendNotifications(
@@ -127,9 +126,9 @@ namespace Umbraco.Web
 
          internal static void SendNotification(this INotificationService service, IUser sender, IEnumerable<IUmbracoEntity> entities, IAction action, UmbracoContext umbracoContext, ApplicationContext applicationContext)
         {
-            if (sender == null) throw new ArgumentNullException("sender");
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
-            if (applicationContext == null) throw new ArgumentNullException("applicationContext");
+            if (sender == null) throw new ArgumentNullException(nameof(sender));
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
+            if (applicationContext == null) throw new ArgumentNullException(nameof(applicationContext));
 
             
             applicationContext.Services.NotificationService.SendNotifications(

@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using Umbraco.Core.Logging;
-using umbraco.cms.businesslogic;
-using umbraco.cms.businesslogic.language;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Models;
@@ -37,8 +32,8 @@ namespace Umbraco.Web.Dictionary
 
 	    public DefaultCultureDictionary(ILocalizationService localizationService, ICacheProvider requestCacheProvider)
 	    {
-	        if (localizationService == null) throw new ArgumentNullException("localizationService");
-	        if (requestCacheProvider == null) throw new ArgumentNullException("requestCacheProvider");
+	        if (localizationService == null) throw new ArgumentNullException(nameof(localizationService));
+	        if (requestCacheProvider == null) throw new ArgumentNullException(nameof(requestCacheProvider));
 	        _localizationService = localizationService;
 	        _requestCacheProvider = requestCacheProvider;
 	    }
@@ -46,15 +41,15 @@ namespace Umbraco.Web.Dictionary
         public DefaultCultureDictionary(CultureInfo specificCulture)
             : this(ApplicationContext.Current.Services.LocalizationService, ApplicationContext.Current.ApplicationCache.RequestCache)
         {
-            if (specificCulture == null) throw new ArgumentNullException("specificCulture");
+            if (specificCulture == null) throw new ArgumentNullException(nameof(specificCulture));
             _specificCulture = specificCulture;
         }
 
         public DefaultCultureDictionary(CultureInfo specificCulture, ILocalizationService localizationService, ICacheProvider requestCacheProvider)
         {
-            if (specificCulture == null) throw new ArgumentNullException("specificCulture");
-            if (localizationService == null) throw new ArgumentNullException("localizationService");
-            if (requestCacheProvider == null) throw new ArgumentNullException("requestCacheProvider");
+            if (specificCulture == null) throw new ArgumentNullException(nameof(specificCulture));
+            if (localizationService == null) throw new ArgumentNullException(nameof(localizationService));
+            if (requestCacheProvider == null) throw new ArgumentNullException(nameof(requestCacheProvider));
             _localizationService = localizationService;
             _requestCacheProvider = requestCacheProvider;
             _specificCulture = specificCulture;

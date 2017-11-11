@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.XPath;
-using umbraco;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Dynamics;
@@ -30,8 +29,8 @@ namespace Umbraco.Web
         /// <param name="mediaCache"></param>
         public PublishedContentQuery(ContextualPublishedContentCache contentCache, ContextualPublishedMediaCache mediaCache)
         {
-            if (contentCache == null) throw new ArgumentNullException("contentCache");
-            if (mediaCache == null) throw new ArgumentNullException("mediaCache");
+            if (contentCache == null) throw new ArgumentNullException(nameof(contentCache));
+            if (mediaCache == null) throw new ArgumentNullException(nameof(mediaCache));
             _contentCache = contentCache;
             _mediaCache = mediaCache;
         }
@@ -43,8 +42,8 @@ namespace Umbraco.Web
         /// <param name="dynamicContentQuery"></param>
         public PublishedContentQuery(ITypedPublishedContentQuery typedContentQuery, IDynamicPublishedContentQuery dynamicContentQuery)
         {
-            if (typedContentQuery == null) throw new ArgumentNullException("typedContentQuery");
-            if (dynamicContentQuery == null) throw new ArgumentNullException("dynamicContentQuery");
+            if (typedContentQuery == null) throw new ArgumentNullException(nameof(typedContentQuery));
+            if (dynamicContentQuery == null) throw new ArgumentNullException(nameof(dynamicContentQuery));
             _typedContentQuery = typedContentQuery;
             _dynamicContentQuery = dynamicContentQuery;
         }

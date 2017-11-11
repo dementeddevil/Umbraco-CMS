@@ -22,7 +22,7 @@ namespace Umbraco.Web.Editors
 
         public UserGroupValidateAttribute(IUserService userService)
         {
-            if (_userService == null) throw new ArgumentNullException("userService");
+            if (_userService == null) throw new ArgumentNullException(nameof(userService));
             _userService = userService;
         }
 

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.Filters;
 
 namespace Umbraco.Web.WebApi.Filters
@@ -18,7 +15,7 @@ namespace Umbraco.Web.WebApi.Filters
 
         public FilterGrouping(IEnumerable<FilterInfo> filters)
         {
-            if (filters == null) throw new ArgumentNullException("filters");
+            if (filters == null) throw new ArgumentNullException(nameof(filters));
 
             foreach (FilterInfo f in filters)
             {

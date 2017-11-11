@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -205,8 +204,8 @@ namespace Umbraco.Web.Search
 
         private void AppendPath(StringBuilder sb, UmbracoObjectTypes objectType, int[] startNodeIds, string searchFrom, IEntityService entityService)
         {
-            if (sb == null) throw new ArgumentNullException("sb");
-            if (entityService == null) throw new ArgumentNullException("entityService");
+            if (sb == null) throw new ArgumentNullException(nameof(sb));
+            if (entityService == null) throw new ArgumentNullException(nameof(entityService));
 
             int searchFromId;
             var entityPath = int.TryParse(searchFrom, out searchFromId) && searchFromId > 0

@@ -1,9 +1,6 @@
-using System;
 using System.Net.Http;
 using System.Web.Http.Filters;
-using Umbraco.Core;
 using Umbraco.Web.Editors;
-using Umbraco.Web.Models.ContentEditing;
 
 namespace Umbraco.Web.WebApi.Filters
 {

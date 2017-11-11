@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
-using Umbraco.Web.Security;
-using umbraco.cms.businesslogic.member;
 using Umbraco.Core;
 
 namespace Umbraco.Web.WebApi
@@ -28,7 +24,7 @@ namespace Umbraco.Web.WebApi
         /// <param name="umbracoContext"></param>
         public MemberAuthorizeAttribute(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _umbracoContext = umbracoContext;
         }
 

@@ -60,7 +60,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
             : this(propertyType, isPreviewing)
 		{
 		    if (propertyXmlData == null)
-		        throw new ArgumentNullException("propertyXmlData", "Property xml source is null");
+		        throw new ArgumentNullException(nameof(propertyXmlData), "Property xml source is null");
 		    _xmlValue = XmlHelper.GetNodeValue(propertyXmlData);
         }
 
@@ -68,7 +68,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
             : this(propertyType, isPreviewing)
         {
             if (propertyData == null)
-                throw new ArgumentNullException("propertyData");
+                throw new ArgumentNullException(nameof(propertyData));
             _xmlValue = propertyData;
         }
 

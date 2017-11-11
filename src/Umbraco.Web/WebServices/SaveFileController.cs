@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
-using Umbraco.Core.Events;
 using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
-using Umbraco.Web.Macros;
 using Umbraco.Web.Mvc;
 using umbraco;
-using umbraco.cms.businesslogic.macro;
 using System.Collections.Generic;
 using umbraco.cms.helpers;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Template = umbraco.cms.businesslogic.template.Template;
 
 namespace Umbraco.Web.WebServices

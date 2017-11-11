@@ -40,7 +40,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
 
         public virtual IPublishedContent GetByRoute(UmbracoContext umbracoContext, bool preview, string route, bool? hideTopLevelNode = null)
         {
-            if (route == null) throw new ArgumentNullException("route");
+            if (route == null) throw new ArgumentNullException(nameof(route));
 
             // try to get from cache if not previewing
             var contentId = preview ? 0 : _routesCache.GetNodeId(route);
@@ -110,7 +110,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
 
         IPublishedContent DetermineIdByRoute(UmbracoContext umbracoContext, bool preview, string route, bool hideTopLevelNode)
         {
-            if (route == null) throw new ArgumentNullException("route");
+            if (route == null) throw new ArgumentNullException(nameof(route));
 
             //the route always needs to be lower case because we only store the urlName attribute in lower case
             route = route.ToLowerInvariant();
@@ -358,7 +358,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
 
         public virtual IPublishedContent GetSingleByXPath(UmbracoContext umbracoContext, bool preview, string xpath, params XPathVariable[] vars)
         {
-            if (xpath == null) throw new ArgumentNullException("xpath");
+            if (xpath == null) throw new ArgumentNullException(nameof(xpath));
             if (string.IsNullOrWhiteSpace(xpath)) return null;
 
             var xml = GetXml(umbracoContext, preview);
@@ -370,7 +370,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
 
         public virtual IPublishedContent GetSingleByXPath(UmbracoContext umbracoContext, bool preview, XPathExpression xpath, params XPathVariable[] vars)
         {
-            if (xpath == null) throw new ArgumentNullException("xpath");
+            if (xpath == null) throw new ArgumentNullException(nameof(xpath));
 
             var xml = GetXml(umbracoContext, preview);
             var node = vars == null
@@ -381,7 +381,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
 
         public virtual IEnumerable<IPublishedContent> GetByXPath(UmbracoContext umbracoContext, bool preview, string xpath, params XPathVariable[] vars)
         {
-            if (xpath == null) throw new ArgumentNullException("xpath");
+            if (xpath == null) throw new ArgumentNullException(nameof(xpath));
             if (string.IsNullOrWhiteSpace(xpath)) return Enumerable.Empty<IPublishedContent>();
 
             var xml = GetXml(umbracoContext, preview);
@@ -393,7 +393,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
 
         public virtual IEnumerable<IPublishedContent> GetByXPath(UmbracoContext umbracoContext, bool preview, XPathExpression xpath, params XPathVariable[] vars)
         {
-            if (xpath == null) throw new ArgumentNullException("xpath");
+            if (xpath == null) throw new ArgumentNullException(nameof(xpath));
 
             var xml = GetXml(umbracoContext, preview);
             var nodes = vars == null
@@ -484,7 +484,7 @@ namespace Umbraco.Web.PublishedCache.XmlPublishedCache
         public IPublishedProperty CreateDetachedProperty(PublishedPropertyType propertyType, object value, bool isPreviewing)
         {
             if (propertyType.IsDetachedOrNested == false)
-                throw new ArgumentException("Property type is neither detached nor nested.", "propertyType");
+                throw new ArgumentException("Property type is neither detached nor nested.", nameof(propertyType));
             return new XmlPublishedProperty(propertyType, isPreviewing, value.ToString());
         }
 

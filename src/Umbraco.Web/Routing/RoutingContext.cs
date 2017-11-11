@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Umbraco.Web.PublishedCache;
 
 namespace Umbraco.Web.Routing
 {

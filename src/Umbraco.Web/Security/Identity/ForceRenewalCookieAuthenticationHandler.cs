@@ -1,4 +1,3 @@
-using System;
 using Umbraco.Core;
 using System.Threading.Tasks;
 using Umbraco.Core.Security;

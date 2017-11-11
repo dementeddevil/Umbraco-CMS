@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using Umbraco.Core.Media;
 using Umbraco.Web.Media;
 
 namespace umbraco.presentation.templateControls

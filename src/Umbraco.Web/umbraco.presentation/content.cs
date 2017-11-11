@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -21,7 +20,6 @@ using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Core.Profiling;
 using Umbraco.Core.Scoping;
-using Umbraco.Web;
 using Umbraco.Web.PublishedCache.XmlPublishedCache;
 using Umbraco.Web.Scheduling;
 using File = System.IO.File;
@@ -321,7 +319,7 @@ namespace umbraco
 
         internal virtual void UpdateSortOrder(IContent c)
         {
-            if (c == null) throw new ArgumentNullException("c");
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             // the XML in database is updated only when content is published, and then
             // it contains the sortOrder value at the time the XML was generated. when

@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Controllers;
@@ -23,7 +22,7 @@ namespace Umbraco.Web.Editors
         /// <param name="umbracoContext"></param>
         public UserGroupAuthorizationAttribute(string paramName, UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             _paramName = paramName;
             _umbracoContext = umbracoContext;
         }

@@ -3,9 +3,6 @@ using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Models;
 
-using umbraco;
-using umbraco.interfaces;
-
 namespace Umbraco.Web.Cache
 {
 

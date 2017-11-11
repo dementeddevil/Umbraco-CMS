@@ -6,12 +6,9 @@ using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Web.Http;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
-using Umbraco.Core.Persistence;
 using Umbraco.Web.Install.Models;
 using Umbraco.Web.WebApi;
 
@@ -29,7 +26,7 @@ namespace Umbraco.Web.Install.Controllers
 
         public InstallApiController(UmbracoContext umbracoContext)
         {
-            if (umbracoContext == null) throw new ArgumentNullException("umbracoContext");
+            if (umbracoContext == null) throw new ArgumentNullException(nameof(umbracoContext));
             UmbracoContext = umbracoContext;
         }
 
@@ -95,7 +92,7 @@ namespace Umbraco.Web.Install.Controllers
         /// <returns></returns>
         public InstallProgressResultModel PostPerformInstall(InstallInstructions installModel)
         {
-            if (installModel == null) throw new ArgumentNullException("installModel");
+            if (installModel == null) throw new ArgumentNullException(nameof(installModel));
 
             var status = InstallStatusTracker.GetStatus().ToArray();
             //there won't be any statuses returned if the app pool has restarted so we need to re-read from file.

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using Umbraco.Web.Models.ContentEditing;

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-
-using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Configuration.UmbracoSettings;
 using Umbraco.Core.Logging;
-using Umbraco.Web.PublishedCache;
-using umbraco.cms.businesslogic.web;
 
 namespace Umbraco.Web.Routing
 {
@@ -47,7 +42,7 @@ namespace Umbraco.Web.Routing
         public virtual string GetUrl(UmbracoContext umbracoContext, int id, Uri current, UrlProviderMode mode)
         {
             if (!current.IsAbsoluteUri)
-                throw new ArgumentException("Current url must be absolute.", "current");
+                throw new ArgumentException("Current url must be absolute.", nameof(current));
 
             // will not use cache if previewing
             var route = umbracoContext.ContentCache.GetRouteById(id);
@@ -151,7 +146,7 @@ namespace Umbraco.Web.Routing
                         uri = new Uri(path, UriKind.Relative);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException("mode");
+                        throw new ArgumentOutOfRangeException(nameof(mode));
                 }
             }
             else // a domain was found
@@ -173,7 +168,7 @@ namespace Umbraco.Web.Routing
                         uri = new Uri(CombinePaths(domainUri.Uri.AbsolutePath, path), UriKind.Relative);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException("mode");
+                        throw new ArgumentOutOfRangeException(nameof(mode));
                 }
             }
 

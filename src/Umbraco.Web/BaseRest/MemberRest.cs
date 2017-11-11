@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.XPath;
-
-using umbraco.cms.businesslogic;
 using umbraco.cms.businesslogic.member;
-using umbraco.cms.businesslogic.property;
 
 namespace Umbraco.Web.BaseRest
 {

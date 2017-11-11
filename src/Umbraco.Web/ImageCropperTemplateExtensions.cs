@@ -119,7 +119,7 @@ namespace Umbraco.Web
              ImageCropRatioMode? ratioMode = null,
              bool upScale = true)
         {
-            if (mediaItem == null) throw new ArgumentNullException("mediaItem");
+            if (mediaItem == null) throw new ArgumentNullException(nameof(mediaItem));
 
             var cacheBusterValue = cacheBuster ? mediaItem.UpdateDate.ToFileTimeUtc().ToString(CultureInfo.InvariantCulture) : null;
 

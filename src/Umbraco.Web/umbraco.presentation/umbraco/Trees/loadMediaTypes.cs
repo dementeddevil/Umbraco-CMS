@@ -4,10 +4,8 @@ using System.Globalization;
 using System.Text;
 using Umbraco.Core.Services;
 using umbraco.BusinessLogic.Actions;
-using umbraco.businesslogic;
 using umbraco.cms.presentation.Trees;
 using umbraco.interfaces;
-using Umbraco.Core;
 using Umbraco.Web.umbraco.presentation.umbraco.Trees;
 
 namespace umbraco

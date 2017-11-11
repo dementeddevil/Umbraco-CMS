@@ -38,7 +38,7 @@ namespace Umbraco.Web.HealthCheck.NotificationMethods
             string recipientEmail, ILocalizedTextService textService)
             : base(enabled, failureOnly, verbosity)
         {
-            if (textService == null) throw new ArgumentNullException("textService");
+            if (textService == null) throw new ArgumentNullException(nameof(textService));
             _textService = textService;
             RecipientEmail = recipientEmail;
             Verbosity = verbosity;

@@ -16,7 +16,6 @@ using Umbraco.Core.Logging;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Core.PropertyEditors.ValueConverters;
-using Umbraco.Web.Extensions;
 using Umbraco.Web.Models;
 using Umbraco.Web.Routing;
 
@@ -38,7 +37,7 @@ namespace Umbraco.Web.PropertyEditors.ValueConverters
 
         public RelatedLinksPropertyConverter(UrlProvider urlProvider)
         {
-            if (urlProvider == null) throw new ArgumentNullException("urlProvider");
+            if (urlProvider == null) throw new ArgumentNullException(nameof(urlProvider));
             _urlProvider = urlProvider;
         }
 

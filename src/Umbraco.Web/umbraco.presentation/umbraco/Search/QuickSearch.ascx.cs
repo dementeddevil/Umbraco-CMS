@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
 namespace umbraco.presentation.Search
 {

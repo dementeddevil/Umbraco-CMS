@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Semver;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;

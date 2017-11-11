@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using AutoMapper;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.Mapping;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Web.Models.ContentEditing;
-using System.Collections.Generic;
-using AutoMapper.Internal;
-using Umbraco.Core.Services;
-using Property = umbraco.NodeFactory.Property;
 
 namespace Umbraco.Web.Models.Mapping
 {

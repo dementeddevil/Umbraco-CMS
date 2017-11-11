@@ -1,5 +1,4 @@
-﻿using umbraco;
-using umbraco.cms.businesslogic;
+﻿using umbraco.cms.businesslogic;
 
 namespace umbraco
 {

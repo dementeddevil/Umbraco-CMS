@@ -1,12 +1,9 @@
-﻿using System;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using Umbraco.Core;
 using Umbraco.Core.Models.Mapping;
 using Umbraco.Web.Models.ContentEditing;
 using umbraco.BusinessLogic;
 using Umbraco.Core.Models;
-using Umbraco.Web.Routing;
 
 namespace Umbraco.Web.Models.Mapping
 {

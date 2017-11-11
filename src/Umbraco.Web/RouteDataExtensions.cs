@@ -15,7 +15,7 @@ namespace Umbraco.Web
         /// </remarks>
         public static UmbracoContext GetUmbracoContext(this RouteData routeData)
         {
-            if (routeData == null) throw new ArgumentNullException("routeData");
+            if (routeData == null) throw new ArgumentNullException(nameof(routeData));
 
             if (routeData.DataTokens.ContainsKey(Core.Constants.Web.UmbracoContextDataToken))
             {

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Web.Script.Serialization;
 using Umbraco.Core;
 using Umbraco.Core.Cache;
 using Umbraco.Core.Models;
 using umbraco;
 
 using Umbraco.Core.Persistence.Repositories;
-using umbraco.interfaces;
 using System.Linq;
 using Newtonsoft.Json;
 using Macro = umbraco.cms.businesslogic.macro.Macro;

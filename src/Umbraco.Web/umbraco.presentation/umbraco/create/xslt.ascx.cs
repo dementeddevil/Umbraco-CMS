@@ -1,15 +1,10 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Web;
+﻿using System.Web;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.IO;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Web.UI;
 using Umbraco.Core.IO;
-using umbraco.cms.helpers;
 using umbraco.BasePages;
 
 namespace umbraco.presentation.create

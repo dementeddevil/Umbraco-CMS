@@ -1,25 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Security;
 using AutoMapper;
-using Umbraco.Core.Configuration;
 using Umbraco.Core.Services;
 using Umbraco.Web.Models;
 using Umbraco.Web.Models.ContentEditing;
-using Umbraco.Web.Models.Mapping;
 using Umbraco.Web.Mvc;
-using Umbraco.Web.UI;
 using Umbraco.Web.WebApi;
-using umbraco;
 using legacyUser = umbraco.BusinessLogic.User;
 using System.Net.Http;
-using System.Collections.Specialized;
 using Umbraco.Core.Security;
 using Umbraco.Web.WebApi.Filters;
-using Constants = Umbraco.Core.Constants;
 
 
 namespace Umbraco.Web.Editors

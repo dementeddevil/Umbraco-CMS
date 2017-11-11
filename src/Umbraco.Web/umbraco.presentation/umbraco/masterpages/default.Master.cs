@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Web.UI;
-using Umbraco.Web;
+﻿using System.Web.UI;
 using System.IO;
 
 namespace umbraco.presentation.masterpages

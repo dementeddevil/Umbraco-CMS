@@ -3,8 +3,6 @@ using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
-using Umbraco.Web.Extensions;
-using Umbraco.Web.Security;
 
 namespace Umbraco.Web.PropertyEditors.ValueConverters
 {

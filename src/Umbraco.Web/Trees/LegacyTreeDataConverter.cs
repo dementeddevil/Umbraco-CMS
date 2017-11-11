@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
-using System.Text;
-using System.Web;
 using System.Web.Http.Routing;
 using Umbraco.Core;
-using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Services;
 using Umbraco.Web.Models.Trees;
 using umbraco;
 using umbraco.BusinessLogic;
 using umbraco.BusinessLogic.Actions;
-using umbraco.cms.helpers;
 using umbraco.cms.presentation.Trees;
-using umbraco.controls.Tree;
 using umbraco.interfaces;
 
 namespace Umbraco.Web.Trees
@@ -27,7 +22,7 @@ namespace Umbraco.Web.Trees
     {
         internal static BaseTree GetLegacyTreeForLegacyServices(Core.Models.ApplicationTree appTree)
         {
-            if (appTree == null) throw new ArgumentNullException("appTree");
+            if (appTree == null) throw new ArgumentNullException(nameof(appTree));
 
             BaseTree tree;
 
@@ -72,8 +67,8 @@ namespace Umbraco.Web.Trees
         /// <returns></returns>
         internal static BaseTree GetLegacyTreeForLegacyServices(IApplicationTreeService appTreeService, string treeType)
         {
-            if (appTreeService == null) throw new ArgumentNullException("appTreeService");
-            if (treeType == null) throw new ArgumentNullException("treeType");
+            if (appTreeService == null) throw new ArgumentNullException(nameof(appTreeService));
+            if (treeType == null) throw new ArgumentNullException(nameof(treeType));
 
             //first get the app tree definition so we can then figure out if we need to load by legacy or new
             //now we'll look up that tree

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Umbraco.Core;
@@ -30,10 +28,10 @@ namespace Umbraco.Web.Editors
 
         public ContentPostValidateAttribute(IContentService contentService, IUserService userService, IEntityService entityService, WebSecurity security)
         {
-            if (contentService == null) throw new ArgumentNullException("contentService");
-            if (userService == null) throw new ArgumentNullException("userService");
-            if (entityService == null) throw new ArgumentNullException("entityService");
-            if (security == null) throw new ArgumentNullException("security");
+            if (contentService == null) throw new ArgumentNullException(nameof(contentService));
+            if (userService == null) throw new ArgumentNullException(nameof(userService));
+            if (entityService == null) throw new ArgumentNullException(nameof(entityService));
+            if (security == null) throw new ArgumentNullException(nameof(security));
             _contentService = contentService;
             _userService = userService;
             _entityService = entityService;

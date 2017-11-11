@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Umbraco.Core.Configuration;
 using umbraco.BusinessLogic.Actions;
-using umbraco.businesslogic;
 using umbraco.cms.businesslogic.web;
 using umbraco.cms.presentation.Trees;
 using umbraco.interfaces;
-using Umbraco.Core;
 using Action = umbraco.BusinessLogic.Actions.Action;
 
 namespace umbraco

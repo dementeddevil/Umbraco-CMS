@@ -1,20 +1,11 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using System.Web.Http.ModelBinding.Binders;
-using System.Web.Http.Validation;
-using System.Web.ModelBinding;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Umbraco.Core;
 using Umbraco.Core.IO;
 using Umbraco.Core.Models;
@@ -24,9 +15,6 @@ using Umbraco.Web.Security;
 using Umbraco.Web.WebApi.Filters;
 using IModelBinder = System.Web.Http.ModelBinding.IModelBinder;
 using ModelBindingContext = System.Web.Http.ModelBinding.ModelBindingContext;
-using ModelMetadata = System.Web.Http.Metadata.ModelMetadata;
-using ModelMetadataProvider = System.Web.Http.Metadata.ModelMetadataProvider;
-using MutableObjectModelBinder = System.Web.Http.ModelBinding.Binders.MutableObjectModelBinder;
 using Task = System.Threading.Tasks.Task;
 
 namespace Umbraco.Web.WebApi.Binders

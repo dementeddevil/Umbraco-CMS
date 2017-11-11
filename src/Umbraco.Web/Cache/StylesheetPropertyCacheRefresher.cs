@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using Umbraco.Core;
 using Umbraco.Core.Cache;
 
 namespace Umbraco.Web.Cache

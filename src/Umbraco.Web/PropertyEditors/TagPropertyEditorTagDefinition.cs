@@ -1,5 +1,4 @@
-﻿using System;
-using Umbraco.Core;
+﻿using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.Editors;
 using Umbraco.Core.PropertyEditors;

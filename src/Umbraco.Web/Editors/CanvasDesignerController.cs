@@ -1,22 +1,10 @@
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Web.Http;
-using AutoMapper;
-using Umbraco.Web.Models.ContentEditing;
-using Umbraco.Web.Mvc;
-using umbraco;
 using Umbraco.Web.WebApi;
 using System;
 using System.Net.Http.Headers;
 using System.Web;
-using System.IO;
-using Umbraco.Core.Models;
-using System.Text.RegularExpressions;
-using System.Linq;
-using Umbraco.Core;
-using Umbraco.Core.Services;
 
 namespace Umbraco.Web.Editors
 {

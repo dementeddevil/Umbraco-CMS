@@ -5,11 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using ClientDependency.Core.Config;
 using Microsoft.Owin.Security;
 using Newtonsoft.Json;
 using Umbraco.Core;
-using Umbraco.Core.Configuration;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Models;
 

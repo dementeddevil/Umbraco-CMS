@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Linq;
 using Umbraco.Core;
-using Umbraco.Core.Auditing;
-using Umbraco.Core.Models;
-using Umbraco.Core.Services;
 
 namespace Umbraco.Web.Strategies
 {
