@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Web;
 using NUnit.Framework;
 using Umbraco.Core.IO;
 
 namespace Umbraco.Tests.IO
 {
-    
-    
     /// <summary>
     ///This is a test class for IOHelperTest and is intended
     ///to contain all IOHelperTest Unit Tests
@@ -16,7 +15,7 @@ namespace Umbraco.Tests.IO
 
         [TestCase("~/Scripts", "/Scripts", null)]
         [TestCase("/Scripts", "/Scripts", null)]
-        [TestCase("../Scripts", "/Scripts", typeof(ArgumentException))]
+        [TestCase("../Scripts", "/Scripts", typeof(HttpException))]
 		public void IOHelper_ResolveUrl(string input, string expected, Type expectedExceptionType)
 		{
             if (expectedExceptionType != null)

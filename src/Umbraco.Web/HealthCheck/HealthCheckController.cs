@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Linq;
 using System.Web.Http;
 using Umbraco.Core.Configuration;
+using Umbraco.Core.Configuration.HealthChecks;
 using Umbraco.Web.Editors;
 using Umbraco.Web.WebApi.Filters;
 
@@ -42,8 +42,8 @@ namespace Umbraco.Web.HealthCheck
 
         public HealthCheckController(IHealthCheckResolver healthCheckResolver, IHealthChecks healthCheckConfig)
         {
-            if (healthCheckResolver == null) throw new ArgumentNullException("healthCheckResolver");
-            if (healthCheckConfig == null) throw new ArgumentNullException("healthCheckConfig");
+            if (healthCheckResolver == null) throw new ArgumentNullException(nameof(healthCheckResolver));
+            if (healthCheckConfig == null) throw new ArgumentNullException(nameof(healthCheckConfig));
 
             _healthCheckResolver = healthCheckResolver;
             _disabledCheckIds = healthCheckConfig.DisabledChecks
@@ -89,7 +89,7 @@ namespace Umbraco.Web.HealthCheck
             }
             catch (Exception e)
             {
-                Core.Logging.LogHelper.Error<HealthCheckController>("Exception in health check: " + check.Name, e);
+                Core.Logging.LogHelper.Error<HealthCheckController>($"Exception in health check: {check.Name}", e);
                 throw;
             }
         }
@@ -107,7 +107,7 @@ namespace Umbraco.Web.HealthCheck
                 .Where(x => _disabledCheckIds.Contains(x.Id) == false)
                 .FirstOrDefault(x => x.Id == id);
 
-            if (check == null) throw new InvalidOperationException(string.Format("No health check found with id {0}", id));
+            if (check == null) throw new InvalidOperationException($"No health check found with id {id}");
 
             return check;
         }
