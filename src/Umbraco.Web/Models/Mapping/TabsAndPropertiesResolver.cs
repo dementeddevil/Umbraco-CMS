@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using AutoMapper;
 using Umbraco.Core;
@@ -59,7 +60,42 @@ namespace Umbraco.Web.Models.Mapping
             //store the current props to append to the newly inserted ones
             var currProps = genericProps.Properties.ToArray();
 
-            var contentProps = new List<ContentPropertyDisplay>();
+            var labelEditor = PropertyEditorResolver.Current.GetByAlias(Constants.PropertyEditors.NoEditAlias).ValueEditor.View;
+
+            var contentProps = new List<ContentPropertyDisplay>
+            {
+                new ContentPropertyDisplay
+                {
+                    Alias = string.Format("{0}id", Constants.PropertyEditors.InternalGenericPropertiesPrefix),
+                    Label = "Id",
+                    Value = Convert.ToInt32(display.Id).ToInvariantString() + "<br/><small class='muted'>" + display.Key + "</small>",
+                    View = labelEditor
+                },
+                new ContentPropertyDisplay
+                {
+                    Alias = string.Format("{0}creator", Constants.PropertyEditors.InternalGenericPropertiesPrefix),
+                    Label = localizedTextService.Localize("content/createBy"),
+                    Description = localizedTextService.Localize("content/createByDesc"),
+                    Value = display.Owner.Name,
+                    View = labelEditor
+                },
+                new ContentPropertyDisplay
+                {
+                    Alias = string.Format("{0}createdate", Constants.PropertyEditors.InternalGenericPropertiesPrefix),
+                    Label = localizedTextService.Localize("content/createDate"),
+                    Description = localizedTextService.Localize("content/createDateDesc"),
+                    Value = display.CreateDate.ToString(CultureInfo.CurrentCulture),
+                    View = labelEditor
+                },
+                new ContentPropertyDisplay
+                {
+                    Alias = string.Format("{0}updatedate", Constants.PropertyEditors.InternalGenericPropertiesPrefix),
+                    Label = localizedTextService.Localize("content/updateDate"),
+                    Description = localizedTextService.Localize("content/updateDateDesc"),
+                    Value = display.UpdateDate.ToString(CultureInfo.CurrentCulture),
+                    View = labelEditor
+                }
+            };
 
             if (customProperties != null)
             {
@@ -80,10 +116,10 @@ namespace Umbraco.Web.Models.Mapping
             genericProps.Properties = contentProps;
 
             //Show or hide properties tab based on wether it has or not any properties 
-            if (genericProps.Properties.Any() == false)
-            {
-                display.Tabs = display.Tabs.Where(x => x.Id != 0);
-            }
+            //if (genericProps.Properties.Any() == false)
+            //{
+            //    display.Tabs = display.Tabs.Where(x => x.Id != 0);
+            //}
         }
 
         /// <summary>

@@ -530,6 +530,7 @@ namespace Umbraco.Web.Editors
         /// <returns></returns>
         [FileUploadCleanupFilter]
         [ContentPostValidate]
+        [OutgoingEditorModelEvent]
         public ContentItemDisplay PostSave(
                 [ModelBinder(typeof(ContentItemBinder))]
                                 ContentItemSave contentItem)
@@ -790,11 +791,8 @@ namespace Umbraco.Web.Editors
             {
                 var contentService = Services.ContentService;
 
-                // content service GetByIds does order the content items based on the order of Ids passed in
-                var content = contentService.GetByIds(sorted.IdSortOrder);
-
                 // Save content with new sort order and update content xml in db accordingly
-                if (contentService.Sort(content) == false)
+                if (contentService.Sort(sorted.IdSortOrder) == false)
                 {
                     LogHelper.Warn<ContentController>("Content sorting failed, this was probably caused by an event being cancelled");
                     return Request.CreateValidationErrorResponse("Content sorting failed, this was probably caused by an event being cancelled");
@@ -848,6 +846,7 @@ namespace Umbraco.Web.Editors
         /// <param name="id"></param>
         /// <returns></returns>
         [EnsureUserPermissionForContent("id", 'U')]
+        [OutgoingEditorModelEvent]
         public ContentItemDisplay PostUnPublish(int id)
         {
             var foundContent = GetObjectFromRequest(() => Services.ContentService.GetById(id));
