@@ -40,6 +40,12 @@ namespace Umbraco.Web.WebApi.Filters
             _nodeId = nodeId;
         }
 
+        public EnsureUserPermissionForContentAttribute(int nodeId, char permissionToCheck)
+            : this(nodeId)
+        {
+            _permissionToCheck = permissionToCheck;
+        }
+
         public EnsureUserPermissionForContentAttribute(string paramName)
         {
             if (string.IsNullOrWhiteSpace(paramName)) throw new ArgumentException("Value cannot be null or whitespace.", "paramName");
@@ -79,7 +85,23 @@ namespace Umbraco.Web.WebApi.Filters
 
                 if (parts.Length == 1)
                 {
-                    nodeId = (int)actionContext.ActionArguments[parts[0]];
+                    var argument = actionContext.ActionArguments[parts[0]].ToString();
+                    // if the argument is an int, it will parse and can be assigned to nodeId
+                    // if might be a udi, so check that next
+                    // otherwise treat it as a guid - unlikely we ever get here
+                    if (int.TryParse(argument, out int parsedId))
+                    {
+                        nodeId = parsedId;
+                    }
+                    else if (Udi.TryParse(argument, true, out Udi udi))
+                    { 
+                        nodeId = ApplicationContext.Current.Services.EntityService.GetIdForUdi(udi).Result;
+                    }
+                    else
+                    {
+                        Guid.TryParse(argument, out Guid key);
+                        nodeId = ApplicationContext.Current.Services.EntityService.GetIdForKey(key, UmbracoObjectTypes.Document).Result;
+                    }
                 }
                 else
                 {

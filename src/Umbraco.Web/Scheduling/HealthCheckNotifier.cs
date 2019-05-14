@@ -16,7 +16,7 @@ namespace Umbraco.Web.Scheduling
         private readonly ApplicationContext _appContext;
         private readonly IHealthCheckResolver _healthCheckResolver;
 
-        public HealthCheckNotifier(IBackgroundTaskRunner<RecurringTaskBase> runner, int delayMilliseconds, int periodMilliseconds, 
+        public HealthCheckNotifier(IBackgroundTaskRunner<RecurringTaskBase> runner, int delayMilliseconds, int periodMilliseconds,
             ApplicationContext appContext)
             : base(runner, delayMilliseconds, periodMilliseconds)
         {
@@ -31,7 +31,7 @@ namespace Umbraco.Web.Scheduling
             switch (_appContext.GetCurrentServerRole())
             {
                 case ServerRole.Slave:
-                    LogHelper.Debug<HealthCheckNotifier>("Does not run on slave servers.");
+                    LogHelper.Debug<HealthCheckNotifier>("Does not run on replica servers.");
                     return true; // DO repeat, server role can change
                 case ServerRole.Unknown:
                     LogHelper.Debug<HealthCheckNotifier>("Does not run on servers with unknown role.");
