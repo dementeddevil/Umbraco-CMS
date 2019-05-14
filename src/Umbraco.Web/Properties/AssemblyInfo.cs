@@ -39,6 +39,7 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("Umbraco.Deploy.Cloud")]
 [assembly: InternalsVisibleTo("Umbraco.ModelsBuilder")]
 [assembly: InternalsVisibleTo("Umbraco.ModelsBuilder.AspNet")]
+[assembly: InternalsVisibleTo("Umbraco.Headless")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 [assembly: InternalsVisibleTo("Umbraco.Forms.Core")]

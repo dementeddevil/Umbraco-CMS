@@ -3,8 +3,11 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Formatting;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Web.Models.Trees;
@@ -29,9 +32,10 @@ namespace Umbraco.Web.Trees
         /// <param name="queryStrings"></param>
         /// <param name="onlyInitialized">An optional bool (defaults to true), if set to false it will also load uninitialized trees</param>
         /// <returns></returns>
-        [HttpQueryStringFilter("queryStrings")]
-        public async Task<SectionRootNode> GetApplicationTrees(string application, string tree, FormDataCollection queryStrings, bool onlyInitialized = true)
+        public async Task<SectionRootNode> GetApplicationTrees(string application, string tree, [ModelBinder(typeof(HttpQueryStringModelBinder))]FormDataCollection queryStrings, bool onlyInitialized = true)
         {
+            application = application.CleanForXss();
+
             if (string.IsNullOrEmpty(application)) throw new HttpResponseException(HttpStatusCode.NotFound);
 
             var rootId = Constants.System.Root.ToString(CultureInfo.InvariantCulture);
@@ -83,11 +87,20 @@ namespace Umbraco.Web.Trees
         /// <returns></returns>
         private async Task<TreeNode> GetRootForMultipleAppTree(ApplicationTree configTree, FormDataCollection queryStrings)
         {
-            if (configTree == null) throw new ArgumentNullException(nameof(configTree));
-            var byControllerAttempt = await configTree.TryGetRootNodeFromControllerTree(queryStrings, ControllerContext);
-            if (byControllerAttempt.Success)
+            if (configTree == null) throw new ArgumentNullException("configTree");
+            try
             {
-                return byControllerAttempt.Result;
+                var byControllerAttempt = await configTree.TryGetRootNodeFromControllerTree(queryStrings, ControllerContext);
+                if (byControllerAttempt.Success)
+                {
+                    return byControllerAttempt.Result;
+                }
+            }
+            catch (HttpResponseException)
+            {
+                //if this occurs its because the user isn't authorized to view that tree, in this case since we are loading multiple trees we
+                //will just return null so that it's not added to the list.
+                return null;
             }
 
             var legacyAttempt = configTree.TryGetRootNodeFromLegacyTree(queryStrings, Url, configTree.ApplicationAlias);

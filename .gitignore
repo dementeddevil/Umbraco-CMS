@@ -90,6 +90,7 @@ src/Umbraco.Web.UI.Client/[Bb]uild/*
 src/Umbraco.Web.UI.Client/[Bb]uild/[Bb]elle/
 src/Umbraco.Web.UI/[Uu]ser[Cc]ontrols/
 src/Umbraco.Web.UI.Client/src/[Ll]ess/*.css
+src/Umbraco.Web.UI.Client/vwd.webinfo
 tools/NDepend/
 
 src/Umbraco.Web.UI/App_Plugins/*
@@ -113,6 +114,7 @@ build/ApiDocs/*
 build/ApiDocs/Output/*
 src/Umbraco.Web.UI.Client/bower_components/*
 /src/Umbraco.Web.UI/Umbraco/preview
+/src/Umbraco.Web.UI/Umbraco/preview.old
 
 #Ignore Rule for output of generated documentation files from Grunt docserve
 src/Umbraco.Web.UI.Client/docs/api
@@ -140,3 +142,4 @@ src/PrecompiledWeb/*
 build.out/
 build.tmp/
 build/Modules/*/temp/
+/src/.idea/*

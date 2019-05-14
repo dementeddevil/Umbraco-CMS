@@ -10,7 +10,7 @@ using Umbraco.Core.Scoping;
 
 namespace Umbraco.Core.Persistence.Repositories
 {
-    internal abstract class RepositoryBase : DisposableObject
+    internal abstract class RepositoryBase : DisposableObjectSlim
     {
         private readonly IScopeUnitOfWork _work;
         private readonly CacheHelper _globalCache;
@@ -258,12 +258,20 @@ namespace Umbraco.Core.Persistence.Repositories
                 //.Where(x => Equals(x, default(TId)) == false)
                 .ToArray();
 
-            if (ids.Length > 2000)
+            // can't query more than 2000 ids at a time... but if someone is really querying 2000+ entities,
+            // the additional overhead of fetching them in groups is minimal compared to the lookup time of each group
+            const int maxParams = 2000;
+            if (ids.Length <= maxParams)
             {
-                throw new InvalidOperationException("Cannot perform a query with more than 2000 parameters");
+                return CachePolicy.GetAll(ids, PerformGetAll);
             }
+            var entities = new List<TEntity>();
+            foreach (var groupOfIds in ids.InGroupsOf(maxParams))
+            {
+                entities.AddRange(CachePolicy.GetAll(groupOfIds.ToArray(), PerformGetAll));
+            }
+            return entities;
 
-            return CachePolicy.GetAll(ids, PerformGetAll);
         }
 
         protected abstract IEnumerable<TEntity> PerformGetByQuery(IQuery<TEntity> query);
@@ -308,6 +316,9 @@ namespace Umbraco.Core.Persistence.Repositories
         public virtual void PersistNewItem(IEntity entity)
         {
             CachePolicy.Create((TEntity) entity, PersistNewItem);
+
+            //TODO: In v8 we should automatically reset dirty properties so they don't have to be manually reset in all of the implemented repositories
+            //if (entity is ICanBeDirty dirty) dirty.ResetDirtyProperties();
         }
 
         /// <summary>
@@ -317,6 +328,8 @@ namespace Umbraco.Core.Persistence.Repositories
         public virtual void PersistUpdatedItem(IEntity entity)
         {
             CachePolicy.Update((TEntity) entity, PersistUpdatedItem);
+            //TODO: In v8 we should automatically reset dirty properties so they don't have to be manually reset in all of the implemented repositories
+            //if (entity is ICanBeDirty dirty) dirty.ResetDirtyProperties();
         }
 
         /// <summary>

@@ -1,4 +1,11 @@
-﻿namespace Umbraco.Web.PublishedCache
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Umbraco.Core.Models;
+using Umbraco.Web.PublishedCache.XmlPublishedCache;
+
+namespace Umbraco.Web.PublishedCache
 {
     /// <summary>
     /// Provides access to cached medias in a specified context.
@@ -13,5 +20,13 @@
         internal ContextualPublishedMediaCache(IPublishedMediaCache cache, UmbracoContext umbracoContext)
             : base(umbracoContext, cache)
         { }
+
+        public override IPublishedContent GetById(bool preview, Guid contentKey)
+        {
+            if (InnerCache is PublishedMediaCache cc)
+                return cc.GetById(UmbracoContext, preview, contentKey);
+
+            return base.GetById(preview, contentKey);
+        }
     }
 }

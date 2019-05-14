@@ -8,7 +8,6 @@ using Umbraco.Core.Models;
 using Umbraco.Web.Models.Trees;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi.Filters;
-using umbraco;
 using umbraco.BusinessLogic.Actions;
 using Umbraco.Core.Services;
 using Umbraco.Web.Models.ContentEditing;
@@ -47,8 +46,8 @@ namespace Umbraco.Web.Trees
             //if the request is for folders only then just return
             if (queryStrings["foldersonly"].IsNullOrWhiteSpace() == false && queryStrings["foldersonly"] == "1") return nodes;
 
-            //Normal nodes
-            var sysIds = GetSystemIds();
+            //System ListView nodes
+            var systemListViewDataTypeIds = GetNonDeletableSystemListViewDataTypeIds();
 
             nodes.AddRange(
                 Services.EntityService.GetChildren(intId.Result, UmbracoObjectTypes.DataType)
@@ -57,7 +56,7 @@ namespace Umbraco.Web.Trees
                     {
                         var node = CreateTreeNode(dt.Id.ToInvariantString(), id, queryStrings, dt.Name, "icon-autofill", false);
                         node.Path = dt.Path;
-                        if (sysIds.Contains(dt.Id))
+                        if (systemListViewDataTypeIds.Contains(dt.Id))
                         {
                             node.Icon = "icon-thumbnail-list";
                         }
@@ -67,16 +66,31 @@ namespace Umbraco.Web.Trees
             return nodes;
         }
 
-        private IEnumerable<int> GetSystemIds()
+        /// <summary>
+        /// Get all integer identifiers for the non-deletable system datatypes.
+        /// </summary>
+        private static IEnumerable<int> GetNonDeletableSystemDataTypeIds()
         {
             var systemIds = new[]
             {
-                Constants.System.DefaultContentListViewDataTypeId, 
-                Constants.System.DefaultMediaListViewDataTypeId, 
+                Constants.System.DefaultLabelDataTypeId
+            };
+
+            return systemIds.Concat(GetNonDeletableSystemListViewDataTypeIds());
+        }
+
+        /// <summary>
+        /// Get all integer identifiers for the non-deletable system listviews.
+        /// </summary>
+        private static IEnumerable<int> GetNonDeletableSystemListViewDataTypeIds()
+        {
+            return new[]
+            {
+                Constants.System.DefaultContentListViewDataTypeId,
+                Constants.System.DefaultMediaListViewDataTypeId,
                 Constants.System.DefaultMembersListViewDataTypeId
             };
-            return systemIds;
-        } 
+        }
         
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
         {
@@ -88,8 +102,8 @@ namespace Umbraco.Web.Trees
                 menu.DefaultMenuAlias = ActionNew.Instance.Alias;
 
                 // root actions              
-                menu.Items.Add<ActionNew>(Services.TextService.Localize(string.Format("actions/{0}", ActionNew.Instance.Alias)));
-                menu.Items.Add<RefreshNode, ActionRefresh>(ui.Text("actions", ActionRefresh.Instance.Alias), true);
+                menu.Items.Add<ActionNew>(Services.TextService.Localize($"actions/{ActionNew.Instance.Alias}"));
+                menu.Items.Add<RefreshNode, ActionRefresh>(Services.TextService.Localize($"actions/{ActionRefresh.Instance.Alias}"), hasSeparator: true);
                 return menu;
             }
 
@@ -99,31 +113,28 @@ namespace Umbraco.Web.Trees
                 //set the default to create
                 menu.DefaultMenuAlias = ActionNew.Instance.Alias;
 
-                menu.Items.Add<ActionNew>(Services.TextService.Localize(string.Format("actions/{0}", ActionNew.Instance.Alias)));
+                menu.Items.Add<ActionNew>(Services.TextService.Localize($"actions/{ActionNew.Instance.Alias}"));
 
-                menu.Items.Add(new MenuItem("rename", Services.TextService.Localize(String.Format("actions/{0}", "rename")))
+                menu.Items.Add(new MenuItem("rename", Services.TextService.Localize("actions/rename"))
                 {
                     Icon = "icon icon-edit"
                 });
 
                 if (container.HasChildren() == false)
-                {
                     //can delete data type
-                    menu.Items.Add<ActionDelete>(Services.TextService.Localize(string.Format("actions/{0}", ActionDelete.Instance.Alias)));
-                }                
-                menu.Items.Add<RefreshNode, ActionRefresh>(Services.TextService.Localize(string.Format("actions/{0}", ActionRefresh.Instance.Alias)), hasSeparator: true);
+                    menu.Items.Add<ActionDelete>(Services.TextService.Localize($"actions/{ActionDelete.Instance.Alias}"));
+
+                menu.Items.Add<RefreshNode, ActionRefresh>(Services.TextService.Localize($"actions/{ActionRefresh.Instance.Alias}"), hasSeparator: true);
 
             }
             else
             {
-                var sysIds = GetSystemIds();
+                var nonDeletableSystemDataTypeIds = GetNonDeletableSystemDataTypeIds();
 
-                if (sysIds.Contains(int.Parse(id)) == false)
-                {
-                    menu.Items.Add<ActionDelete>(Services.TextService.Localize(string.Format("actions/{0}", ActionDelete.Instance.Alias)));
-                }
+                if (nonDeletableSystemDataTypeIds.Contains(int.Parse(id)) == false)
+                    menu.Items.Add<ActionDelete>(Services.TextService.Localize($"actions/{ActionDelete.Instance.Alias}"));
 
-                menu.Items.Add<ActionMove>(Services.TextService.Localize(string.Format("actions/{0}", ActionMove.Instance.Alias)), hasSeparator: true);
+                menu.Items.Add<ActionMove>(Services.TextService.Localize($"actions/{ActionMove.Instance.Alias}"), hasSeparator: true);
             }
             
             return menu;

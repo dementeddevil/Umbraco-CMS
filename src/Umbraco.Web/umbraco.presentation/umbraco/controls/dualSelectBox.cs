@@ -40,6 +40,15 @@ namespace umbraco.controls
 			}
 		}
 
+	    public new int Height
+	    {
+	        set
+	        {
+	            _possibleValues.Height = new Unit(value);
+	            _selectedValues.Height = new Unit(value);
+	        }
+	    }
+
         protected override void CreateChildControls()
         {
             _possibleValues.ID = "posVals";

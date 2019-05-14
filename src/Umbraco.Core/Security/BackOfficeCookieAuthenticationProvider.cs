@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Semver;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Models.Identity;
 
@@ -31,6 +32,8 @@ namespace Umbraco.Core.Security
             _appCtx = appCtx;
         }
 
+        private static readonly SemVersion MinUmbracoVersionSupportingLoginSessions = new SemVersion(7, 8);
+
         public override void ResponseSignIn(CookieResponseSignInContext context)
         {
             var backOfficeIdentity = context.Identity as UmbracoBackOfficeIdentity;
@@ -39,7 +42,10 @@ namespace Umbraco.Core.Security
                 //generate a session id and assign it
                 //create a session token - if we are configured and not in an upgrade state then use the db, otherwise just generate one
 
-                var session = _appCtx.IsConfigured && _appCtx.IsUpgrading == false
+                //NOTE - special check because when we are upgrading to 7.8 we cannot create a session since the db isn't ready and we'll get exceptions
+                var canAcquireSession = _appCtx.IsUpgrading == false || _appCtx.CurrentVersion() >= MinUmbracoVersionSupportingLoginSessions;
+
+                var session = canAcquireSession
                     ? _appCtx.Services.UserService.CreateLoginSession((int)backOfficeIdentity.Id, context.OwinContext.GetCurrentRequestIpAddress())
                     : Guid.NewGuid();
 
@@ -67,6 +73,11 @@ namespace Umbraco.Core.Security
             base.ResponseSignOut(context);
 
             //Make sure the definitely all of these cookies are cleared when signing out with cookies
+            context.Response.Cookies.Append(SessionIdValidator.CookieName, "", new CookieOptions
+            {
+                Expires = DateTime.Now.AddYears(-1),
+                Path = "/"
+            });
             context.Response.Cookies.Append(UmbracoConfig.For.UmbracoSettings().Security.AuthCookieName, "", new CookieOptions
             {
                 Expires = DateTime.Now.AddYears(-1),
@@ -91,10 +102,16 @@ namespace Umbraco.Core.Security
         /// <returns/>
         public override async Task ValidateIdentity(CookieValidateIdentityContext context)
         {
-            EnsureCulture(context);
+            //ensure the thread culture is set
+            context?.Identity?.EnsureCulture();
 
             await EnsureValidSessionId(context);
 
+            if (context?.Identity == null)
+            {
+                context?.OwinContext.Authentication.SignOut(context.Options.AuthenticationType);
+                return;
+            }
             await base.ValidateIdentity(context);
         }        
 
@@ -107,23 +124,7 @@ namespace Umbraco.Core.Security
         protected  virtual async Task EnsureValidSessionId(CookieValidateIdentityContext context)
         {
             if (_appCtx.IsConfigured && _appCtx.IsUpgrading == false)
-                await SessionIdValidator.ValidateSession(TimeSpan.FromMinutes(1), context);
+                await SessionIdValidator.ValidateSessionAsync(TimeSpan.FromMinutes(1), context);
         }
-
-        private void EnsureCulture(CookieValidateIdentityContext context)
-        {
-            var umbIdentity = context.Identity as UmbracoBackOfficeIdentity;
-            if (umbIdentity != null && umbIdentity.IsAuthenticated)
-            {
-                Thread.CurrentThread.CurrentCulture =
-                    Thread.CurrentThread.CurrentUICulture =
-                        UserCultures.GetOrAdd(umbIdentity.Culture, s => new CultureInfo(s));
-            }
-        }
-
-        /// <summary>
-        /// Used so that we aren't creating a new CultureInfo object for every single request
-        /// </summary>
-        private static readonly ConcurrentDictionary<string, CultureInfo> UserCultures = new ConcurrentDictionary<string, CultureInfo>();
     }
 }

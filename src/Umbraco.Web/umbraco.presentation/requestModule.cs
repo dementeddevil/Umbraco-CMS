@@ -251,7 +251,6 @@ namespace umbraco.presentation
 									+ ex;
 
 						// Hide error if getting the user throws an error (e.g. corrupt / blank db)
-						User staticUser = null;
 						try
 						{
 							User.GetCurrent();

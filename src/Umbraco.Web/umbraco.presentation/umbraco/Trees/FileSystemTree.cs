@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Umbraco.Core;
 using Umbraco.Core.IO;
 
 namespace umbraco.cms.presentation.Trees
@@ -33,9 +34,8 @@ namespace umbraco.cms.presentation.Trees
             string path = "";
             if (!string.IsNullOrEmpty(this.NodeKey))
             {
-                orgPath = this.NodeKey;
-                path = IOHelper.MapPath(FilePath + orgPath);
-                orgPath += "/";
+                orgPath = this.NodeKey.EnsureEndsWith('/');
+                path = IOHelper.MapPath($"{FilePath.EnsureEndsWith('/')}{orgPath}");
             }
             else
             {

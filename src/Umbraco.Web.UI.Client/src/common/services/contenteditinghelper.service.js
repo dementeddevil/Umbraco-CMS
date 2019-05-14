@@ -162,7 +162,8 @@ function contentEditingHelper(fileManager, $q, $location, $routeParams, notifica
                             labelKey: "buttons_saveAndPublish",
                             handler: args.methods.saveAndPublish,
                             hotKey: "ctrl+p",
-                            hotKeyWhenHidden: true
+                            hotKeyWhenHidden: true,
+                            alias: "saveAndPublish"
                         };
                     case "H":
                         //send to publish
@@ -171,7 +172,8 @@ function contentEditingHelper(fileManager, $q, $location, $routeParams, notifica
                             labelKey: "buttons_saveToPublish",
                             handler: args.methods.sendToPublish,
                             hotKey: "ctrl+p",
-                            hotKeyWhenHidden: true
+                            hotKeyWhenHidden: true,
+                            alias: "sendToPublish"                            
                         };
                     case "A":
                         //save
@@ -180,7 +182,8 @@ function contentEditingHelper(fileManager, $q, $location, $routeParams, notifica
                             labelKey: "buttons_save",
                             handler: args.methods.save,
                             hotKey: "ctrl+s",
-                            hotKeyWhenHidden: true
+                            hotKeyWhenHidden: true,
+                            alias: "save"                            
                         };
                     case "Z":
                         //unpublish
@@ -189,7 +192,8 @@ function contentEditingHelper(fileManager, $q, $location, $routeParams, notifica
                             labelKey: "content_unPublish",
                             handler: args.methods.unPublish,
                             hotKey: "ctrl+u",
-                            hotKeyWhenHidden: true
+                            hotKeyWhenHidden: true,
+                            alias: "unpublish"                            
                         };
                     default:
                         return null;
@@ -239,23 +243,24 @@ function contentEditingHelper(fileManager, $q, $location, $routeParams, notifica
                 }
 
 
-                //if we are not creating, then we should add unpublish too,
+                // if we are not creating, then we should add unpublish too,
                 // so long as it's already published and if the user has access to publish
+                // and the user has access to unpublish (may have been removed via Event)
                 if (!args.create) {
-                    if (args.content.publishDate && _.contains(args.content.allowedActions, "U")) {
+                    if (args.content.publishDate && _.contains(args.content.allowedActions, "U") && _.contains(args.content.allowedActions, "Z")) {
                         buttons.subButtons.push(createButtonDefinition("Z"));
                     }
                 }
             }
 
-            // If we have a scheduled publish or unpublish date change the default button to 
+            // If we have a scheduled publish date change the default button to 
             // "save" and update the label to "save and schedule
-            if(args.content.releaseDate || args.content.removeDate) {
+            if(args.content.releaseDate) {
 
                 // if save button is alread the default don't change it just update the label
                 if (buttons.defaultButton && buttons.defaultButton.letter === "A") {
                     buttons.defaultButton.labelKey = "buttons_saveAndSchedule";
-                    return;
+                    return buttons;
                 }
                 
                 if(buttons.defaultButton && buttons.subButtons && buttons.subButtons.length > 0) {

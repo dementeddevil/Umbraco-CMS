@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http.Formatting;
-using Umbraco.Web.Models.Trees;
-using Umbraco.Web.Mvc;
-using Umbraco.Web.WebApi.Filters;
 using umbraco;
 using umbraco.BusinessLogic.Actions;
 using umbraco.cms.businesslogic.packager;
 using Umbraco.Core.Services;
+using Umbraco.Web.Models.Trees;
+using Umbraco.Web.Mvc;
+using Umbraco.Web.WebApi.Filters;
 using Constants = Umbraco.Core.Constants;
 
 namespace Umbraco.Web.Trees
@@ -36,8 +36,6 @@ namespace Umbraco.Web.Trees
 
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
-            var baseUrl = Constants.Applications.Developer + "/packages/";
-
             var nodes = new TreeNodeCollection();
 
             var createdPackages = CreatedPackage.GetAllCreatedPackages();

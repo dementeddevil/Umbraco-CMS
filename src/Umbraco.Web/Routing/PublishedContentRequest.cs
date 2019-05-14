@@ -612,14 +612,14 @@ namespace Umbraco.Web.Routing
         /// </summary>
         // Note: we used to set a default value here but that would then be the default
         // for ALL requests, we shouldn't overwrite it though if people are using [OutputCache] for example
-        // see: https://our.umbraco.org/forum/using-umbraco-and-getting-started/79715-output-cache-in-umbraco-752
-        internal HttpCacheability Cacheability { get; set; }
+        // see: https://our.umbraco.com/forum/using-umbraco-and-getting-started/79715-output-cache-in-umbraco-752
+        public HttpCacheability Cacheability { get; set; }
 
         /// <summary>
         /// Gets or sets a list of Extensions to append to the Response.Cache object
         /// </summary>
         private List<string> _cacheExtensions = new List<string>();
-        internal List<string> CacheExtensions
+        public List<string> CacheExtensions
         {
             get { return _cacheExtensions; }
             set { _cacheExtensions = value; }
@@ -629,12 +629,15 @@ namespace Umbraco.Web.Routing
         /// Gets or sets a dictionary of Headers to append to the Response object
         /// </summary>
         private Dictionary<string, string> _headers = new Dictionary<string, string>();
-        internal Dictionary<string, string> Headers
+        public Dictionary<string, string> Headers
         {
             get { return _headers; }
             set { _headers = value; }
         }
 
-
+        /// <summary>
+        /// Gets of sets a value indicating whether the Umbraco Backoffice should ignore a collision for this request.
+        /// </summary>
+        public bool IgnorePublishedContentCollisions { get; set; }
     }
 }

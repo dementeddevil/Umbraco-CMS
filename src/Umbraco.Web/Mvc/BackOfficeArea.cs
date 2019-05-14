@@ -21,6 +21,12 @@ namespace Umbraco.Web.Mvc
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
+                "Umbraco_preview",
+                GlobalSettings.UmbracoMvcArea + "/preview/{action}/{editor}",
+                new {controller = "Preview", action = "Index", editor = UrlParameter.Optional},
+                new[] { "Umbraco.Web.Editors" });
+
+            context.MapRoute(
                 "Umbraco_back_office",
                 GlobalSettings.UmbracoMvcArea + "/{action}/{id}",
                 new {controller = "BackOffice", action = "Default", id = UrlParameter.Optional},

@@ -426,8 +426,6 @@ namespace umbraco
 
             if (!e.Cancel)
             {
-                XmlNode x;
-
                 //Hack: this is here purely for backwards compat if someone for some reason is using the
                 // ClearDocumentCache(int documentId) method and expecting it to remove the xml
                 if (removeDbXmlEntry)
@@ -616,6 +614,10 @@ namespace umbraco
         {
             get
             {
+                // if there's a current enlisted reader/writer, use its xml
+                var safeXml = SafeXmlReaderWriter.Get(_scopeProvider);
+                if (safeXml != null) return safeXml.Xml;
+
                 var items = HttpContextItems;
                 if (items == null)
                     return XmlContentInternal;

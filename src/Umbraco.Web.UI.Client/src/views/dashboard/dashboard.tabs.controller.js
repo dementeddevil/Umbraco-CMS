@@ -18,10 +18,25 @@ function startUpVideosDashboardController($scope, xmlhelper, $log, $http) {
 angular.module("umbraco").controller("Umbraco.Dashboard.StartupVideosController", startUpVideosDashboardController);
 
 
-function startUpDynamicContentController(dashboardResource, assetsService) {
+function startUpDynamicContentController($timeout, $scope, dashboardResource, assetsService, tourService, eventsService) {
     var vm = this;
+    var evts = [];
+
     vm.loading = true;
     vm.showDefault = false;
+    
+    vm.startTour = startTour;
+
+    function onInit() {
+        // load tours
+        tourService.getGroupedTours().then(function(groupedTours) {
+            vm.tours = groupedTours;
+        });
+    }
+
+    function startTour(tour) {
+        tourService.startTour(tour);
+    }
 
     // default dashboard content
     vm.defaultDashboard = {
@@ -29,12 +44,12 @@ function startUpDynamicContentController(dashboardResource, assetsService) {
             {
                 title: "Documentation",
                 description: "Find the answers to your Umbraco questions",
-                url: "https://our.umbraco.org/documentation/?utm_source=core&utm_medium=dashboard&utm_content=text&utm_campaign=documentation/"
+                url: "https://our.umbraco.com/documentation/?utm_source=core&utm_medium=dashboard&utm_content=text&utm_campaign=documentation/"
             },
             {
                 title: "Community",
                 description: "Find the answers or ask your Umbraco questions",
-                url: "https://our.umbraco.org/?utm_source=core&utm_medium=dashboard&utm_content=text&utm_campaign=our_forum"
+                url: "https://our.umbraco.com/?utm_source=core&utm_medium=dashboard&utm_content=text&utm_campaign=our_forum"
             },
             {
                 title: "Umbraco.tv",
@@ -60,16 +75,27 @@ function startUpDynamicContentController(dashboardResource, assetsService) {
                 title: "Our Umbraco - The Friendliest Community",
                 description: "Our Umbraco - the official community site is your one stop for everything Umbraco. Whether you need a question answered or looking for cool plugins, the world's best and friendliest community is just a click away.",
                 img: "views/dashboard/default/ourumbraco.jpg",
-                url: "https://our.umbraco.org/?utm_source=core&utm_medium=dashboard&utm_content=image&utm_campaign=our",
+                url: "https://our.umbraco.com/?utm_source=core&utm_medium=dashboard&utm_content=image&utm_campaign=our",
                 altText: "Our Umbraco",
                 buttonText: "Visit Our Umbraco"
             }
         ]
     };
 
+    evts.push(eventsService.on("appState.tour.complete", function (name, completedTour) {
+        $timeout(function(){
+            angular.forEach(vm.tours, function (tourGroup) {
+                angular.forEach(tourGroup, function (tour) {
+                    if(tour.alias === completedTour.alias) {
+                        tour.completed = true;
+                    }
+                });
+            });
+        });
+    }));
     
     //proxy remote css through the local server
-    assetsService.loadCss( dashboardResource.getRemoteDashboardCssUrl("content") );
+    assetsService.loadCss(dashboardResource.getRemoteDashboardCssUrl("content"), $scope);
     dashboardResource.getRemoteDashboardContent("content").then(
         function (data) {
 
@@ -90,6 +116,10 @@ function startUpDynamicContentController(dashboardResource, assetsService) {
             vm.loading = false;
             vm.showDefault = true;
         });
+
+    
+    onInit();
+
 }
 
 angular.module("umbraco").controller("Umbraco.Dashboard.StartUpDynamicContentController", startUpDynamicContentController);

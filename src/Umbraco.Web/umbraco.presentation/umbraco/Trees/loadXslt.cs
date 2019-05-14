@@ -1,18 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.IO;
 using System.Text;
+using System.Web;
+using System.Xml;
+using System.Configuration;
+using umbraco.BasePages;
+using umbraco.BusinessLogic;
 using umbraco.businesslogic;
+using umbraco.cms.businesslogic;
+using umbraco.cms.businesslogic.cache;
+using umbraco.cms.businesslogic.contentitem;
+using umbraco.cms.businesslogic.datatype;
+using umbraco.cms.businesslogic.language;
+using umbraco.cms.businesslogic.media;
+using umbraco.cms.businesslogic.member;
+using umbraco.cms.businesslogic.property;
+using umbraco.cms.businesslogic.web;
 using umbraco.interfaces;
+using umbraco.DataLayer;
 using umbraco.cms.presentation.Trees;
+using umbraco.BusinessLogic.Utils;
 using umbraco.BusinessLogic.Actions;
 using Umbraco.Core.IO;
 using Umbraco.Core;
 
 namespace umbraco
 {
-	/// <summary>
-	/// Handles loading of the xslt files into the application tree
-	/// </summary>
-    [Tree(Constants.Applications.Developer, "xslt", "XSLT Files", sortOrder: 5)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [Obsolete("This is no longer used and will be removed from the codebase in the future")]
     public class loadXslt : FileSystemTree
 	{
 

@@ -2,7 +2,7 @@
 <language alias="ja" intName="Japanese" localName="日本語" lcid="17" culture="ja-JP">
   <creator>
     <name>The Umbraco community</name>
-    <link>http://our.umbraco.org/documentation/Extending-Umbraco/Language-Files</link>
+    <link>https://our.umbraco.com/documentation/Extending-Umbraco/Language-Files</link>
   </creator>
   <area alias="actions">
     <key alias="assignDomain">ドメインの割り当て</key>
@@ -976,6 +976,12 @@ Runwayをインストールして作られた新しいウェブサイトがど�
   </area>
 
   <area alias="grid">
+      <key alias="rte">Rich Text Editor</key>
+    <key alias="media">Image</key>
+    <key alias="macro">Macro</key>
+    <key alias="embed">Embed</key>
+    <key alias="headline">Headline</key>
+    <key alias="quote">Quote</key>
     <key alias="insertControl">挿入するアイテムを選択する</key>
     <key alias="addLayout">レイアウトを選択</key>
     <key alias="addRows">行の追加</key>

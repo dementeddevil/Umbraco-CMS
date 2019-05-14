@@ -10,11 +10,19 @@ namespace Umbraco.Web.Controllers
     public class UmbRegisterController : SurfaceController
     {
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult HandleRegisterMember([Bind(Prefix = "registerModel")]RegisterModel model)
         {
             if (ModelState.IsValid == false)
             {
                 return CurrentUmbracoPage();
+            }
+
+            // U4-10762 Server error with "Register Member" snippet (Cannot save member with empty name)
+            // If name field is empty, add the email address instead
+            if (string.IsNullOrEmpty(model.Name) && string.IsNullOrEmpty(model.Email) == false)
+            {
+                model.Name = model.Email;
             }
 
             MembershipCreateStatus status;
@@ -32,7 +40,6 @@ namespace Umbraco.Web.Controllers
                         return Redirect(model.RedirectUrl);
                     }
                     //redirect to current page by default
-                    
                     return RedirectToCurrentUmbracoPage();
                 case MembershipCreateStatus.InvalidUserName:
                     ModelState.AddModelError((model.UsernameIsEmail || model.Username == null)

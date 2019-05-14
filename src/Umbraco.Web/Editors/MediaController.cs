@@ -89,7 +89,7 @@ namespace Umbraco.Web.Editors
             }
 
             var emptyContent = Services.MediaService.CreateMedia("", parentId, contentType.Alias, UmbracoUser.Id);
-            var mapped = Mapper.Map<IMedia, MediaItemDisplay>(emptyContent);
+            var mapped = AutoMapperExtensions.MapWithUmbracoContext<IMedia, MediaItemDisplay>(emptyContent, UmbracoContext);
 
             //remove this tab if it exists: umbContainerView
             var containerTab = mapped.Tabs.FirstOrDefault(x => x.Alias == Constants.Conventions.PropertyGroups.ListViewGroupName);
@@ -115,7 +115,7 @@ namespace Umbraco.Web.Editors
                 Path = "-1," + Constants.System.RecycleBinMedia
             };
 
-            TabsAndPropertiesResolver.AddListView(display, "media", Services.DataTypeService, Services.TextService);
+            TabsAndPropertiesResolver<IMedia>.AddListView(display, "media", Services.DataTypeService, Services.TextService);
 
             return display;
         }
@@ -137,7 +137,7 @@ namespace Umbraco.Web.Editors
                 //HandleContentNotFound will throw an exception
                 return null;
             }
-            return Mapper.Map<IMedia, MediaItemDisplay>(foundContent);
+            return AutoMapperExtensions.MapWithUmbracoContext<IMedia, MediaItemDisplay>(foundContent, UmbracoContext);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Umbraco.Web.Editors
                 //HandleContentNotFound will throw an exception
                 return null;
             }
-            return Mapper.Map<IMedia, MediaItemDisplay>(foundContent);
+            return AutoMapperExtensions.MapWithUmbracoContext<IMedia, MediaItemDisplay>(foundContent, UmbracoContext);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace Umbraco.Web.Editors
         public IEnumerable<MediaItemDisplay> GetByIds([FromUri]int[] ids)
         {
             var foundMedia = Services.MediaService.GetByIds(ids);
-            return foundMedia.Select(Mapper.Map<IMedia, MediaItemDisplay>);
+            return foundMedia.Select(media => AutoMapperExtensions.MapWithUmbracoContext<IMedia, MediaItemDisplay>(media, UmbracoContext));
         }
 
         /// <summary>
@@ -447,12 +447,25 @@ namespace Umbraco.Web.Editors
         public HttpResponseMessage PostMove(MoveOrCopy move)
         {
             var toMove = ValidateMoveOrCopy(move);
+            var destinationParentID = move.ParentId;
+            var sourceParentID = toMove.ParentId;
+            
+            var moveResult = Services.MediaService.WithResult().Move(toMove, move.ParentId);
 
-            Services.MediaService.Move(toMove, move.ParentId);
-
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            response.Content = new StringContent(toMove.Path, Encoding.UTF8, "application/json");
-            return response;
+            if (sourceParentID == destinationParentID)
+            {
+                return Request.CreateValidationErrorResponse(new SimpleNotificationModel(new Notification("",Services.TextService.Localize("media/moveToSameFolderFailed"),SpeechBubbleIcon.Error)));
+            }
+            if (moveResult == false)
+            {
+                return Request.CreateValidationErrorResponse(new SimpleNotificationModel());
+            }
+            else
+            {
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent(toMove.Path, Encoding.UTF8, "application/json");
+                return response;
+            }
         }
 
         /// <summary>
@@ -466,6 +479,17 @@ namespace Umbraco.Web.Editors
             [ModelBinder(typeof(MediaItemBinder))]
                 MediaItemSave contentItem)
         {
+            //Recent versions of IE/Edge may send in the full clientside file path instead of just the file name.
+            //To ensure similar behavior across all browsers no matter what they do - we strip the FileName property of all
+            //uploaded files to being *only* the actual file name (as it should be).
+            if (contentItem.UploadedFiles != null && contentItem.UploadedFiles.Any())
+            {
+                foreach (var file in contentItem.UploadedFiles)
+                {
+                    file.FileName = Path.GetFileName(file.FileName);
+                }
+            }
+
             //If we've reached here it means:
             // * Our model has been bound
             // * and validated
@@ -488,7 +512,7 @@ namespace Umbraco.Web.Editors
                 {
                     //ok, so the absolute mandatory data is invalid and it's new, we cannot actually continue!
                     // add the modelstate to the outgoing object and throw validation response
-                    var forDisplay = Mapper.Map<IMedia, MediaItemDisplay>(contentItem.PersistedContent);
+                    var forDisplay = AutoMapperExtensions.MapWithUmbracoContext<IMedia, MediaItemDisplay>(contentItem.PersistedContent, UmbracoContext);
                     forDisplay.Errors = ModelState.ToErrorDictionary();
                     throw new HttpResponseException(Request.CreateValidationErrorResponse(forDisplay));
                 }
@@ -498,7 +522,7 @@ namespace Umbraco.Web.Editors
             var saveStatus = Services.MediaService.WithResult().Save(contentItem.PersistedContent, (int)Security.CurrentUser.Id);
 
             //return the updated model
-            var display = Mapper.Map<IMedia, MediaItemDisplay>(contentItem.PersistedContent);
+            var display = AutoMapperExtensions.MapWithUmbracoContext<IMedia, MediaItemDisplay>(contentItem.PersistedContent, UmbracoContext);
 
             //lasty, if it is not valid, add the modelstate to the outgoing object and throw a 403
             HandleInvalidModelState(display);
@@ -607,7 +631,7 @@ namespace Umbraco.Web.Editors
             var f = mediaService.CreateMedia(folder.Name, intParentId, Constants.Conventions.MediaTypes.Folder);
             mediaService.Save(f, Security.CurrentUser.Id);
 
-            return Mapper.Map<IMedia, MediaItemDisplay>(f);
+            return AutoMapperExtensions.MapWithUmbracoContext<IMedia, MediaItemDisplay>(f, UmbracoContext);
         }
 
         /// <summary>
@@ -717,15 +741,7 @@ namespace Umbraco.Web.Editors
                         mediaType = result.FormData["contentTypeAlias"];
                     }
 
-                    //TODO: make the media item name "nice" since file names could be pretty ugly, we have
-                    // string extensions to do much of this but we'll need:
-                    // * Pascalcase the name (use string extensions)
-                    // * strip the file extension
-                    // * underscores to spaces
-                    // * probably remove 'ugly' characters - let's discuss
-                    // All of this logic should exist in a string extensions method and be unit tested
-                    // http://issues.umbraco.org/issue/U4-5572
-                    var mediaItemName = fileName;
+                    var mediaItemName = fileName.ToFriendlyName();
 
                     var f = mediaService.CreateMedia(mediaItemName, parentId, mediaType, Security.CurrentUser.Id);
 

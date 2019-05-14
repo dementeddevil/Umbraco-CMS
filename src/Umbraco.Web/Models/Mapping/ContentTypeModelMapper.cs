@@ -60,6 +60,8 @@ namespace Umbraco.Web.Models.Mapping
 
                     if (source.DefaultTemplate != null)
                         dest.SetDefaultTemplate(applicationContext.Services.FileService.GetTemplate(source.DefaultTemplate));
+                    else
+                        dest.SetDefaultTemplate(null);
 
                     ContentTypeModelMapperExtensions.AfterMapContentTypeSaveToEntity(source, dest, applicationContext);
                 });
@@ -81,7 +83,7 @@ namespace Umbraco.Web.Models.Mapping
                 {
                     ContentTypeModelMapperExtensions.AfterMapContentTypeSaveToEntity(source, dest, applicationContext);
 
-                    //map the MemberCanEditProperty,MemberCanViewProperty
+                    //map the MemberCanEditProperty,MemberCanViewProperty,IsSensitiveData
                     foreach (var propertyType in source.Groups.SelectMany(x => x.Properties))
                     {
                         var localCopy = propertyType;
@@ -90,6 +92,7 @@ namespace Umbraco.Web.Models.Mapping
                         {
                             dest.SetMemberCanEditProperty(localCopy.Alias, localCopy.MemberCanEditProperty);
                             dest.SetMemberCanViewProperty(localCopy.Alias, localCopy.MemberCanViewProperty);
+                            dest.SetIsSensitiveProperty(localCopy.Alias, localCopy.IsSensitiveData);
                         }
                     }
                 });
@@ -101,7 +104,7 @@ namespace Umbraco.Web.Models.Mapping
                 .MapBaseContentTypeEntityToDisplay<IMemberType, MemberTypeDisplay, MemberPropertyTypeDisplay>(applicationContext, _propertyEditorResolver)
                 .AfterMap((memberType, display) =>
                 {
-                    //map the MemberCanEditProperty,MemberCanViewProperty
+                    //map the MemberCanEditProperty,MemberCanViewProperty,IsSensitiveData
                     foreach (var propertyType in memberType.PropertyTypes)
                     {
                         var localCopy = propertyType;
@@ -110,6 +113,7 @@ namespace Umbraco.Web.Models.Mapping
                         {
                             displayProp.MemberCanEditProperty = memberType.MemberCanEditProperty(localCopy.Alias);
                             displayProp.MemberCanViewProperty = memberType.MemberCanViewProperty(localCopy.Alias);
+                            displayProp.IsSensitiveData = memberType.IsSensitiveProperty(localCopy.Alias);
                         }
                     }
                 });

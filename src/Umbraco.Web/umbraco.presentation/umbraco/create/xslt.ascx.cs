@@ -61,7 +61,7 @@ namespace umbraco.presentation.create
                     BasePage.Current.getUser(),
                     helper.Request("nodeType"),
                     createMacroVal,
-                    xsltName + "|||" + rename.Text);
+                    xsltName + "|||" + rename.Text.CleanForXss());
 
                 BasePage.Current.ClientTools
                     .ChangeContentFrameUrl(returnUrl)

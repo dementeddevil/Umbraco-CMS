@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    function HelpDrawerController($scope, $routeParams, $timeout, dashboardResource, localizationService, userService, eventsService, helpService, appState) {
+    function HelpDrawerController($scope, $routeParams, $timeout, dashboardResource, localizationService, userService, eventsService, helpService, appState, tourService, $filter) {
 
         var vm = this;
         var evts = [];
@@ -12,10 +12,24 @@
         vm.tree = $routeParams.tree;
         vm.sectionName = "";
         vm.customDashboard = null;
+        vm.tours = [];
 
         vm.closeDrawer = closeDrawer;
+        vm.startTour = startTour;
+        vm.getTourGroupCompletedPercentage = getTourGroupCompletedPercentage;
+        vm.showTourButton = showTourButton;
+            
+        function startTour(tour) {
+            tourService.startTour(tour);
+            closeDrawer();
+        }
 
         function oninit() {
+
+            tourService.getGroupedTours().then(function(groupedTours) {
+                vm.tours = groupedTours;
+                getTourGroupCompletedPercentage();
+            });
 
             // load custom help dashboard
             dashboardResource.getDashboard("user-help").then(function (dashboard) {
@@ -29,17 +43,26 @@
             setSectionName();
 
             userService.getCurrentUser().then(function (user) {
-
+                
                 vm.userType = user.userType;
                 vm.userLang = user.locale;
+
+                vm.hasAccessToSettings = _.contains(user.allowedSections, 'settings');                
 
                 evts.push(eventsService.on("appState.treeState.changed", function (e, args) {
                     handleSectionChange();
                 }));
 
-                findHelp(vm.section, vm.tree, vm.usertype, vm.userLang);
+                findHelp(vm.section, vm.tree, vm.userType, vm.userLang);
 
             });
+            
+            // check if a tour is running - if it is open the matching group
+            var currentTour = tourService.getCurrentTour();
+
+            if (currentTour) {
+                openTourGroup(currentTour.alias);
+            }
 
         }
 
@@ -55,17 +78,20 @@
                     vm.tree = $routeParams.tree;
 
                     setSectionName();
-                    findHelp(vm.section, vm.tree, vm.usertype, vm.userLang);
+                    findHelp(vm.section, vm.tree, vm.userType, vm.userLang);
 
                 }
             });
         }
 
         function findHelp(section, tree, usertype, userLang) {
+
+            if (vm.hasAccessToSettings) {
+                helpService.getContextHelpForPage(section, tree).then(function (topics) {
+                    vm.topics = topics;
+                });
+            }
             
-            helpService.getContextHelpForPage(section, tree).then(function (topics) {
-                vm.topics = topics;
-            });
 
             var rq = {};
             rq.section = vm.section;
@@ -87,10 +113,12 @@
                 rq.path = rq.section + "/" + $routeParams.tree + "/" + $routeParams.method;
             }
 
-            helpService.findVideos(rq).then(function(videos){
-    	        vm.videos = videos;
-            });
-            
+
+            if (vm.hasAccessToSettings) {
+                helpService.findVideos(rq).then(function (videos) {
+                    vm.videos = videos;
+                });
+            }                       
         }
 
         function setSectionName() {
@@ -101,13 +129,55 @@
             });
         }
 
-        oninit();
+        function showTourButton(index, tourGroup) {
+            if(index !== 0) {
+                var prevTour = tourGroup.tours[index - 1];
+                if(prevTour.completed) {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+
+        function openTourGroup(tourAlias) {
+            angular.forEach(vm.tours, function (group) {
+                angular.forEach(group, function (tour) {
+                    if (tour.alias === tourAlias) {
+                        group.open = true;
+                    }
+                });
+            });
+        }
+
+        function getTourGroupCompletedPercentage() {
+            // Finding out, how many tours are completed for the progress circle
+            angular.forEach(vm.tours, function(group){
+                var completedTours = 0;
+                angular.forEach(group.tours, function(tour){
+                    if(tour.completed) {
+                        completedTours++;
+                    }
+                });
+                group.completedPercentage = Math.round((completedTours/group.tours.length)*100);
+            });
+        }
+
+        evts.push(eventsService.on("appState.tour.complete", function (event, tour) {
+            tourService.getGroupedTours().then(function(groupedTours) {
+                vm.tours = groupedTours;
+                openTourGroup(tour.alias);
+                getTourGroupCompletedPercentage();
+            });
+        }));
            
         $scope.$on('$destroy', function () {
             for (var e in evts) {
                 eventsService.unsubscribe(evts[e]);
             }
         });
+
+        oninit();
 
     }
 

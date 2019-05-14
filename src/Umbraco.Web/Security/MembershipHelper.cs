@@ -646,10 +646,15 @@ namespace Umbraco.Web.Security
                 var provider = _membershipProvider;
 
                 string username;
+                
                 if (provider.IsUmbracoMembershipProvider())
                 {
                     var member = GetCurrentPersistedMember();
+                    // If a member could not be resolved from the provider, we are clearly not authorized and can break right here
+                    if (member == null)
+                        return false;
                     username = member.Username;
+                    
                     // If types defined, check member is of one of those types
                     var allowTypesList = allowTypes as IList<string> ?? allowTypes.ToList();
                     if (allowTypesList.Any(allowType => allowType != string.Empty))
@@ -668,6 +673,9 @@ namespace Umbraco.Web.Security
                 else
                 {
                     var member = provider.GetCurrentUser();
+                    // If a member could not be resolved from the provider, we are clearly not authorized and can break right here
+                    if (member == null)
+                        return false;
                     username = member.UserName;
                 }
 

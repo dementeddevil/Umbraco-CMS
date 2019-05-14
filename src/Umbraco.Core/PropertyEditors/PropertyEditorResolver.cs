@@ -21,7 +21,7 @@ namespace Umbraco.Core.PropertyEditors
         public PropertyEditorResolver(IServiceProvider serviceProvider, ILogger logger, Func<IEnumerable<Type>> typeListProducerList, IRuntimeCacheProvider runtimeCache)
             : base(serviceProvider, logger, typeListProducerList, ObjectLifetimeScope.Application)
         {
-        	var builder = new ManifestBuilder(
+            var builder = new ManifestBuilder(
                 runtimeCache,
                 new ManifestParser(new DirectoryInfo(IOHelper.MapPath("~/App_Plugins")), runtimeCache));
 
@@ -49,7 +49,16 @@ namespace Umbraco.Core.PropertyEditors
         {
             var nestedContentEditorFromPackage = editors.FirstOrDefault(x => x.Alias == "Our.Umbraco.NestedContent");
             if (nestedContentEditorFromPackage != null)
+            {
                 nestedContentEditorFromPackage.Name = "(Obsolete) " + nestedContentEditorFromPackage.Name;
+                nestedContentEditorFromPackage.IsDeprecated = true;
+            }
+            var multiUrlPickerEditorFromPackage = editors.FirstOrDefault(x => x.Alias == "RJP.MultiUrlPicker");
+            if (multiUrlPickerEditorFromPackage != null)
+            {
+                multiUrlPickerEditorFromPackage.Name = "(Obsolete) " + multiUrlPickerEditorFromPackage.Name;
+                multiUrlPickerEditorFromPackage.IsDeprecated = true;
+            }
             return editors;
 
         }

@@ -8,6 +8,7 @@ using Microsoft.Owin.Logging;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Configuration.UmbracoSettings;
+using Umbraco.Core.Security;
 
 namespace Umbraco.Web.Security.Identity
 {
@@ -101,7 +102,10 @@ namespace Umbraco.Web.Security.Identity
 
                                     remainingSeconds = (ticket.Properties.ExpiresUtc.Value - currentUtc).TotalSeconds;
                                 }
-                            }                            
+                            }
+
+                            //We also need to re-validate the user's session if we are relying on this ping to keep their session alive
+                            await SessionIdValidator.ValidateSessionAsync(TimeSpan.FromMinutes(1), context, _authOptions.CookieManager, _authOptions.SystemClock, issuedUtc, ticket.Identity);
                         }
                         else if (remainingSeconds <= 30)
                         {

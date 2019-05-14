@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Web;
 using System.Xml;
-using Umbraco.Core;
-using Umbraco.Core.IO;
 using umbraco.BusinessLogic;
 using umbraco.interfaces;
+using Umbraco.Core;
+using Umbraco.Core.IO;
 
 namespace Umbraco.Web.UI
 {
@@ -44,9 +44,9 @@ namespace Umbraco.Web.UI
         /// </remarks>
         private static ITask GetTaskForOperation(HttpContextBase httpContext, User umbracoUser, Operation op, string nodeType)
         {
-            if (httpContext == null) throw new ArgumentNullException(nameof(httpContext));
-            if (umbracoUser == null) throw new ArgumentNullException(nameof(umbracoUser));
-            if (nodeType == null) throw new ArgumentNullException(nameof(nodeType));
+            if (httpContext == null) throw new ArgumentNullException("httpContext");
+            if (umbracoUser == null) throw new ArgumentNullException("umbracoUser");
+            if (nodeType == null) throw new ArgumentNullException("nodeType");
 
             var ctxKey = op == Operation.Create ? ContextKeyCreate : ContextKeyDelete;
 
@@ -207,7 +207,7 @@ namespace Umbraco.Web.UI
 
             typeInstance.TypeID = typeId;
             typeInstance.ParentID = nodeId;
-            typeInstance.Alias = text;
+            typeInstance.Alias = text.CleanForXss();
 
             // check for returning url
             ITaskReturnUrl returnUrlTask = typeInstance as LegacyDialogTask;

@@ -2,7 +2,7 @@
 <language alias="tr" intName="Turkish" localName="Türkçe" lcid="" culture="tr-TR">
   <creator>
     <name>The Umbraco community</name>
-    <link>http://our.umbraco.org/documentation/Extending-Umbraco/Language-Files</link>
+    <link>https://our.umbraco.com/documentation/Extending-Umbraco/Language-Files</link>
   </creator>
   <area alias="actions">
     <key alias="assignDomain">Kültür ve Hostnames</key>
@@ -456,7 +456,7 @@
               <p>
               <strong>Tekrar dene</strong>. 
               <br />
-              <a href="http://our.umbraco.org/documentation/Using-Umbraco/Config-files/webconfig7" target="_blank">
+              <a href="https://our.umbraco.com/documentation/Using-Umbraco/Config-files/webconfig7" target="_blank">
 			              Burada düzenleme web.config Hakkında Daha Fazla Bilgi.</a></p>]]>
     </key>
     <key alias="databaseText">
@@ -930,6 +930,12 @@ To manage your website, simply open the Umbraco back office and start adding con
     <key alias="template">Template</key>
   </area>
   <area alias="grid">
+    <key alias="rte">Rich Text Editor</key>
+    <key alias="media">Image</key>
+    <key alias="macro">Macro</key>
+    <key alias="embed">Embed</key>
+    <key alias="headline">Headline</key>
+    <key alias="quote">Quote</key>  
     <key alias="insertControl">Insert control</key>
     <key alias="addRows">Choose a layout for the page</key>
     <key alias="addElement"><![CDATA[To start, click the <i class="icon icon-add blue"></i> below and add your first element]]></key>

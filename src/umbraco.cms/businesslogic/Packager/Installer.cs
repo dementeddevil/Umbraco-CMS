@@ -14,6 +14,7 @@ using umbraco.cms.businesslogic.web;
 using umbraco.BusinessLogic;
 using System.Diagnostics;
 using System.IO.Compression;
+using System.Net;
 using umbraco.cms.businesslogic.template;
 using umbraco.interfaces;
 using Umbraco.Core.Events;
@@ -46,6 +47,7 @@ namespace umbraco.cms.businesslogic.packager
 
         private readonly List<string> _binaryFileErrors = new List<string>();
         private int _currentUserId = -1;
+        private static WebClient _webClient;
 
 
         public string Name { get; private set; }
@@ -685,9 +687,10 @@ namespace umbraco.cms.businesslogic.packager
             if (Directory.Exists(IOHelper.MapPath(SystemDirectories.Packages)) == false)
                 Directory.CreateDirectory(IOHelper.MapPath(SystemDirectories.Packages));
 
-            var wc = new System.Net.WebClient();
+            if (_webClient == null)
+                _webClient = new WebClient();
 
-            wc.DownloadFile(
+            _webClient.DownloadFile(
                 "http://" + PackageServer + "/fetch?package=" + Package.ToString(),
                 IOHelper.MapPath(SystemDirectories.Packages + "/" + Package + ".umb"));
 
@@ -763,7 +766,21 @@ namespace umbraco.cms.businesslogic.packager
             if (Directory.Exists(tempDir)) Directory.Delete(tempDir, true);
             Directory.CreateDirectory(tempDir);
 
-            ZipFile.ExtractToDirectory(zipName, tempDir);
+            //Have to open zip & get each entry & unzip to flatten
+            //Some Umbraco packages are nested in another folder, where others have all the files at the root
+            using (var archive = ZipFile.OpenRead(zipName))
+            {
+                foreach (var entry in archive.Entries)
+                {
+                    //Name will be empty if it's a folder
+                    //Otherwise its the filename - where FullName will include any nested folders too
+                    if (string.IsNullOrEmpty(entry.Name) == false)
+                    {
+                        var fullPath = Path.Combine(tempDir, entry.Name);
+                        entry.ExtractToFile(fullPath);
+                    }
+                }
+            }
 
             if (deleteFile)
             {
@@ -795,7 +812,9 @@ namespace umbraco.cms.businesslogic.packager
             var installationSummary = insPack.GetInstallationSummary(contentTypeService, dataTypeService, fileService, localizationService, macroService);
             installationSummary.PackageInstalled = true;
 
-            var args = new ImportPackageEventArgs<InstallationSummary>(installationSummary, false);
+            var metadata = insPack.GetMetaData();
+
+            var args = new ImportPackageEventArgs<InstallationSummary>(installationSummary, metadata, false);
             PackagingService.OnImportedPackage(args);
         }
     }

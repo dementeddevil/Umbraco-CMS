@@ -8,6 +8,7 @@ function Get-UmbracoBuildEnv
   # store tools in the module's directory
   # and cache them for two days
   $path = "$PSScriptRoot\temp"
+  $src = "$PSScriptRoot\..\..\..\src"
   $cache = 2
   
   if (-not (test-path $path))
@@ -37,7 +38,7 @@ function Get-UmbracoBuildEnv
   if (-not (test-path $sevenZip))
   {
     Write-Host "Download 7-Zip..."
-    &$nuget install 7-Zip.CommandLine -OutputDirectory $path -Verbosity quiet
+    &$nuget install 7-Zip.CommandLine -configFile "$src\NuGet.config" -OutputDirectory $path -Verbosity quiet
     $dir = ls "$path\7-Zip.CommandLine.*" | sort -property Name -descending | select -first 1
     $file = ls -path "$dir" -name 7za.exe -recurse
     $file = ls -path "$dir" -name 7za.exe -recurse | select -first 1 #A select is because there is tools\7za.exe & tools\x64\7za.exe
@@ -54,7 +55,7 @@ function Get-UmbracoBuildEnv
   if (-not (test-path $vswhere))
   {
     Write-Host "Download VsWhere..."
-    &$nuget install vswhere -OutputDirectory $path -Verbosity quiet
+    &$nuget install vswhere -configFile "$src\NuGet.config" -OutputDirectory $path -Verbosity quiet
     $dir = ls "$path\vswhere.*" | sort -property Name -descending | select -first 1
     $file = ls -path "$dir" -name vswhere.exe -recurse
     mv "$dir\$file" $vswhere
@@ -70,7 +71,7 @@ function Get-UmbracoBuildEnv
   if (-not (test-path $semver))
   {
     Write-Host "Download Semver..."
-    &$nuget install semver -OutputDirectory $path -Verbosity quiet
+    &$nuget install semver -configFile "$src\NuGet.config" -OutputDirectory $path -Verbosity quiet
     $dir = ls "$path\semver.*" | sort -property Name -descending | select -first 1
     $file = "$dir\lib\net452\Semver.dll"
     if (-not (test-path $file))
@@ -93,14 +94,14 @@ function Get-UmbracoBuildEnv
   }
   
   # ensure we have node
-  $node = "$path\node-v6.9.1-win-x86"
-  $source = "http://nodejs.org/dist/v6.9.1/node-v6.9.1-win-x86.7z"
+  $node = "$path\node-v8.12.0-win-x86"
+  $source = "http://nodejs.org/dist/v8.12.0/node-v8.12.0-win-x86.7z "
   if (-not (test-path $node))
   {
     Write-Host "Download Node..."
-    Invoke-WebRequest $source -OutFile "$path\node-v6.9.1-win-x86.7z"
-    &$sevenZip x "$path\node-v6.9.1-win-x86.7z" -o"$path" -aos > $nul
-    Remove-File "$path\node-v6.9.1-win-x86.7z"    
+    Invoke-WebRequest $source -OutFile "$path\node-v8.12.0-win-x86.7z"
+    &$sevenZip x "$path\node-v8.12.0-win-x86.7z" -o"$path" -aos > $nul
+    Remove-File "$path\node-v8.12.0-win-x86.7z"    
   }
   
   # note: why? node already brings everything we need!

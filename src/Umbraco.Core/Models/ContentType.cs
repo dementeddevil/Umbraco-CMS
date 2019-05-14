@@ -95,9 +95,33 @@ namespace Umbraco.Core.Models
             get { return _allowedTemplates; }
             set
             {
-                SetPropertyValueAndDetectChanges(value, ref _allowedTemplates, Ps.Value.AllowedTemplatesSelector,
-                   Ps.Value.TemplateComparer);
+                SetPropertyValueAndDetectChanges(value, ref _allowedTemplates, Ps.Value.AllowedTemplatesSelector, Ps.Value.TemplateComparer);
+
+                if (_allowedTemplates.Any(x => x.Id == _defaultTemplate) == false)
+                    DefaultTemplateId = 0;
             }
+        }
+
+        /// <summary>
+        /// Determines if AllowedTemplates contains templateId
+        /// </summary>
+        /// <param name="templateId">The template id to check</param>
+        /// <returns>True if AllowedTemplates contains the templateId else False</returns>
+        public bool IsAllowedTemplate(int templateId)
+        {
+            var allowedTemplates = AllowedTemplates ?? new ITemplate[0];
+            return allowedTemplates.Any(t => t.Id == templateId);
+        }
+
+        /// <summary>
+        /// Determines if AllowedTemplates contains templateId
+        /// </summary>
+        /// <param name="templateAlias">The template alias to check</param>
+        /// <returns>True if AllowedTemplates contains the templateAlias else False</returns>
+        public bool IsAllowedTemplate(string templateAlias)
+        {
+            var allowedTemplates = AllowedTemplates ?? new ITemplate[0];
+            return allowedTemplates.Any(t => t.Alias.Equals(templateAlias, StringComparison.InvariantCultureIgnoreCase));
         }
 
         /// <summary>
